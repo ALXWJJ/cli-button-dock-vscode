@@ -26,6 +26,12 @@ type ButtonConfig = {
 
 type AgentPreset = Omit<ButtonConfig, "id" | "enabled" | "preset">
 type AgentPresetDefinition = AgentPreset & { id: string; name: string }
+type BrandIconDefinition = {
+  id: string
+  name: string
+  light: string
+  dark: string
+}
 
 type ActiveContext = {
   workspaceFolder?: string
@@ -171,12 +177,57 @@ const ICON_OPTIONS = [
   "symbol-structure",
 ]
 
+const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
+  {
+    id: "brand:opencode",
+    name: "OpenCode",
+    light: "opencode-light.svg",
+    dark: "opencode-dark.svg",
+  },
+  {
+    id: "brand:codex",
+    name: "Codex / OpenAI",
+    light: "codex-light.svg",
+    dark: "codex-dark.svg",
+  },
+  {
+    id: "brand:claude",
+    name: "Claude",
+    light: "claude.svg",
+    dark: "claude.svg",
+  },
+  {
+    id: "brand:gemini",
+    name: "Gemini",
+    light: "gemini.png",
+    dark: "gemini.png",
+  },
+  {
+    id: "brand:aider",
+    name: "Aider",
+    light: "aider.png",
+    dark: "aider.png",
+  },
+  {
+    id: "brand:goose",
+    name: "Goose",
+    light: "goose.svg",
+    dark: "goose.svg",
+  },
+  {
+    id: "brand:qwen",
+    name: "Qwen Code",
+    light: "qwen.svg",
+    dark: "qwen.svg",
+  },
+]
+
 const AGENT_PRESETS: AgentPresetDefinition[] = [
   {
     id: "opencode",
     name: "OpenCode",
     label: "OpenCode",
-    icon: "sparkle",
+    icon: "brand:opencode",
     command: "opencode",
     cwd: "current",
     context: "none",
@@ -185,7 +236,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
     id: "codex",
     name: "Codex CLI",
     label: "Codex",
-    icon: "hubot",
+    icon: "brand:codex",
     command: "codex",
     cwd: "current",
     context: "none",
@@ -194,7 +245,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
     id: "claude",
     name: "Claude Code",
     label: "Claude Code",
-    icon: "comment-discussion",
+    icon: "brand:claude",
     command: "claude",
     cwd: "current",
     context: "none",
@@ -203,7 +254,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
     id: "gemini",
     name: "Gemini CLI",
     label: "Gemini CLI",
-    icon: "sparkle",
+    icon: "brand:gemini",
     command: "gemini",
     cwd: "current",
     context: "none",
@@ -212,7 +263,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
     id: "aider",
     name: "Aider",
     label: "Aider",
-    icon: "code",
+    icon: "brand:aider",
     command: "aider",
     cwd: "current",
     context: "none",
@@ -221,7 +272,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
     id: "goose",
     name: "Goose",
     label: "Goose",
-    icon: "rocket",
+    icon: "brand:goose",
     command: "goose",
     cwd: "current",
     context: "none",
@@ -230,7 +281,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
     id: "qwen",
     name: "Qwen Code",
     label: "Qwen Code",
-    icon: "lightbulb",
+    icon: "brand:qwen",
     command: "qwen",
     cwd: "current",
     context: "none",
@@ -420,7 +471,7 @@ function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[])
         return {
           ...command,
           title: button.label,
-          icon: toCodicon(button.icon),
+          icon: toManifestIcon(button.icon),
         }
       })
     }
@@ -457,6 +508,33 @@ function toCodicon(icon: string) {
   return icon.startsWith("$(") ? icon : `$(${icon})`
 }
 
+function getBrandIcon(icon: string) {
+  const normalized = normalizeIcon(icon)
+  return BRAND_ICON_OPTIONS.find((item) => item.id === normalized)
+}
+
+function toManifestIcon(icon: string) {
+  const brand = getBrandIcon(icon)
+  if (!brand) {
+    return toCodicon(icon)
+  }
+  return {
+    light: `media/brands/${brand.light}`,
+    dark: `media/brands/${brand.dark}`,
+  }
+}
+
+function getTerminalIconPath(extensionContext: vscode.ExtensionContext, icon: string) {
+  const brand = getBrandIcon(icon)
+  if (!brand) {
+    return new vscode.ThemeIcon(normalizeIcon(icon))
+  }
+  return {
+    light: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.light),
+    dark: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.dark),
+  }
+}
+
 async function runButton(button: ButtonConfig, extensionContext: vscode.ExtensionContext) {
   if (!button.command.trim()) {
     vscode.window.showWarningMessage(`Configure a command for ${button.label} first.`)
@@ -476,7 +554,7 @@ async function runButton(button: ButtonConfig, extensionContext: vscode.Extensio
   const terminal = vscode.window.createTerminal({
     name: terminalName,
     cwd: getWorkingDirectory(button, activeContext),
-    iconPath: new vscode.ThemeIcon(button.icon),
+    iconPath: getTerminalIconPath(extensionContext, button.icon),
     location: {
       viewColumn: vscode.ViewColumn.Beside,
       preserveFocus: false,
@@ -628,6 +706,12 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   const state = JSON.stringify(buttons).replaceAll("<", "\\u003c")
   const presets = JSON.stringify(AGENT_PRESETS).replaceAll("<", "\\u003c")
   const icons = JSON.stringify(ICON_OPTIONS)
+  const brandIcons = JSON.stringify(BRAND_ICON_OPTIONS.map((brand) => ({
+    id: brand.id,
+    name: brand.name,
+    light: webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "brands", brand.light)).toString(),
+    dark: webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "brands", brand.dark)).toString(),
+  }))).replaceAll("<", "\\u003c")
   const codiconCssUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.css"))
   const codiconFontUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.ttf"))
 
@@ -635,7 +719,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource}; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agent Action Dock</title>
   <link rel="stylesheet" href="${codiconCssUri}" />
@@ -659,6 +743,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     .icon-picker { position: relative; display: flex; gap: 5px; min-width: 0; }
     .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-icon-foreground, var(--vscode-foreground)); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 18px; }
     .icon-preview:hover { background: var(--vscode-list-hoverBackground); }
+    .icon-preview img, .icon-option img { width: 20px; height: 20px; object-fit: contain; }
     .icon-menu { position: absolute; top: calc(100% + 5px); right: 0; z-index: 10; width: min(420px, 70vw); max-height: 340px; overflow: auto; padding: 8px; background: var(--vscode-quickInput-background, var(--vscode-editor-background)); border: 1px solid var(--vscode-focusBorder); box-shadow: 0 8px 24px var(--vscode-widget-shadow); }
     .icon-menu[hidden] { display: none; }
     .icon-search { margin-bottom: 8px; }
@@ -678,14 +763,14 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 </head>
 <body>
   <h1>Agent Action Dock</h1>
-  <p class="hint">每行配置一个按钮。预设会自动填入命令和图标，也可以直接修改执行命令；点击图标预览可从官方 Codicon 网格中选择。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
+  <p class="hint">每行配置一个按钮。预设会自动填入命令和 Agent 品牌图标，也可以直接修改执行命令；点击图标预览可从品牌图标和官方 Codicon 网格中选择。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
     <button id="advanced">编辑高级配置</button>
     <span id="message"></span>
   </div>
-  <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标 Codicon</span><span>执行命令</span></div>
+  <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标</span><span>执行命令</span></div>
   <main id="app"></main>
   <p class="advanced-hint">工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
@@ -693,6 +778,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     let state = ${state};
     const presets = ${presets};
     const icons = ${icons};
+    const brandIcons = ${brandIcons};
     const app = document.getElementById('app');
     const message = document.getElementById('message');
 
@@ -733,23 +819,37 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       const preview = document.createElement('button');
       preview.type = 'button';
       preview.className = 'icon-preview';
-      const glyph = document.createElement('span');
-      glyph.className = 'codicon';
-      preview.append(glyph);
       const input = textInput('icon', value, 'terminal');
       input.spellcheck = false;
       const menu = document.createElement('div');
       menu.className = 'icon-menu';
       menu.hidden = true;
-      const search = textInput('icon-search', '', '搜索 Codicon');
-      search.setAttribute('aria-label', '搜索 Codicon');
+      const search = textInput('icon-search', '', '搜索品牌图标或 Codicon');
+      search.setAttribute('aria-label', '搜索品牌图标或 Codicon');
       const grid = document.createElement('div');
       grid.className = 'icon-grid';
       const optionElements = [];
+      const isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      function createBrandImage(brand) {
+        const image = document.createElement('img');
+        image.src = isDarkTheme ? brand.dark : brand.light;
+        image.alt = '';
+        image.setAttribute('aria-hidden', 'true');
+        return image;
+      }
 
       function updatePreview(next) {
         const name = iconName(next);
-        glyph.className = 'codicon codicon-' + iconClassName(name);
+        const brand = brandIcons.find((item) => item.id === name);
+        preview.replaceChildren();
+        if (brand) {
+          preview.append(createBrandImage(brand));
+        } else {
+          const glyph = document.createElement('span');
+          glyph.className = 'codicon codicon-' + iconClassName(name);
+          preview.append(glyph);
+        }
         preview.title = '选择图标：' + name;
         preview.setAttribute('aria-label', '选择图标：' + name);
         optionElements.forEach((item) => item.element.classList.toggle('selected', item.name === name));
@@ -757,8 +857,28 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 
       function filterOptions() {
         const query = search.value.trim().toLowerCase();
-        optionElements.forEach((item) => { item.element.hidden = !!query && !item.name.includes(query); });
+        optionElements.forEach((item) => { item.element.hidden = !!query && !item.search.includes(query); });
       }
+
+      brandIcons.forEach((brand) => {
+        const option = document.createElement('button');
+        option.type = 'button';
+        option.className = 'icon-option';
+        option.title = brand.name + ' (' + brand.id + ')';
+        option.setAttribute('aria-label', brand.name);
+        option.append(createBrandImage(brand));
+        option.addEventListener('click', (event) => {
+          event.stopPropagation();
+          input.value = brand.id;
+          updatePreview(brand.id);
+          onChange(brand.id);
+          menu.hidden = true;
+          search.value = '';
+          filterOptions();
+        });
+        optionElements.push({ element: option, name: brand.id, search: (brand.id + ' ' + brand.name).toLowerCase() });
+        grid.append(option);
+      });
 
       icons.forEach((name) => {
         const option = document.createElement('button');
@@ -778,7 +898,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
           search.value = '';
           filterOptions();
         });
-        optionElements.push({ element: option, name });
+        optionElements.push({ element: option, name, search: name.toLowerCase() });
         grid.append(option);
       });
 

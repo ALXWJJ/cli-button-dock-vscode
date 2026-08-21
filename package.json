@@ -38,27 +38,42 @@
       {
         "command": "agentActionDock.button01",
         "title": "OpenCode",
-        "icon": "$(sparkle)"
+        "icon": {
+          "light": "media/brands/opencode-light.svg",
+          "dark": "media/brands/opencode-dark.svg"
+        }
       },
       {
         "command": "agentActionDock.button02",
         "title": "Codex",
-        "icon": "$(hubot)"
+        "icon": {
+          "light": "media/brands/codex-light.svg",
+          "dark": "media/brands/codex-dark.svg"
+        }
       },
       {
         "command": "agentActionDock.button03",
         "title": "Claude Code",
-        "icon": "$(comment-discussion)"
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
       },
       {
         "command": "agentActionDock.button04",
         "title": "Gemini CLI",
-        "icon": "$(sparkle)"
+        "icon": {
+          "light": "media/brands/gemini.png",
+          "dark": "media/brands/gemini.png"
+        }
       },
       {
         "command": "agentActionDock.button05",
         "title": "Aider",
-        "icon": "$(code)"
+        "icon": {
+          "light": "media/brands/aider.png",
+          "dark": "media/brands/aider.png"
+        }
       },
       {
         "command": "agentActionDock.button06",
@@ -178,7 +193,7 @@
               "enabled": true,
               "preset": "opencode",
               "label": "OpenCode",
-              "icon": "sparkle",
+              "icon": "brand:opencode",
               "command": "opencode",
               "cwd": "current",
               "context": "none"
@@ -188,7 +203,7 @@
               "enabled": true,
               "preset": "codex",
               "label": "Codex",
-              "icon": "hubot",
+              "icon": "brand:codex",
               "command": "codex",
               "cwd": "current",
               "context": "none"
@@ -198,7 +213,7 @@
               "enabled": false,
               "preset": "claude",
               "label": "Claude Code",
-              "icon": "comment-discussion",
+              "icon": "brand:claude",
               "command": "claude",
               "cwd": "current",
               "context": "none"
@@ -208,7 +223,7 @@
               "enabled": false,
               "preset": "gemini",
               "label": "Gemini CLI",
-              "icon": "sparkle",
+              "icon": "brand:gemini",
               "command": "gemini",
               "cwd": "current",
               "context": "none"
@@ -218,7 +233,7 @@
               "enabled": false,
               "preset": "aider",
               "label": "Aider",
-              "icon": "code",
+              "icon": "brand:aider",
               "command": "aider",
               "cwd": "current",
               "context": "none"

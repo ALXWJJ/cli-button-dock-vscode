@@ -7,3 +7,24 @@ The bundled icon assets are provided under the Creative Commons Attribution 4.0
 International license:
 
 https://creativecommons.org/licenses/by/4.0/
+
+Agent brand assets
+------------------
+
+The preset brand assets are included as supplied for identifying the corresponding
+terminal agents. The names, logos, and marks remain the property of their
+respective owners. Agent Action Dock is an independent project and does not
+claim affiliation, sponsorship, or endorsement by any of these projects.
+
+Sources:
+
+- OpenCode: https://github.com/anomalyco/opencode
+- Codex / OpenAI Blossom: https://openai.com/brand/
+- Claude: https://claude.com/favicon.svg
+- Gemini CLI: https://github.com/google-gemini/gemini-cli
+- Aider: https://github.com/Aider-AI/aider
+- Goose: https://github.com/aaif-goose/goose
+- Qwen Code: https://github.com/QwenLM/qwen-code
+
+Trademark and usage terms may apply separately to each brand. The assets are
+not modified by Agent Action Dock.
