@@ -222,6 +222,16 @@ const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   },
 ]
 
+const LEGACY_PRESET_ICONS: Record<string, string[]> = {
+  opencode: ["sparkle"],
+  codex: ["hubot"],
+  claude: ["comment-discussion"],
+  gemini: ["sparkle"],
+  aider: ["code"],
+  goose: ["rocket"],
+  qwen: ["lightbulb"],
+}
+
 const AGENT_PRESETS: AgentPresetDefinition[] = [
   {
     id: "opencode",
@@ -307,6 +317,7 @@ export function activate(context: vscode.ExtensionContext) {
   let buttons = loadButtons()
 
   void updateButtonContexts(buttons)
+  void migrateLegacyPresetIcons(buttons)
   if (syncManifest(context, buttons)) {
     vscode.window.showInformationMessage("Agent Action Dock button metadata changed. Reload the window to apply it.")
   }
@@ -425,12 +436,14 @@ function normalizeButton(value: unknown, fallback: ButtonConfig, id: string): Bu
   const cwd = record.cwd === "workspace" || record.cwd === "file" || record.cwd === "current"
     ? record.cwd
     : fallback.cwd
+  const preset = typeof record.preset === "string" && record.preset.trim() ? record.preset.trim() : fallback.preset
+  const icon = normalizeIcon(typeof record.icon === "string" ? record.icon : fallback.icon)
   return {
     id,
     enabled: typeof record.enabled === "boolean" ? record.enabled : fallback.enabled,
-    preset: typeof record.preset === "string" && record.preset.trim() ? record.preset.trim() : fallback.preset,
+    preset,
     label: typeof record.label === "string" && record.label.trim() ? record.label.trim() : fallback.label,
-    icon: normalizeIcon(typeof record.icon === "string" ? record.icon : fallback.icon),
+    icon: normalizePresetIcon(preset, icon),
     command: typeof record.command === "string" ? record.command : fallback.command,
     cwd,
     context,
@@ -440,6 +453,40 @@ function normalizeButton(value: unknown, fallback: ButtonConfig, id: string): Bu
 function normalizeIcon(value: string) {
   const match = value.match(/^\$\(([^)]+)\)$/)
   return match ? match[1] : value.trim() || "terminal"
+}
+
+function normalizePresetIcon(preset: string, icon: string) {
+  const presetDefinition = AGENT_PRESETS.find((item) => item.id === preset)
+  const legacyIcons = LEGACY_PRESET_ICONS[preset]
+  if (presetDefinition && legacyIcons?.includes(icon)) {
+    return presetDefinition.icon
+  }
+  return icon
+}
+
+async function migrateLegacyPresetIcons(buttons: ButtonConfig[]) {
+  const configuration = vscode.workspace.getConfiguration(CONFIGURATION_SECTION)
+  const configured = configuration.get<unknown>(CONFIGURATION_KEY)
+  if (!Array.isArray(configured)) {
+    return
+  }
+  const needsMigration = configured.some((entry, index) => {
+    const record = entry && typeof entry === "object" ? entry as Record<string, unknown> : undefined
+    if (!record || typeof record.icon !== "string") {
+      return false
+    }
+    const id = typeof record.id === "string" ? record.id : BUTTON_IDS[index]
+    const fallback = DEFAULT_BUTTONS.find((button) => button.id === id)
+    const preset = typeof record.preset === "string" && record.preset.trim()
+      ? record.preset.trim()
+      : fallback?.preset ?? "custom"
+    const icon = normalizeIcon(record.icon)
+    return normalizePresetIcon(preset, icon) !== icon
+  })
+  if (!needsMigration) {
+    return
+  }
+  await configuration.update(CONFIGURATION_KEY, buttons, vscode.ConfigurationTarget.Global)
 }
 
 async function updateButtonContexts(buttons: ButtonConfig[]) {
