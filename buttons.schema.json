@@ -1,0 +1,77 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "opencode Custom Buttons",
+  "type": "object",
+  "required": ["buttons"],
+  "properties": {
+    "buttons": {
+      "type": "array",
+      "description": "Buttons shown in the editor title bar. Run bun run compile after changing this file.",
+      "items": {
+        "$ref": "#/definitions/button"
+      }
+    }
+  },
+  "definitions": {
+    "button": {
+      "type": "object",
+      "required": ["id", "title", "command"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9][a-z0-9-]*$"
+        },
+        "title": {
+          "type": "string",
+          "description": "Label shown in the Command Palette and editor title menu."
+        },
+        "icon": {
+          "description": "A VS Code Codicon such as $(terminal), or a light/dark SVG path object.",
+          "oneOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "object",
+              "required": ["light", "dark"],
+              "properties": {
+                "light": { "type": "string" },
+                "dark": { "type": "string" }
+              },
+              "additionalProperties": false
+            }
+          ]
+        },
+        "command": {
+          "type": "string",
+          "description": "Shell command. Supports {{workspaceFolder}}, {{file}}, {{relativeFile}}, {{fileRef}}, {{selection}}, {{lineStart}}, {{lineEnd}} and {{port}}."
+        },
+        "terminalName": {
+          "type": "string"
+        },
+        "reuseTerminal": {
+          "type": "boolean",
+          "default": true
+        },
+        "runOnReuse": {
+          "type": "boolean",
+          "default": false
+        },
+        "cwd": {
+          "type": "string",
+          "enum": ["workspace", "file"],
+          "default": "workspace"
+        },
+        "context": {
+          "type": "string",
+          "enum": ["none", "opencode"],
+          "default": "none"
+        },
+        "keybinding": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

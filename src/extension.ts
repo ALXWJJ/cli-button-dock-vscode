@@ -1,91 +1,114 @@
-// This method is called when your extension is deactivated
-export function deactivate() {}
-
+import * as fs from "node:fs"
+import * as path from "node:path"
 import * as vscode from "vscode"
 
-const TERMINAL_NAME = "opencode"
+type ButtonIcon = string | { light: string; dark: string }
+
+type ButtonConfig = {
+  id: string
+  title: string
+  icon?: ButtonIcon
+  command: string
+  terminalName?: string
+  reuseTerminal?: boolean
+  runOnReuse?: boolean
+  cwd?: "workspace" | "file"
+  context?: "none" | "opencode"
+  keybinding?: string
+}
+
+type ButtonFile = {
+  buttons: ButtonConfig[]
+}
+
+type ActiveContext = {
+  workspaceFolder?: string
+  file?: string
+  relativeFile?: string
+  fileRef?: string
+  selection?: string
+  lineStart?: string
+  lineEnd?: string
+}
+
+const OPENCODE_PORT_ENV = "_EXTENSION_OPENCODE_PORT"
 
 export function activate(context: vscode.ExtensionContext) {
-  const openNewTerminalDisposable = vscode.commands.registerCommand("opencode.openNewTerminal", async () => {
-    await openTerminal()
-  })
+  let buttons: ButtonConfig[]
+  try {
+    buttons = loadButtons(context)
+  } catch (error) {
+    vscode.window.showErrorMessage(`Could not load buttons.json: ${String(error)}`)
+    buttons = []
+  }
 
-  const openTerminalDisposable = vscode.commands.registerCommand("opencode.openTerminal", async () => {
-    // An opencode terminal already exists => focus it
-    const existingTerminal = vscode.window.terminals.find((t) => t.name === TERMINAL_NAME)
+  for (const button of buttons) {
+    const disposable = vscode.commands.registerCommand(`opencode.button.${button.id}`, async () => {
+      await runButton(button, context)
+    })
+    context.subscriptions.push(disposable)
+  }
+
+  const addFilepathDisposable = vscode.commands.registerCommand("opencode.addFilepathToTerminal", async () => {
+    const fileRef = getActiveContext().fileRef
+    const terminal = vscode.window.activeTerminal
+    if (!fileRef || !terminal) {
+      return
+    }
+
+    // @ts-ignore VS Code exposes creationOptions at runtime, but its type is intentionally narrow.
+    const port = terminal.creationOptions.env?.[OPENCODE_PORT_ENV]
+    if (port) {
+      await appendPrompt(parseInt(port, 10), fileRef)
+    } else {
+      terminal.sendText(fileRef, false)
+    }
+    terminal.show()
+  })
+  context.subscriptions.push(addFilepathDisposable)
+
+  async function runButton(button: ButtonConfig, extensionContext: vscode.ExtensionContext) {
+    const activeContext = getActiveContext()
+    const terminalName = button.terminalName ?? button.title
+    const existingTerminal = button.reuseTerminal === false
+      ? undefined
+      : vscode.window.terminals.find((terminal) => terminal.name === terminalName)
+
     if (existingTerminal) {
       existingTerminal.show()
+      if (button.runOnReuse) {
+        existingTerminal.sendText(expandCommand(button.command, activeContext), true)
+      }
       return
     }
 
-    await openTerminal()
-  })
-
-  let addFilepathDisposable = vscode.commands.registerCommand("opencode.addFilepathToTerminal", async () => {
-    const fileRef = getActiveFile()
-    if (!fileRef) {
-      return
-    }
-
-    const terminal = vscode.window.activeTerminal
-    if (!terminal) {
-      return
-    }
-
-    if (terminal.name === TERMINAL_NAME) {
-      // @ts-ignore
-      const port = terminal.creationOptions.env?.["_EXTENSION_OPENCODE_PORT"]
-      port ? await appendPrompt(parseInt(port), fileRef) : terminal.sendText(fileRef, false)
-      terminal.show()
-    }
-  })
-
-  context.subscriptions.push(openNewTerminalDisposable, openTerminalDisposable, addFilepathDisposable)
-
-  async function openTerminal() {
-    // Create a new terminal in split screen
-    const port = Math.floor(Math.random() * (65535 - 16384 + 1)) + 16384
+    const port = button.context === "opencode" ? getRandomPort() : undefined
     const terminal = vscode.window.createTerminal({
-      name: TERMINAL_NAME,
-      iconPath: {
-        light: vscode.Uri.file(context.asAbsolutePath("images/button-dark.svg")),
-        dark: vscode.Uri.file(context.asAbsolutePath("images/button-light.svg")),
-      },
+      name: terminalName,
+      cwd: getWorkingDirectory(button, activeContext),
+      iconPath: getTerminalIcon(button.icon, extensionContext),
       location: {
         viewColumn: vscode.ViewColumn.Beside,
         preserveFocus: false,
       },
-      env: {
-        _EXTENSION_OPENCODE_PORT: port.toString(),
-        OPENCODE_CALLER: "vscode",
-      },
+      env: port
+        ? {
+            [OPENCODE_PORT_ENV]: port.toString(),
+            OPENCODE_CALLER: "vscode",
+          }
+        : undefined,
     })
 
     terminal.show()
-    terminal.sendText(`opencode --port ${port}`)
+    terminal.sendText(expandCommand(button.command, activeContext, port), true)
 
-    const fileRef = getActiveFile()
-    if (!fileRef) {
+    if (button.context !== "opencode" || !port || !activeContext.fileRef) {
       return
     }
 
-    // Wait for the terminal to be ready
-    let tries = 10
-    let connected = false
-    do {
-      await new Promise((resolve) => setTimeout(resolve, 200))
-      try {
-        await fetch(`http://localhost:${port}/app`)
-        connected = true
-        break
-      } catch {}
-
-      tries--
-    } while (tries > 0)
-
-    // If connected, append the prompt to the terminal
+    const connected = await waitForOpenCode(port)
     if (connected) {
-      await appendPrompt(port, `In ${fileRef}`)
+      await appendPrompt(port, `In ${activeContext.fileRef}`)
       terminal.show()
     }
   }
@@ -100,38 +123,107 @@ export function activate(context: vscode.ExtensionContext) {
     })
   }
 
-  function getActiveFile() {
+  function loadButtons(extensionContext: vscode.ExtensionContext): ButtonConfig[] {
+    const file = extensionContext.asAbsolutePath("buttons.json")
+    const parsed = JSON.parse(fs.readFileSync(file, "utf8")) as ButtonFile
+    if (!Array.isArray(parsed.buttons)) {
+      throw new Error("buttons must be an array")
+    }
+    return parsed.buttons
+  }
+
+  function getActiveContext(): ActiveContext {
     const activeEditor = vscode.window.activeTextEditor
     if (!activeEditor) {
-      return
+      return {}
     }
 
     const document = activeEditor.document
     const workspaceFolder = vscode.workspace.getWorkspaceFolder(document.uri)
-    if (!workspaceFolder) {
-      return
-    }
-
-    // Get the relative path from workspace root
-    const relativePath = vscode.workspace.asRelativePath(document.uri)
-    let filepathWithAt = `@${relativePath}`
+    const relativeFile = workspaceFolder
+      ? vscode.workspace.asRelativePath(document.uri).replaceAll("\\", "/")
+      : undefined
+    const selection = activeEditor.selection
+    const lineStart = String(selection.start.line + 1)
+    const lineEnd = String(selection.end.line + 1)
+    let fileRef = relativeFile ? `@${relativeFile}` : undefined
 
     // Check if there's a selection and add line numbers
-    const selection = activeEditor.selection
-    if (!selection.isEmpty) {
-      // Convert to 1-based line numbers
-      const startLine = selection.start.line + 1
-      const endLine = selection.end.line + 1
-
-      if (startLine === endLine) {
-        // Single line selection
-        filepathWithAt += `#L${startLine}`
+    if (fileRef && !selection.isEmpty) {
+      if (lineStart === lineEnd) {
+        fileRef += `#L${lineStart}`
       } else {
-        // Multi-line selection
-        filepathWithAt += `#L${startLine}-${endLine}`
+        fileRef += `#L${lineStart}-${lineEnd}`
       }
     }
 
-    return filepathWithAt
+    return {
+      workspaceFolder: workspaceFolder?.uri.fsPath,
+      file: document.uri.fsPath,
+      relativeFile,
+      fileRef,
+      selection: selection.isEmpty ? undefined : document.getText(selection),
+      lineStart,
+      lineEnd,
+    }
+  }
+
+  function expandCommand(command: string, activeContext: ActiveContext, port?: number) {
+    const values: Record<string, string> = {
+      workspaceFolder: activeContext.workspaceFolder ?? "",
+      file: activeContext.file ?? "",
+      relativeFile: activeContext.relativeFile ?? "",
+      fileRef: activeContext.fileRef ?? "",
+      selection: activeContext.selection ?? "",
+      lineStart: activeContext.lineStart ?? "",
+      lineEnd: activeContext.lineEnd ?? "",
+      port: port?.toString() ?? "",
+    }
+
+    return command.replace(/\{\{([A-Za-z][A-Za-z0-9_]*)\}\}|\$\{([A-Za-z][A-Za-z0-9_]*)\}/g, (match, curlyName, dollarName) => {
+      const name = curlyName ?? dollarName
+      return Object.prototype.hasOwnProperty.call(values, name) ? values[name] : match
+    })
+  }
+
+  function getWorkingDirectory(button: ButtonConfig, activeContext: ActiveContext) {
+    if (button.cwd === "file" && activeContext.file) {
+      return path.dirname(activeContext.file)
+    }
+    return activeContext.workspaceFolder
+  }
+
+  function getTerminalIcon(icon: ButtonIcon | undefined, extensionContext: vscode.ExtensionContext) {
+    if (!icon) {
+      return undefined
+    }
+    if (typeof icon === "string") {
+      const match = icon.match(/^\$\(([^)]+)\)$/)
+      return match ? new vscode.ThemeIcon(match[1]) : undefined
+    }
+    return {
+      light: vscode.Uri.file(extensionContext.asAbsolutePath(icon.light)),
+      dark: vscode.Uri.file(extensionContext.asAbsolutePath(icon.dark)),
+    }
+  }
+
+  function getRandomPort() {
+    return Math.floor(Math.random() * (65535 - 16384 + 1)) + 16384
+  }
+
+  async function waitForOpenCode(port: number) {
+    let tries = 10
+    do {
+      await new Promise((resolve) => setTimeout(resolve, 200))
+      try {
+        await fetch(`http://localhost:${port}/app`)
+        return true
+      } catch {}
+      tries--
+    } while (tries > 0)
+    return false
   }
 }
+
+// This method is called when your extension is deactivated.
+export function deactivate() {}

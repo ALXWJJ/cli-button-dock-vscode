@@ -1,12 +1,12 @@
 {
-  "name": "opencode",
-  "displayName": "opencode",
-  "description": "opencode for VS Code",
-  "version": "1.18.19",
-  "publisher": "sst-dev",
+  "name": "opencode-custom-buttons",
+  "displayName": "opencode Custom Buttons",
+  "description": "Configurable editor-title buttons for opencode and other CLI agents.",
+  "version": "0.1.0",
+  "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
-    "url": "https://github.com/anomalyco/opencode"
+    "url": "https://github.com/ALXWJJ/opencode"
   },
   "license": "MIT",
   "icon": "images/icon.png",
@@ -25,7 +25,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "opencode.openTerminal",
+        "command": "opencode.button.open",
         "title": "Open opencode",
         "icon": {
           "light": "images/button-dark.svg",
@@ -33,12 +33,14 @@
         }
       },
       {
-        "command": "opencode.openNewTerminal",
-        "title": "Open opencode in new tab",
-        "icon": {
-          "light": "images/button-dark.svg",
-          "dark": "images/button-light.svg"
-        }
+        "command": "opencode.button.new-session",
+        "title": "New opencode session",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "opencode.button.codex",
+        "title": "Open Codex",
+        "icon": "$(terminal)"
       },
       {
         "command": "opencode.addFilepathToTerminal",
@@ -48,44 +50,47 @@
     "menus": {
       "editor/title": [
         {
-          "command": "opencode.openNewTerminal",
-          "group": "navigation"
+          "command": "opencode.button.open",
+          "group": "navigation@1"
+        },
+        {
+          "command": "opencode.button.new-session",
+          "group": "navigation@2"
+        },
+        {
+          "command": "opencode.button.codex",
+          "group": "navigation@3"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "opencode.openTerminal",
-        "title": "Run opencode",
-        "key": "cmd+escape",
-        "mac": "cmd+escape",
-        "win": "ctrl+escape",
-        "linux": "ctrl+escape"
+        "command": "opencode.button.open",
+        "title": "Open opencode",
+        "key": "ctrl+escape"
       },
       {
-        "command": "opencode.openNewTerminal",
-        "title": "Run opencode",
-        "key": "cmd+shift+escape",
-        "mac": "cmd+shift+escape",
-        "win": "ctrl+shift+escape",
-        "linux": "ctrl+shift+escape"
+        "command": "opencode.button.new-session",
+        "title": "New opencode session",
+        "key": "ctrl+shift+escape"
       },
       {
         "command": "opencode.addFilepathToTerminal",
         "title": "opencode: Insert At-Mentioned",
-        "key": "cmd+alt+k",
+        "key": "ctrl+alt+k",
         "mac": "cmd+alt+k",
-        "win": "ctrl+alt+K",
-        "linux": "ctrl+alt+K"
+        "win": "ctrl+alt+k",
+        "linux": "ctrl+alt+k"
       }
     ]
   },
   "scripts": {
     "vscode:prepublish": "bun run package",
-    "compile": "bun run check-types && bun run lint && node esbuild.js",
+    "sync-buttons": "node script/generate-manifest.mjs",
+    "compile": "bun run sync-buttons && bun run check-types && bun run lint && node esbuild.js",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "bun run check-types && bun run lint && node esbuild.js --production",
+    "package": "bun run sync-buttons && bun run check-types && bun run lint && node esbuild.js --production",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "bun run compile-tests && bun run compile && bun run lint",

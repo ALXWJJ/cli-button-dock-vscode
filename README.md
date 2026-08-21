@@ -1,34 +1,41 @@
-# opencode VS Code Extension
+# opencode Custom Buttons
 
-A Visual Studio Code extension that integrates [opencode](https://opencode.ai) directly into your development workflow.
+An opinionated fork of the official opencode VS Code extension with configurable editor-title buttons for opencode, Codex, or any other CLI command.
 
-## Prerequisites
+## Configure buttons
 
-This extension requires the [opencode CLI](https://opencode.ai) to be installed on your system. Visit [opencode.ai](https://opencode.ai) for installation instructions.
+Edit [`buttons.json`](./buttons.json). Each entry creates one button in the editor title bar:
 
-## Features
+```json
+{
+  "id": "review",
+  "title": "Review with Codex",
+  "icon": "$(check-all)",
+  "command": "codex review {{fileRef}}",
+  "terminalName": "Codex Review",
+  "reuseTerminal": false,
+  "cwd": "workspace"
+}
+```
 
-- **Quick Launch**: Use `Cmd+Esc` (Mac) or `Ctrl+Esc` (Windows/Linux) to open opencode in a split terminal view, or focus an existing terminal session if one is already running.
-- **New Session**: Use `Cmd+Shift+Esc` (Mac) or `Ctrl+Shift+Esc` (Windows/Linux) to start a new opencode terminal session, even if one is already open. You can also click the opencode button in the UI.
-- **Context Awareness**: Automatically share your current selection or tab with opencode.
-- **File Reference Shortcuts**: Use `Cmd+Option+K` (Mac) or `Alt+Ctrl+K` (Linux/Windows) to insert file references. For example, `@File#L37-42`.
+`icon` accepts a VS Code Codicon such as `$(terminal)` or a light/dark SVG object:
 
-## Support
+```json
+"icon": {
+  "light": "images/review-light.svg",
+  "dark": "images/review-dark.svg"
+}
+```
 
-This is an early release. If you encounter issues or have feedback, please create an issue at https://github.com/anomalyco/opencode/issues.
+Supported command variables are `{{workspaceFolder}}`, `{{file}}`, `{{relativeFile}}`, `{{fileRef}}`, `{{selection}}`, `{{lineStart}}`, `{{lineEnd}}`, and `{{port}}`. The `opencode` context mode starts the CLI on a local port and sends the active file reference through the OpenCode TUI API.
+
+The editor title bar is declared statically by VS Code, so changing button labels or icons requires rebuilding the extension. Run `bun run compile` after editing `buttons.json`; the build regenerates `package.json` automatically.
 
 ## Development
 
-1. `code sdks/vscode` - Open the `sdks/vscode` directory in VS Code. **Do not open from repo root.**
-2. `bun install` - Run inside the `sdks/vscode` directory.
-3. Press `F5` to start debugging - This launches a new VS Code window with the extension loaded.
+1. Open this directory in VS Code: `code sdks/vscode`.
+2. Run `bun install`.
+3. Run `bun run compile`.
+4. Press `F5` to start an Extension Development Host.
 
-#### Making Changes
-
-`tsc` and `esbuild` watchers run automatically during debugging (visible in the Terminal tab). Changes to the extension are automatically rebuilt in the background.
-
-To test your changes:
-
-1. In the debug VS Code window, press `Cmd+Shift+P`
-2. Search for `Developer: Reload Window`
-3. Reload to see your changes without restarting the debug session
+The generated extension is `dist/extension.js`. The repository is forked at [github.com/ALXWJJ/opencode](https://github.com/ALXWJJ/opencode), while the official repository remains the `upstream` remote.
