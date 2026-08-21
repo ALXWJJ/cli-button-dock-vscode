@@ -137,12 +137,16 @@
           "command": "agentActionDock.button10",
           "when": "agentActionDock.button10Enabled",
           "group": "navigation@10"
+        },
+        {
+          "command": "agentActionDock.configure",
+          "group": "navigation@99"
         }
       ],
       "editor/title/context": [
         {
           "command": "agentActionDock.configure",
-          "group": "agentActionDock@1"
+          "group": "navigation@99"
         }
       ]
     },
