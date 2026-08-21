@@ -866,6 +866,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         message.textContent = '已恢复默认配置';
       } else if (data.type === 'saved') {
         state = data.buttons || state;
+        render();
         message.textContent = '已保存；重载窗口后更新右上角按钮';
       }
     });
