@@ -1,35 +1,43 @@
-# opencode Custom Buttons
+# Agent Action Dock
 
-An opinionated fork of the official opencode VS Code extension with configurable editor-title buttons for opencode, Codex, or any other CLI command.
+Configure multiple editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, and any other terminal agent.
 
-## Configure buttons
+## Features
 
-Edit [`buttons.json`](./buttons.json). Each entry creates one button in the editor title bar:
+- Up to 10 buttons in the editor's top-right title bar.
+- Graphical configuration panel opened with `Agent Action Dock: Configure Buttons`.
+- Built-in presets for common coding agents and a searchable Codicon list.
+- Custom command, label, terminal name, working directory, reuse behavior, and file-context variables.
+- OpenCode mode passes the active file or selection to the OpenCode TUI.
 
-```json
-{
-  "id": "review",
-  "title": "Review with Codex",
-  "icon": "$(check-all)",
-  "command": "codex review {{fileRef}}",
-  "terminalName": "Codex Review",
-  "reuseTerminal": false,
-  "cwd": "workspace"
-}
+## Configure
+
+Open the Command Palette and run:
+
+```text
+Agent Action Dock: Configure Buttons
 ```
 
-`icon` accepts a VS Code Codicon such as `$(terminal)` or a light/dark SVG object:
+Each button supports variables in its command:
 
-```json
-"icon": {
-  "light": "images/review-light.svg",
-  "dark": "images/review-dark.svg"
-}
+```text
+{{workspaceFolder}}
+{{file}}
+{{relativeFile}}
+{{fileRef}}
+{{selection}}
+{{lineStart}}
+{{lineEnd}}
+{{port}}
 ```
 
-Supported command variables are `{{workspaceFolder}}`, `{{file}}`, `{{relativeFile}}`, `{{fileRef}}`, `{{selection}}`, `{{lineStart}}`, `{{lineEnd}}`, and `{{port}}`. The `opencode` context mode starts the CLI on a local port and sends the active file reference through the OpenCode TUI API.
+Example command:
 
-The editor title bar is declared statically by VS Code, so changing button labels or icons requires rebuilding the extension. Run `bun run compile` after editing `buttons.json`; the build regenerates `package.json` automatically.
+```text
+codex review {{fileRef}}
+```
+
+The configuration is stored in the `agentActionDock.buttons` setting. The editor title menu is contributed statically by VS Code, so changing a button's label, icon, or visibility asks you to reload the window. Command-only changes take effect immediately.
 
 ## Development
 
@@ -38,4 +46,6 @@ The editor title bar is declared statically by VS Code, so changing button label
 3. Run `bun run compile`.
 4. Press `F5` to start an Extension Development Host.
 
-The generated extension is `dist/extension.js`. The repository is forked at [github.com/ALXWJJ/opencode](https://github.com/ALXWJJ/opencode), while the official repository remains the `upstream` remote.
+Create a VSIX with `bun x @vscode/vsce package --no-dependencies`.
+
+The project is based on the MIT-licensed OpenCode VS Code SDK and is developed at [github.com/ALXWJJ/agent-action-dock](https://github.com/ALXWJJ/agent-action-dock).

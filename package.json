@@ -1,17 +1,17 @@
 {
-  "name": "opencode-custom-buttons",
-  "displayName": "opencode Custom Buttons",
-  "description": "Configurable editor-title buttons for opencode and other CLI agents.",
+  "name": "agent-action-dock",
+  "displayName": "Agent Action Dock",
+  "description": "Configure editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, and other agents.",
   "version": "0.1.0",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ALXWJJ/opencode"
+    "url": "https://github.com/ALXWJJ/agent-action-dock"
   },
   "license": "MIT",
   "icon": "images/icon.png",
   "galleryBanner": {
-    "color": "#000000",
+    "color": "#161616",
     "theme": "dark"
   },
   "engines": {
@@ -20,77 +20,297 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "opencode.button.open",
-        "title": "Open opencode",
-        "icon": {
-          "light": "images/button-dark.svg",
-          "dark": "images/button-light.svg"
-        }
+        "command": "agentActionDock.configure",
+        "title": "Agent Action Dock: Configure Buttons",
+        "icon": "$(settings-gear)"
       },
       {
-        "command": "opencode.button.new-session",
-        "title": "New opencode session",
+        "command": "agentActionDock.addFilepathToTerminal",
+        "title": "Agent Action Dock: Add Filepath to Terminal"
+      },
+      {
+        "command": "agentActionDock.button01",
+        "title": "Open opencode",
         "icon": "$(sparkle)"
       },
       {
-        "command": "opencode.button.codex",
+        "command": "agentActionDock.button02",
         "title": "Open Codex",
+        "icon": "$(hubot)"
+      },
+      {
+        "command": "agentActionDock.button03",
+        "title": "Open Claude Code",
+        "icon": "$(comment-discussion)"
+      },
+      {
+        "command": "agentActionDock.button04",
+        "title": "Open Gemini CLI",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "agentActionDock.button05",
+        "title": "Open Aider",
+        "icon": "$(code)"
+      },
+      {
+        "command": "agentActionDock.button06",
+        "title": "Agent 06",
         "icon": "$(terminal)"
       },
       {
-        "command": "opencode.addFilepathToTerminal",
-        "title": "Add Filepath to Terminal"
+        "command": "agentActionDock.button07",
+        "title": "Agent 07",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "agentActionDock.button08",
+        "title": "Agent 08",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "agentActionDock.button09",
+        "title": "Agent 09",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "agentActionDock.button10",
+        "title": "Agent 10",
+        "icon": "$(terminal)"
       }
     ],
     "menus": {
       "editor/title": [
         {
-          "command": "opencode.button.open",
+          "command": "agentActionDock.button01",
+          "when": "agentActionDock.button01Enabled",
           "group": "navigation@1"
         },
         {
-          "command": "opencode.button.new-session",
+          "command": "agentActionDock.button02",
+          "when": "agentActionDock.button02Enabled",
           "group": "navigation@2"
         },
         {
-          "command": "opencode.button.codex",
+          "command": "agentActionDock.button03",
+          "when": "agentActionDock.button03Enabled",
           "group": "navigation@3"
+        },
+        {
+          "command": "agentActionDock.button04",
+          "when": "agentActionDock.button04Enabled",
+          "group": "navigation@4"
+        },
+        {
+          "command": "agentActionDock.button05",
+          "when": "agentActionDock.button05Enabled",
+          "group": "navigation@5"
+        },
+        {
+          "command": "agentActionDock.button06",
+          "when": "agentActionDock.button06Enabled",
+          "group": "navigation@6"
+        },
+        {
+          "command": "agentActionDock.button07",
+          "when": "agentActionDock.button07Enabled",
+          "group": "navigation@7"
+        },
+        {
+          "command": "agentActionDock.button08",
+          "when": "agentActionDock.button08Enabled",
+          "group": "navigation@8"
+        },
+        {
+          "command": "agentActionDock.button09",
+          "when": "agentActionDock.button09Enabled",
+          "group": "navigation@9"
+        },
+        {
+          "command": "agentActionDock.button10",
+          "when": "agentActionDock.button10Enabled",
+          "group": "navigation@10"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "opencode.button.open",
-        "title": "Open opencode",
-        "key": "ctrl+escape"
+        "command": "agentActionDock.configure",
+        "key": "ctrl+alt+a",
+        "mac": "cmd+alt+a",
+        "win": "ctrl+alt+a",
+        "linux": "ctrl+alt+a"
       },
       {
-        "command": "opencode.button.new-session",
-        "title": "New opencode session",
-        "key": "ctrl+shift+escape"
-      },
-      {
-        "command": "opencode.addFilepathToTerminal",
-        "title": "opencode: Insert At-Mentioned",
+        "command": "agentActionDock.addFilepathToTerminal",
         "key": "ctrl+alt+k",
         "mac": "cmd+alt+k",
         "win": "ctrl+alt+k",
         "linux": "ctrl+alt+k"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Agent Action Dock",
+      "properties": {
+        "agentActionDock.buttons": {
+          "type": "array",
+          "description": "Button definitions. Use Agent Action Dock: Configure Buttons for the graphical editor.",
+          "default": [
+            {
+              "id": "01",
+              "enabled": true,
+              "label": "Open opencode",
+              "icon": "sparkle",
+              "command": "opencode --port {{port}}",
+              "terminalName": "opencode",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "opencode"
+            },
+            {
+              "id": "02",
+              "enabled": true,
+              "label": "Open Codex",
+              "icon": "hubot",
+              "command": "codex",
+              "terminalName": "Codex",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "03",
+              "enabled": false,
+              "label": "Open Claude Code",
+              "icon": "comment-discussion",
+              "command": "claude",
+              "terminalName": "Claude Code",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "04",
+              "enabled": false,
+              "label": "Open Gemini CLI",
+              "icon": "sparkle",
+              "command": "gemini",
+              "terminalName": "Gemini CLI",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "05",
+              "enabled": false,
+              "label": "Open Aider",
+              "icon": "code",
+              "command": "aider",
+              "terminalName": "Aider",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "06",
+              "enabled": false,
+              "label": "Agent 06",
+              "icon": "terminal",
+              "command": "",
+              "terminalName": "Agent 06",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "07",
+              "enabled": false,
+              "label": "Agent 07",
+              "icon": "terminal",
+              "command": "",
+              "terminalName": "Agent 07",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "08",
+              "enabled": false,
+              "label": "Agent 08",
+              "icon": "terminal",
+              "command": "",
+              "terminalName": "Agent 08",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "09",
+              "enabled": false,
+              "label": "Agent 09",
+              "icon": "terminal",
+              "command": "",
+              "terminalName": "Agent 09",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            },
+            {
+              "id": "10",
+              "enabled": false,
+              "label": "Agent 10",
+              "icon": "terminal",
+              "command": "",
+              "terminalName": "Agent 10",
+              "reuseTerminal": true,
+              "runOnReuse": false,
+              "cwd": "workspace",
+              "context": "none"
+            }
+          ],
+          "items": {
+            "type": "object",
+            "required": ["id", "enabled", "label", "icon", "command"],
+            "properties": {
+              "id": { "type": "string" },
+              "enabled": { "type": "boolean" },
+              "label": { "type": "string" },
+              "icon": { "type": "string" },
+              "command": { "type": "string" },
+              "terminalName": { "type": "string" },
+              "reuseTerminal": { "type": "boolean" },
+              "runOnReuse": { "type": "boolean" },
+              "cwd": { "type": "string", "enum": ["workspace", "file"] },
+              "context": { "type": "string", "enum": ["none", "opencode"] }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "bun run package",
-    "sync-buttons": "node script/generate-manifest.mjs",
-    "compile": "bun run sync-buttons && bun run check-types && bun run lint && node esbuild.js",
+    "compile": "bun run check-types && bun run lint && node esbuild.js",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "bun run sync-buttons && bun run check-types && bun run lint && node esbuild.js --production",
+    "package": "bun run check-types && bun run lint && node esbuild.js --production",
     "compile-tests": "tsc -p . --outDir out",
     "watch-tests": "tsc -p . -w --outDir out",
     "pretest": "bun run compile-tests && bun run compile && bun run lint",
@@ -99,15 +319,15 @@
     "test": "vscode-test"
   },
   "devDependencies": {
-    "@types/vscode": "^1.94.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
+    "@types/vscode": "^1.94.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
-    "eslint": "^9.25.1",
-    "esbuild": "^0.25.3",
-    "typescript": "^5.8.3",
     "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2"
+    "@vscode/test-electron": "^2.5.2",
+    "esbuild": "^0.25.3",
+    "eslint": "^9.25.1",
+    "typescript": "^5.8.3"
   }
 }
