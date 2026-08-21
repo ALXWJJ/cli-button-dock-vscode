@@ -1,6 +1,7 @@
 # Agent Action Dock
 
-Configure multiple editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, and other terminal agents.
+Configure multiple editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose,
+Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code, and other terminal agents.
 
 ## Features
 
@@ -25,7 +26,7 @@ You can also right-click the editor title bar where the Dock buttons appear and 
 
 The editor title bar also includes a settings gear button for the same action.
 
-The simple editor stores the button name, icon, preset, command, and enabled state. Selecting a preset fills its command and brand icon automatically, and the command can be edited directly in the same row. Click the icon preview to open the picker; it includes OpenCode, Codex, Claude, Gemini, Aider, Goose, and Qwen brand icons, followed by the official Codicon grid. The adjacent field accepts either a Codicon ID such as `terminal` or a built-in brand ID such as `brand:codex`. Advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
+The simple editor stores the button name, icon, preset, command, and enabled state. Selecting a preset fills its command and brand icon automatically, and the command can be edited directly in the same row. Click the icon preview to open the picker; it includes OpenCode, Codex, Claude, Gemini, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, and Kimi Code brand icons, followed by the official Codicon grid. The adjacent field accepts either a Codicon ID such as `terminal` or a built-in brand ID such as `brand:codex`. Advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
 
 The default working directory is `current`, which lets VS Code choose the terminal's current directory. Other supported values are `workspace` and `file`. File context is disabled by default. To enable OpenCode context manually:
 
@@ -70,6 +71,6 @@ After changing a button's name, icon, or enabled state, reload the VS Code windo
 
 Create a VSIX with `bun x @vscode/vsce package --no-dependencies`.
 
-The picker bundles the official `@vscode/codicons` font and stylesheet under `media/`, together with the referenced Agent brand assets under `media/brands/`.
+The picker bundles the official `@vscode/codicons` font and stylesheet under `media/`, together with the referenced Agent brand assets under `media/brands/`. The `deepseek` and `zcode` entries are editable command presets; their command availability depends on the CLI installed on the host.
 
 The project is based on the MIT-licensed OpenCode VS Code SDK and is developed at [github.com/ALXWJJ/agent-action-dock](https://github.com/ALXWJJ/agent-action-dock).

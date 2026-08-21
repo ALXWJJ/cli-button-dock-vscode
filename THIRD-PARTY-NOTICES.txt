@@ -25,6 +25,12 @@ Sources:
 - Aider: https://github.com/Aider-AI/aider
 - Goose: https://github.com/aaif-goose/goose
 - Qwen Code: https://github.com/QwenLM/qwen-code
+- Pi Agent: https://pi.dev/ and https://github.com/earendil-works/pi
+- DeepSeek: https://www.deepseek.com/
+- ZCode: https://zcode.z.ai/en
+- Kimi Code: https://moonshotai.github.io/Branding-Guide/ and https://www.kimi.ai/policies/logo-usage-terms
 
 Trademark and usage terms may apply separately to each brand. The assets are
-not modified by Agent Action Dock.
+not modified by Agent Action Dock. The DeepSeek and ZCode command entries are
+configurable presets; their presence does not imply an official standalone CLI
+distribution or endorsement by those organizations.
