@@ -255,7 +255,7 @@ type SaveButtons = (buttons: ButtonConfig[]) => Promise<void>
 export function activate(context: vscode.ExtensionContext) {
   let buttons = loadButtons()
 
-  updateButtonContexts(buttons)
+  void updateButtonContexts(buttons)
   if (syncManifest(context, buttons)) {
     vscode.window.showInformationMessage("Agent Action Dock button metadata changed. Reload the window to apply it.")
   }
@@ -273,6 +273,7 @@ export function activate(context: vscode.ExtensionContext) {
   const configureDisposable = vscode.commands.registerCommand("agentActionDock.configure", () => {
     openConfigurator(context, buttons, async (nextButtons) => {
       buttons = nextButtons
+      await updateButtonContexts(nextButtons)
       await vscode.workspace
         .getConfiguration(CONFIGURATION_SECTION)
         .update(CONFIGURATION_KEY, nextButtons, vscode.ConfigurationTarget.Global)
@@ -304,7 +305,7 @@ export function activate(context: vscode.ExtensionContext) {
     }
 
     buttons = loadButtons()
-    updateButtonContexts(buttons)
+    void updateButtonContexts(buttons)
     if (syncManifest(context, buttons)) {
       vscode.window.showInformationMessage("Agent Action Dock button appearance changed. Reload the window to apply it.")
     }
@@ -390,10 +391,10 @@ function normalizeIcon(value: string) {
   return match ? match[1] : value.trim() || "terminal"
 }
 
-function updateButtonContexts(buttons: ButtonConfig[]) {
-  for (const button of buttons) {
-    void vscode.commands.executeCommand("setContext", `agentActionDock.button${button.id}Enabled`, button.enabled)
-  }
+async function updateButtonContexts(buttons: ButtonConfig[]) {
+  await Promise.all(buttons.map((button) =>
+    vscode.commands.executeCommand("setContext", `agentActionDock.button${button.id}Enabled`, button.enabled),
+  ))
 }
 
 function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[]) {
@@ -425,11 +426,19 @@ function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[])
     }
 
     if (manifest.contributes?.menus?.["editor/title"]) {
-      manifest.contributes.menus["editor/title"] = buttons.map((button, index) => ({
-        command: `agentActionDock.button${button.id}`,
-        when: `agentActionDock.button${button.id}Enabled`,
-        group: `navigation@${index + 1}`,
-      }))
+      const titleMenus = manifest.contributes.menus["editor/title"]
+      const configureEntry = titleMenus.find((entry) => entry.command === "agentActionDock.configure") ?? {
+        command: "agentActionDock.configure",
+        group: "navigation@99",
+      }
+      manifest.contributes.menus["editor/title"] = [
+        ...buttons.map((button, index) => ({
+          command: `agentActionDock.button${button.id}`,
+          when: `agentActionDock.button${button.id}Enabled`,
+          group: `navigation@${index + 1}`,
+        })),
+        configureEntry,
+      ]
     }
 
     const after = JSON.stringify(manifest)
