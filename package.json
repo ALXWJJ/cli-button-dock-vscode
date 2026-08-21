@@ -138,6 +138,12 @@
           "when": "agentActionDock.button10Enabled",
           "group": "navigation@10"
         }
+      ],
+      "editor/title/context": [
+        {
+          "command": "agentActionDock.configure",
+          "group": "agentActionDock@1"
+        }
       ]
     },
     "keybindings": [

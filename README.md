@@ -20,6 +20,8 @@ Agent Action Dock: Configure Buttons
 
 Or press `Ctrl+Alt+A`.
 
+You can also right-click the editor title bar where the Dock buttons appear and choose `Agent Action Dock: Configure Buttons`.
+
 The simple editor stores the button name, icon, preset, and enabled state. Selecting a preset fills its command and icon automatically. Custom commands and advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
 
 The default working directory is `current`, which lets VS Code choose the terminal's current directory. Other supported values are `workspace` and `file`. File context is disabled by default. To enable OpenCode context manually:
