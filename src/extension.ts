@@ -521,7 +521,7 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
     button { color: var(--vscode-button-foreground); background: var(--vscode-button-background); border: 0; padding: 7px 14px; cursor: pointer; border-radius: 2px; }
     button:hover { background: var(--vscode-button-hoverBackground); }
     #message { color: var(--vscode-testing-iconPassed); min-height: 20px; margin-left: 8px; }
-    .table-head, .button-row { display: grid; grid-template-columns: 34px 52px minmax(180px, 1fr) minmax(180px, 1fr) 180px; gap: 10px; align-items: center; }
+    .table-head, .button-row { display: grid; grid-template-columns: 34px 52px minmax(150px, 0.9fr) minmax(150px, 0.9fr) 150px minmax(240px, 1.4fr); gap: 10px; align-items: center; }
     .table-head { color: var(--vscode-descriptionForeground); font-size: 12px; padding: 0 12px 6px; }
     .button-row { border: 1px solid var(--vscode-panel-border); padding: 9px 12px; margin: 6px 0; border-radius: 4px; }
     .button-row:focus-within { border-color: var(--vscode-focusBorder); }
@@ -536,22 +536,23 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
       .preset { grid-column: 3 / -1; }
       .label { grid-column: 3; }
       .icon { grid-column: 4; }
+      .command { grid-column: 3 / -1; }
     }
   </style>
 </head>
 <body>
   <h1>Agent Action Dock</h1>
-  <p class="hint">每行配置一个按钮。预设会自动填入命令和图标；名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
+  <p class="hint">每行配置一个按钮。预设会自动填入命令和图标，也可以直接修改执行命令；名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
     <button id="advanced">编辑高级配置</button>
     <span id="message"></span>
   </div>
-  <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标 Codicon</span></div>
+  <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标 Codicon</span><span>执行命令</span></div>
   <datalist id="icon-options"></datalist>
   <main id="app"></main>
-  <p class="advanced-hint">命令、工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
+  <p class="advanced-hint">工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};
@@ -602,8 +603,10 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
         const preset = selectInput('preset', presetOptions, getPresetId(button));
         const label = textInput('label', button.label, '按钮名称');
         const icon = textInput('icon', button.icon, 'terminal');
+        const command = textInput('command', button.command, '例如 codex');
+        command.spellcheck = false;
         icon.setAttribute('list', 'icon-options');
-        row.append(enabled, slot, preset, label, icon);
+        row.append(enabled, slot, preset, label, icon, command);
 
         preset.addEventListener('change', () => {
           const selected = presets.find((item) => item.id === preset.value);
@@ -616,10 +619,12 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
           button.context = selected.context;
           label.value = selected.label;
           icon.value = selected.icon;
+          command.value = selected.command;
         });
         enabled.addEventListener('change', () => { button.enabled = enabled.checked; });
         label.addEventListener('input', () => { button.label = label.value; });
         icon.addEventListener('input', () => { button.icon = icon.value; });
+        command.addEventListener('input', () => { button.command = command.value; });
         app.append(row);
       });
     }

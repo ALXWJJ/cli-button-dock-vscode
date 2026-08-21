@@ -5,7 +5,7 @@ Configure multiple editor-title buttons for OpenCode, Codex, Claude Code, Gemini
 ## Features
 
 - Up to 10 buttons in the editor's top-right title bar.
-- One-line graphical configuration: enable, preset, name, and Codicon.
+- One-line graphical configuration: enable, preset, name, Codicon, and command.
 - The name is used for both the editor button and terminal, and terminals with the same name are always reused.
 - Built-in presets for common coding agents.
 - Advanced command, working-directory, and file-context options remain available in `settings.json`.
@@ -24,7 +24,7 @@ You can also right-click the editor title bar where the Dock buttons appear and 
 
 The editor title bar also includes a settings gear button for the same action.
 
-The simple editor stores the button name, icon, preset, and enabled state. Selecting a preset fills its command and icon automatically. Custom commands and advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
+The simple editor stores the button name, icon, preset, command, and enabled state. Selecting a preset fills its command and icon automatically, and the command can be edited directly in the same row. Advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
 
 The default working directory is `current`, which lets VS Code choose the terminal's current directory. Other supported values are `workspace` and `file`. File context is disabled by default. To enable OpenCode context manually:
 
