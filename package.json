@@ -37,27 +37,27 @@
       },
       {
         "command": "agentActionDock.button01",
-        "title": "Open opencode",
+        "title": "OpenCode",
         "icon": "$(sparkle)"
       },
       {
         "command": "agentActionDock.button02",
-        "title": "Open Codex",
+        "title": "Codex",
         "icon": "$(hubot)"
       },
       {
         "command": "agentActionDock.button03",
-        "title": "Open Claude Code",
+        "title": "Claude Code",
         "icon": "$(comment-discussion)"
       },
       {
         "command": "agentActionDock.button04",
-        "title": "Open Gemini CLI",
+        "title": "Gemini CLI",
         "icon": "$(sparkle)"
       },
       {
         "command": "agentActionDock.button05",
-        "title": "Open Aider",
+        "title": "Aider",
         "icon": "$(code)"
       },
       {
@@ -166,121 +166,101 @@
             {
               "id": "01",
               "enabled": true,
-              "label": "Open opencode",
+              "preset": "opencode",
+              "label": "OpenCode",
               "icon": "sparkle",
-              "command": "opencode --port {{port}}",
-              "terminalName": "opencode",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
-              "context": "opencode"
+              "command": "opencode",
+              "cwd": "current",
+              "context": "none"
             },
             {
               "id": "02",
               "enabled": true,
-              "label": "Open Codex",
+              "preset": "codex",
+              "label": "Codex",
               "icon": "hubot",
               "command": "codex",
-              "terminalName": "Codex",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "03",
               "enabled": false,
-              "label": "Open Claude Code",
+              "preset": "claude",
+              "label": "Claude Code",
               "icon": "comment-discussion",
               "command": "claude",
-              "terminalName": "Claude Code",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "04",
               "enabled": false,
-              "label": "Open Gemini CLI",
+              "preset": "gemini",
+              "label": "Gemini CLI",
               "icon": "sparkle",
               "command": "gemini",
-              "terminalName": "Gemini CLI",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "05",
               "enabled": false,
-              "label": "Open Aider",
+              "preset": "aider",
+              "label": "Aider",
               "icon": "code",
               "command": "aider",
-              "terminalName": "Aider",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "06",
               "enabled": false,
+              "preset": "custom",
               "label": "Agent 06",
               "icon": "terminal",
               "command": "",
-              "terminalName": "Agent 06",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "07",
               "enabled": false,
+              "preset": "custom",
               "label": "Agent 07",
               "icon": "terminal",
               "command": "",
-              "terminalName": "Agent 07",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "08",
               "enabled": false,
+              "preset": "custom",
               "label": "Agent 08",
               "icon": "terminal",
               "command": "",
-              "terminalName": "Agent 08",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "09",
               "enabled": false,
+              "preset": "custom",
               "label": "Agent 09",
               "icon": "terminal",
               "command": "",
-              "terminalName": "Agent 09",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             },
             {
               "id": "10",
               "enabled": false,
+              "preset": "custom",
               "label": "Agent 10",
               "icon": "terminal",
               "command": "",
-              "terminalName": "Agent 10",
-              "reuseTerminal": true,
-              "runOnReuse": false,
-              "cwd": "workspace",
+              "cwd": "current",
               "context": "none"
             }
           ],
@@ -290,16 +270,14 @@
             "properties": {
               "id": { "type": "string" },
               "enabled": { "type": "boolean" },
+              "preset": { "type": "string" },
               "label": { "type": "string" },
               "icon": { "type": "string" },
               "command": { "type": "string" },
-              "terminalName": { "type": "string" },
-              "reuseTerminal": { "type": "boolean" },
-              "runOnReuse": { "type": "boolean" },
-              "cwd": { "type": "string", "enum": ["workspace", "file"] },
+              "cwd": { "type": "string", "enum": ["current", "workspace", "file"] },
               "context": { "type": "string", "enum": ["none", "opencode"] }
             },
-            "additionalProperties": false
+            "additionalProperties": true
           }
         }
       }

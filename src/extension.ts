@@ -10,23 +10,22 @@ const BUTTON_IDS = Array.from({ length: BUTTON_COUNT }, (_, index) => String(ind
 const OPENCODE_PORT_ENV = "_EXTENSION_OPENCODE_PORT"
 
 type ButtonContext = "none" | "opencode"
-type ButtonCwd = "workspace" | "file"
+type ButtonCwd = "current" | "workspace" | "file"
 type ButtonIcon = string
 
 type ButtonConfig = {
   id: string
   enabled: boolean
+  preset: string
   label: string
   icon: ButtonIcon
   command: string
-  terminalName: string
-  reuseTerminal: boolean
-  runOnReuse: boolean
   cwd: ButtonCwd
   context: ButtonContext
 }
 
-type AgentPreset = Omit<ButtonConfig, "id" | "enabled">
+type AgentPreset = Omit<ButtonConfig, "id" | "enabled" | "preset">
+type AgentPresetDefinition = AgentPreset & { id: string; name: string }
 
 type ActiveContext = {
   workspaceFolder?: string
@@ -57,99 +56,78 @@ const ICON_OPTIONS = [
   "folder-opened",
 ]
 
-const AGENT_PRESETS: Array<AgentPreset & { id: string; name: string }> = [
+const AGENT_PRESETS: AgentPresetDefinition[] = [
   {
     id: "opencode",
     name: "OpenCode",
-    label: "Open opencode",
+    label: "OpenCode",
     icon: "sparkle",
-    command: "opencode --port {{port}}",
-    terminalName: "opencode",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
-    context: "opencode",
+    command: "opencode",
+    cwd: "current",
+    context: "none",
   },
   {
     id: "codex",
     name: "Codex CLI",
-    label: "Open Codex",
+    label: "Codex",
     icon: "hubot",
     command: "codex",
-    terminalName: "Codex",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   },
   {
     id: "claude",
     name: "Claude Code",
-    label: "Open Claude Code",
+    label: "Claude Code",
     icon: "comment-discussion",
     command: "claude",
-    terminalName: "Claude Code",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   },
   {
     id: "gemini",
     name: "Gemini CLI",
-    label: "Open Gemini CLI",
+    label: "Gemini CLI",
     icon: "sparkle",
     command: "gemini",
-    terminalName: "Gemini CLI",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   },
   {
     id: "aider",
     name: "Aider",
-    label: "Open Aider",
+    label: "Aider",
     icon: "code",
     command: "aider",
-    terminalName: "Aider",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   },
   {
     id: "goose",
     name: "Goose",
-    label: "Open Goose",
+    label: "Goose",
     icon: "rocket",
     command: "goose",
-    terminalName: "Goose",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   },
   {
     id: "qwen",
     name: "Qwen Code",
-    label: "Open Qwen Code",
+    label: "Qwen Code",
     icon: "lightbulb",
     command: "qwen",
-    terminalName: "Qwen Code",
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   },
 ]
 
 const DEFAULT_BUTTONS: ButtonConfig[] = [
-  createButton("01", AGENT_PRESETS[0], true),
-  createButton("02", AGENT_PRESETS[1], true),
-  createButton("03", AGENT_PRESETS[2], false),
-  createButton("04", AGENT_PRESETS[3], false),
-  createButton("05", AGENT_PRESETS[4], false),
+  createButton("01", AGENT_PRESETS[0], true, AGENT_PRESETS[0].id),
+  createButton("02", AGENT_PRESETS[1], true, AGENT_PRESETS[1].id),
+  createButton("03", AGENT_PRESETS[2], false, AGENT_PRESETS[2].id),
+  createButton("04", AGENT_PRESETS[3], false, AGENT_PRESETS[3].id),
+  createButton("05", AGENT_PRESETS[4], false, AGENT_PRESETS[4].id),
   createButton("06", emptyPreset("Agent 06"), false),
   createButton("07", emptyPreset("Agent 07"), false),
   createButton("08", emptyPreset("Agent 08"), false),
@@ -219,16 +197,14 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(configurationDisposable)
 }
 
-function createButton(id: string, preset: AgentPreset, enabled: boolean): ButtonConfig {
+function createButton(id: string, preset: AgentPreset, enabled: boolean, presetId = "custom"): ButtonConfig {
   return {
     id,
     enabled,
+    preset: presetId,
     label: preset.label,
     icon: preset.icon,
     command: preset.command,
-    terminalName: preset.terminalName,
-    reuseTerminal: preset.reuseTerminal,
-    runOnReuse: preset.runOnReuse,
     cwd: preset.cwd,
     context: preset.context,
   }
@@ -239,10 +215,7 @@ function emptyPreset(label: string): AgentPreset {
     label,
     icon: "terminal",
     command: "",
-    terminalName: label,
-    reuseTerminal: true,
-    runOnReuse: false,
-    cwd: "workspace",
+    cwd: "current",
     context: "none",
   }
 }
@@ -250,29 +223,48 @@ function emptyPreset(label: string): AgentPreset {
 function loadButtons(): ButtonConfig[] {
   const configured = vscode.workspace.getConfiguration(CONFIGURATION_SECTION).get<unknown>(CONFIGURATION_KEY)
   const entries = Array.isArray(configured) ? configured : []
-  return BUTTON_IDS.map((id, index) => normalizeButton(entries[index], DEFAULT_BUTTONS[index], id))
+  return BUTTON_IDS.map((id, index) => normalizeButton(getConfiguredEntry(entries, id, index), DEFAULT_BUTTONS[index], id))
 }
 
 function normalizeButtons(value: unknown): ButtonConfig[] {
   const entries = Array.isArray(value) ? value : []
-  return BUTTON_IDS.map((id, index) => normalizeButton(entries[index], DEFAULT_BUTTONS[index], id))
+  return BUTTON_IDS.map((id, index) => normalizeButton(getConfiguredEntry(entries, id, index), DEFAULT_BUTTONS[index], id))
+}
+
+function getConfiguredEntry(entries: unknown[], id: string, index: number) {
+  const entryById = entries.find((entry) => {
+    if (!entry || typeof entry !== "object") {
+      return false
+    }
+    return (entry as Record<string, unknown>).id === id
+  })
+  if (entryById) {
+    return entryById
+  }
+
+  const entryByIndex = entries[index]
+  if (entryByIndex && typeof entryByIndex === "object") {
+    const indexedId = (entryByIndex as Record<string, unknown>).id
+    if (typeof indexedId === "string" && indexedId !== id) {
+      return undefined
+    }
+  }
+  return entryByIndex
 }
 
 function normalizeButton(value: unknown, fallback: ButtonConfig, id: string): ButtonConfig {
   const record = value && typeof value === "object" ? value as Record<string, unknown> : {}
   const context = record.context === "opencode" ? "opencode" : fallback.context
-  const cwd = record.cwd === "file" ? "file" : fallback.cwd
+  const cwd = record.cwd === "workspace" || record.cwd === "file" || record.cwd === "current"
+    ? record.cwd
+    : fallback.cwd
   return {
     id,
     enabled: typeof record.enabled === "boolean" ? record.enabled : fallback.enabled,
+    preset: typeof record.preset === "string" && record.preset.trim() ? record.preset.trim() : fallback.preset,
     label: typeof record.label === "string" && record.label.trim() ? record.label.trim() : fallback.label,
     icon: normalizeIcon(typeof record.icon === "string" ? record.icon : fallback.icon),
     command: typeof record.command === "string" ? record.command : fallback.command,
-    terminalName: typeof record.terminalName === "string" && record.terminalName.trim()
-      ? record.terminalName.trim()
-      : fallback.terminalName,
-    reuseTerminal: typeof record.reuseTerminal === "boolean" ? record.reuseTerminal : fallback.reuseTerminal,
-    runOnReuse: typeof record.runOnReuse === "boolean" ? record.runOnReuse : fallback.runOnReuse,
     cwd,
     context,
   }
@@ -348,16 +340,11 @@ async function runButton(button: ButtonConfig, extensionContext: vscode.Extensio
   }
 
   const activeContext = getActiveContext()
-  const terminalName = button.terminalName || button.label
-  const existingTerminal = button.reuseTerminal
-    ? vscode.window.terminals.find((terminal) => terminal.name === terminalName)
-    : undefined
+  const terminalName = button.label
+  const existingTerminal = vscode.window.terminals.find((terminal) => terminal.name === terminalName)
 
   if (existingTerminal) {
     existingTerminal.show()
-    if (button.runOnReuse) {
-      existingTerminal.sendText(expandCommand(button.command, activeContext), true)
-    }
     return
   }
 
@@ -395,7 +382,10 @@ function getWorkingDirectory(button: ButtonConfig, activeContext: ActiveContext)
   if (button.cwd === "file" && activeContext.file) {
     return path.dirname(activeContext.file)
   }
-  return activeContext.workspaceFolder
+  if (button.cwd === "workspace") {
+    return activeContext.workspaceFolder
+  }
+  return undefined
 }
 
 function getActiveContext(): ActiveContext {
@@ -503,6 +493,8 @@ function openConfigurator(
       const nextButtons = DEFAULT_BUTTONS.map((button) => ({ ...button }))
       await saveButtons(nextButtons)
       panel.webview.postMessage({ type: "config", buttons: nextButtons })
+    } else if (data.type === "openAdvanced") {
+      await vscode.commands.executeCommand("workbench.action.openSettingsJson")
     }
   }, undefined, context.subscriptions)
 }
@@ -522,39 +514,44 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
   <title>Agent Action Dock</title>
   <style>
     :root { color-scheme: light dark; }
-    body { color: var(--vscode-foreground); background: var(--vscode-editor-background); font-family: var(--vscode-font-family); padding: 24px; max-width: 1100px; margin: 0 auto; }
+    body { color: var(--vscode-foreground); background: var(--vscode-editor-background); font-family: var(--vscode-font-family); padding: 24px; max-width: 1180px; margin: 0 auto; }
     h1 { font-size: 22px; margin: 0 0 6px; }
-    .hint { color: var(--vscode-descriptionForeground); margin: 0 0 20px; }
-    .toolbar { display: flex; gap: 8px; margin-bottom: 16px; position: sticky; top: 0; padding: 8px 0; background: var(--vscode-editor-background); z-index: 2; }
+    .hint { color: var(--vscode-descriptionForeground); margin: 0 0 16px; line-height: 1.5; }
+    .toolbar { display: flex; gap: 8px; align-items: center; margin-bottom: 12px; position: sticky; top: 0; padding: 8px 0; background: var(--vscode-editor-background); z-index: 2; }
     button { color: var(--vscode-button-foreground); background: var(--vscode-button-background); border: 0; padding: 7px 14px; cursor: pointer; border-radius: 2px; }
     button:hover { background: var(--vscode-button-hoverBackground); }
-    #message { color: var(--vscode-testing-iconPassed); min-height: 20px; margin-left: 8px; align-self: center; }
-    .button-card { border: 1px solid var(--vscode-panel-border); padding: 14px; margin: 10px 0; border-radius: 4px; }
-    .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-    .slot { font-weight: 600; min-width: 58px; }
-    .enabled { width: 16px; height: 16px; }
-    .grid { display: grid; grid-template-columns: repeat(2, minmax(220px, 1fr)); gap: 10px 16px; }
-    .field { display: flex; flex-direction: column; gap: 5px; }
-    .field.wide { grid-column: 1 / -1; }
-    label { color: var(--vscode-descriptionForeground); font-size: 12px; }
-    input, select, textarea { color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
-    textarea { min-height: 52px; resize: vertical; }
-    .checks { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 10px; }
-    .check { display: flex; flex-direction: row; align-items: center; gap: 6px; }
-    .check label { color: var(--vscode-foreground); }
-    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } .field.wide { grid-column: auto; } }
+    #message { color: var(--vscode-testing-iconPassed); min-height: 20px; margin-left: 8px; }
+    .table-head, .button-row { display: grid; grid-template-columns: 34px 52px minmax(180px, 1fr) minmax(180px, 1fr) 180px; gap: 10px; align-items: center; }
+    .table-head { color: var(--vscode-descriptionForeground); font-size: 12px; padding: 0 12px 6px; }
+    .button-row { border: 1px solid var(--vscode-panel-border); padding: 9px 12px; margin: 6px 0; border-radius: 4px; }
+    .button-row:focus-within { border-color: var(--vscode-focusBorder); }
+    .slot { color: var(--vscode-descriptionForeground); font-weight: 600; }
+    .enabled { width: 16px; height: 16px; justify-self: center; }
+    input, select { box-sizing: border-box; width: 100%; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
+    .icon { font-family: var(--vscode-editor-font-family); }
+    .advanced-hint { color: var(--vscode-descriptionForeground); font-size: 12px; margin-top: 14px; line-height: 1.5; }
+    @media (max-width: 760px) {
+      .table-head { display: none; }
+      .button-row { grid-template-columns: 30px 42px 1fr 1fr; }
+      .preset { grid-column: 3 / -1; }
+      .label { grid-column: 3; }
+      .icon { grid-column: 4; }
+    }
   </style>
 </head>
 <body>
   <h1>Agent Action Dock</h1>
-  <p class="hint">配置编辑器右上角的 Agent / CLI 按钮。命令支持 {{workspaceFolder}}、{{file}}、{{relativeFile}}、{{fileRef}}、{{selection}}、{{lineStart}}、{{lineEnd}} 和 {{port}}。</p>
+  <p class="hint">每行配置一个按钮。预设会自动填入命令和图标；名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
+    <button id="advanced">编辑高级配置</button>
     <span id="message"></span>
   </div>
+  <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标 Codicon</span></div>
   <datalist id="icon-options"></datalist>
   <main id="app"></main>
+  <p class="advanced-hint">命令、工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};
@@ -563,19 +560,11 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
     const app = document.getElementById('app');
     const message = document.getElementById('message');
 
-    function field(card, title, control, wide) {
-      const wrapper = document.createElement('div');
-      wrapper.className = wide ? 'field wide' : 'field';
-      const label = document.createElement('label');
-      label.textContent = title;
-      wrapper.append(label, control);
-      card.querySelector('.grid').append(wrapper);
-    }
-
-    function textInput(className, value) {
+    function textInput(className, value, placeholder) {
       const input = document.createElement('input');
       input.className = className;
       input.value = value || '';
+      input.placeholder = placeholder || '';
       return input;
     }
 
@@ -592,14 +581,16 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
       return select;
     }
 
+    function getPresetId(button) {
+      return presets.some((preset) => preset.id === button.preset) ? button.preset : 'custom';
+    }
+
     function render() {
       app.replaceChildren();
       state.forEach((button) => {
-        const card = document.createElement('section');
-        card.className = 'button-card';
-        card.dataset.id = button.id;
-        const header = document.createElement('div');
-        header.className = 'card-header';
+        const row = document.createElement('div');
+        row.className = 'button-row';
+        row.dataset.id = button.id;
         const enabled = document.createElement('input');
         enabled.type = 'checkbox';
         enabled.className = 'enabled';
@@ -607,72 +598,29 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
         const slot = document.createElement('span');
         slot.className = 'slot';
         slot.textContent = '按钮 ' + button.id;
-        const heading = document.createElement('strong');
-        heading.textContent = button.label || ('Agent ' + button.id);
-        header.append(enabled, slot, heading);
-        card.append(header);
-
-        const grid = document.createElement('div');
-        grid.className = 'grid';
-        card.append(grid);
-
-        const presetOptions = [{ value: '', label: '自定义' }].concat(presets.map((preset) => ({ value: preset.id, label: preset.name })));
-        const preset = selectInput('preset', presetOptions, '');
-        field(card, '预设', preset, false);
-        const label = textInput('label', button.label);
-        field(card, '按钮名称', label, false);
-        const icon = textInput('icon', button.icon);
+        const presetOptions = [{ value: 'custom', label: '自定义' }].concat(presets.map((preset) => ({ value: preset.id, label: preset.name })));
+        const preset = selectInput('preset', presetOptions, getPresetId(button));
+        const label = textInput('label', button.label, '按钮名称');
+        const icon = textInput('icon', button.icon, 'terminal');
         icon.setAttribute('list', 'icon-options');
-        field(card, '图标 Codicon', icon, false);
-        const terminalName = textInput('terminalName', button.terminalName);
-        field(card, '终端名称', terminalName, false);
-        const cwd = selectInput('cwd', [{ value: 'workspace', label: '工作区根目录' }, { value: 'file', label: '当前文件所在目录' }], button.cwd);
-        field(card, '工作目录', cwd, false);
-        const context = selectInput('context', [{ value: 'none', label: '不注入文件上下文' }, { value: 'opencode', label: 'OpenCode 文件上下文' }], button.context);
-        field(card, '上下文模式', context, false);
-        const command = document.createElement('textarea');
-        command.className = 'command';
-        command.value = button.command || '';
-        field(card, '执行命令', command, true);
-
-        const checks = document.createElement('div');
-        checks.className = 'checks';
-        const reuse = document.createElement('input');
-        reuse.type = 'checkbox';
-        reuse.className = 'reuseTerminal';
-        reuse.checked = button.reuseTerminal !== false;
-        const reuseLabel = document.createElement('label');
-        reuseLabel.textContent = '复用同名终端';
-        const reuseWrap = document.createElement('span');
-        reuseWrap.className = 'check';
-        reuseWrap.append(reuse, reuseLabel);
-        const runOnReuse = document.createElement('input');
-        runOnReuse.type = 'checkbox';
-        runOnReuse.className = 'runOnReuse';
-        runOnReuse.checked = !!button.runOnReuse;
-        const runLabel = document.createElement('label');
-        runLabel.textContent = '复用时再次执行命令';
-        const runWrap = document.createElement('span');
-        runWrap.className = 'check';
-        runWrap.append(runOnReuse, runLabel);
-        checks.append(reuseWrap, runWrap);
-        card.append(checks);
+        row.append(enabled, slot, preset, label, icon);
 
         preset.addEventListener('change', () => {
           const selected = presets.find((item) => item.id === preset.value);
+          button.preset = preset.value || 'custom';
           if (!selected) return;
+          button.label = selected.label;
+          button.icon = selected.icon;
+          button.command = selected.command;
+          button.cwd = selected.cwd;
+          button.context = selected.context;
           label.value = selected.label;
           icon.value = selected.icon;
-          command.value = selected.command;
-          terminalName.value = selected.terminalName;
-          cwd.value = selected.cwd;
-          context.value = selected.context;
-          reuse.checked = selected.reuseTerminal;
-          runOnReuse.checked = selected.runOnReuse;
-          heading.textContent = selected.label;
         });
-        label.addEventListener('input', () => { heading.textContent = label.value || ('Agent ' + button.id); });
-        app.append(card);
+        enabled.addEventListener('change', () => { button.enabled = enabled.checked; });
+        label.addEventListener('input', () => { button.label = label.value; });
+        icon.addEventListener('input', () => { button.icon = icon.value; });
+        app.append(row);
       });
     }
 
@@ -683,22 +631,12 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
     });
 
     document.getElementById('save').addEventListener('click', () => {
-      const next = Array.from(document.querySelectorAll('.button-card')).map((card) => ({
-        id: card.dataset.id,
-        enabled: card.querySelector('.enabled').checked,
-        label: card.querySelector('.label').value,
-        icon: card.querySelector('.icon').value,
-        command: card.querySelector('.command').value,
-        terminalName: card.querySelector('.terminalName').value,
-        reuseTerminal: card.querySelector('.reuseTerminal').checked,
-        runOnReuse: card.querySelector('.runOnReuse').checked,
-        cwd: card.querySelector('.cwd').value,
-        context: card.querySelector('.context').value
-      }));
+      const next = state.map((button) => ({ ...button }));
       vscode.postMessage({ type: 'save', buttons: next });
     });
 
     document.getElementById('reset').addEventListener('click', () => vscode.postMessage({ type: 'reset' }));
+    document.getElementById('advanced').addEventListener('click', () => vscode.postMessage({ type: 'openAdvanced' }));
     window.addEventListener('message', (event) => {
       const data = event.data;
       if (data.type === 'config') {
@@ -707,7 +645,7 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
         message.textContent = '已恢复默认配置';
       } else if (data.type === 'saved') {
         state = data.buttons || state;
-        message.textContent = '已保存；按钮外观将在重载窗口后更新';
+        message.textContent = '已保存；重载窗口后更新右上角按钮';
       }
     });
     render();
