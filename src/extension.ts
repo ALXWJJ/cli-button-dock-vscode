@@ -38,22 +38,137 @@ type ActiveContext = {
 }
 
 const ICON_OPTIONS = [
-  "terminal",
-  "sparkle",
-  "hubot",
-  "comment-discussion",
-  "code",
-  "rocket",
-  "lightbulb",
+  "account",
+  "agent",
+  "alert",
+  "add",
+  "archive",
+  "arrow-down",
+  "arrow-left",
+  "arrow-right",
+  "arrow-up",
+  "ask",
+  "attach",
   "beaker",
+  "bell",
+  "book",
+  "bookmark",
+  "browser",
   "bug",
-  "tools",
-  "github",
-  "search",
-  "play",
-  "server",
-  "symbol-misc",
+  "build",
+  "calendar",
+  "check",
+  "check-all",
+  "checklist",
+  "chevron-down",
+  "chevron-left",
+  "chevron-right",
+  "chevron-up",
+  "circle-filled",
+  "circle-outline",
+  "close",
+  "cloud",
+  "code",
+  "comment",
+  "comment-discussion",
+  "copy",
+  "database",
+  "debug",
+  "debug-console",
+  "debug-start",
+  "edit",
+  "error",
+  "eye",
+  "eye-closed",
+  "file",
+  "file-code",
+  "files",
+  "filter",
+  "folder",
   "folder-opened",
+  "gear",
+  "git-branch",
+  "git-commit",
+  "git-merge",
+  "git-pull-request",
+  "globe",
+  "graph",
+  "heart",
+  "heart-filled",
+  "history",
+  "hubot",
+  "info",
+  "key",
+  "kebab-vertical",
+  "layout",
+  "lightbulb",
+  "link",
+  "list-filter",
+  "list-tree",
+  "list-unordered",
+  "lock-small",
+  "logo-github",
+  "markdown",
+  "menu",
+  "merge",
+  "more",
+  "new-file",
+  "notebook",
+  "package",
+  "person",
+  "pin",
+  "play",
+  "play-circle",
+  "project",
+  "question",
+  "refresh",
+  "remote",
+  "remove",
+  "repo",
+  "repo-sync",
+  "rocket",
+  "run-all",
+  "search",
+  "server",
+  "settings-gear",
+  "shield",
+  "source-control",
+  "sparkle",
+  "split-horizontal",
+  "split-vertical",
+  "star-full",
+  "terminal",
+  "terminal-bash",
+  "terminal-cmd",
+  "terminal-powershell",
+  "thumbsdown",
+  "thumbsup",
+  "tools",
+  "unlock",
+  "vm",
+  "warning-compact",
+  "symbol-misc",
+  "symbol-class",
+  "symbol-color",
+  "symbol-constant",
+  "symbol-enum",
+  "symbol-enum-member",
+  "symbol-field",
+  "symbol-file",
+  "symbol-interface",
+  "symbol-key",
+  "symbol-keyword",
+  "symbol-method",
+  "symbol-module",
+  "symbol-numeric",
+  "symbol-operator",
+  "symbol-parameter",
+  "symbol-property",
+  "symbol-reference",
+  "symbol-ruler",
+  "symbol-snippet",
+  "symbol-string",
+  "symbol-structure",
 ]
 
 const AGENT_PRESETS: AgentPresetDefinition[] = [
@@ -479,7 +594,7 @@ function openConfigurator(
     },
   )
 
-  panel.webview.html = getConfiguratorHtml(panel.webview, initialButtons)
+  panel.webview.html = getConfiguratorHtml(panel.webview, context.extensionUri, initialButtons)
   panel.webview.onDidReceiveMessage(async (message: unknown) => {
     if (!message || typeof message !== "object") {
       return
@@ -499,21 +614,25 @@ function openConfigurator(
   }, undefined, context.subscriptions)
 }
 
-function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
+function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, buttons: ButtonConfig[]) {
   const nonce = crypto.randomBytes(16).toString("hex")
   const state = JSON.stringify(buttons).replaceAll("<", "\\u003c")
   const presets = JSON.stringify(AGENT_PRESETS).replaceAll("<", "\\u003c")
   const icons = JSON.stringify(ICON_OPTIONS)
+  const codiconCssUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.css"))
+  const codiconFontUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.ttf"))
 
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'nonce-${nonce}';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agent Action Dock</title>
+  <link rel="stylesheet" href="${codiconCssUri}" />
   <style>
     :root { color-scheme: light dark; }
+    @font-face { font-family: "codicon"; font-display: block; src: url("${codiconFontUri}") format("truetype"); }
     body { color: var(--vscode-foreground); background: var(--vscode-editor-background); font-family: var(--vscode-font-family); padding: 24px; max-width: 1180px; margin: 0 auto; }
     h1 { font-size: 22px; margin: 0 0 6px; }
     .hint { color: var(--vscode-descriptionForeground); margin: 0 0 16px; line-height: 1.5; }
@@ -528,21 +647,29 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
     .slot { color: var(--vscode-descriptionForeground); font-weight: 600; }
     .enabled { width: 16px; height: 16px; justify-self: center; }
     input, select { box-sizing: border-box; width: 100%; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
-    .icon { font-family: var(--vscode-editor-font-family); }
+    .icon-picker { position: relative; display: flex; gap: 5px; min-width: 0; }
+    .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-icon-foreground, var(--vscode-foreground)); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 18px; }
+    .icon-preview:hover { background: var(--vscode-list-hoverBackground); }
+    .icon-menu { position: absolute; top: calc(100% + 5px); right: 0; z-index: 10; width: min(420px, 70vw); max-height: 340px; overflow: auto; padding: 8px; background: var(--vscode-quickInput-background, var(--vscode-editor-background)); border: 1px solid var(--vscode-focusBorder); box-shadow: 0 8px 24px var(--vscode-widget-shadow); }
+    .icon-menu[hidden] { display: none; }
+    .icon-search { margin-bottom: 8px; }
+    .icon-grid { display: grid; grid-template-columns: repeat(8, minmax(32px, 1fr)); gap: 4px; }
+    .icon-option { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; color: var(--vscode-foreground); background: transparent; border: 0; }
+    .icon-option:hover, .icon-option.selected { color: var(--vscode-list-activeSelectionForeground); background: var(--vscode-list-activeSelectionBackground); }
     .advanced-hint { color: var(--vscode-descriptionForeground); font-size: 12px; margin-top: 14px; line-height: 1.5; }
     @media (max-width: 760px) {
       .table-head { display: none; }
       .button-row { grid-template-columns: 30px 42px 1fr 1fr; }
       .preset { grid-column: 3 / -1; }
       .label { grid-column: 3; }
-      .icon { grid-column: 4; }
+      .icon-picker { grid-column: 3 / -1; }
       .command { grid-column: 3 / -1; }
     }
   </style>
 </head>
 <body>
   <h1>Agent Action Dock</h1>
-  <p class="hint">每行配置一个按钮。预设会自动填入命令和图标，也可以直接修改执行命令；名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
+  <p class="hint">每行配置一个按钮。预设会自动填入命令和图标，也可以直接修改执行命令；点击图标预览可从官方 Codicon 网格中选择。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
@@ -550,7 +677,6 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
     <span id="message"></span>
   </div>
   <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标 Codicon</span><span>执行命令</span></div>
-  <datalist id="icon-options"></datalist>
   <main id="app"></main>
   <p class="advanced-hint">工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
@@ -582,6 +708,91 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
       return select;
     }
 
+    function iconName(value) {
+      const raw = String(value || '').trim();
+      const match = raw.match(/^\\$\\(([^)]+)\\)$/);
+      return (match ? match[1] : raw) || 'terminal';
+    }
+
+    function iconClassName(value) {
+      return iconName(value).replace(/[^a-z0-9-]/gi, '') || 'terminal';
+    }
+
+    function createIconPicker(value, onChange) {
+      const picker = document.createElement('div');
+      picker.className = 'icon-picker';
+      const preview = document.createElement('button');
+      preview.type = 'button';
+      preview.className = 'icon-preview';
+      const glyph = document.createElement('span');
+      glyph.className = 'codicon';
+      preview.append(glyph);
+      const input = textInput('icon', value, 'terminal');
+      input.spellcheck = false;
+      const menu = document.createElement('div');
+      menu.className = 'icon-menu';
+      menu.hidden = true;
+      const search = textInput('icon-search', '', '搜索 Codicon');
+      search.setAttribute('aria-label', '搜索 Codicon');
+      const grid = document.createElement('div');
+      grid.className = 'icon-grid';
+      const optionElements = [];
+
+      function updatePreview(next) {
+        const name = iconName(next);
+        glyph.className = 'codicon codicon-' + iconClassName(name);
+        preview.title = '选择图标：' + name;
+        preview.setAttribute('aria-label', '选择图标：' + name);
+        optionElements.forEach((item) => item.element.classList.toggle('selected', item.name === name));
+      }
+
+      function filterOptions() {
+        const query = search.value.trim().toLowerCase();
+        optionElements.forEach((item) => { item.element.hidden = !!query && !item.name.includes(query); });
+      }
+
+      icons.forEach((name) => {
+        const option = document.createElement('button');
+        option.type = 'button';
+        option.className = 'icon-option';
+        option.title = name;
+        option.setAttribute('aria-label', name);
+        const optionGlyph = document.createElement('span');
+        optionGlyph.className = 'codicon codicon-' + iconClassName(name);
+        option.append(optionGlyph);
+        option.addEventListener('click', (event) => {
+          event.stopPropagation();
+          input.value = name;
+          updatePreview(name);
+          onChange(name);
+          menu.hidden = true;
+          search.value = '';
+          filterOptions();
+        });
+        optionElements.push({ element: option, name });
+        grid.append(option);
+      });
+
+      preview.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const shouldOpen = menu.hidden;
+        document.querySelectorAll('.icon-menu').forEach((item) => { item.hidden = true; });
+        menu.hidden = !shouldOpen;
+        if (shouldOpen) {
+          search.value = '';
+          filterOptions();
+          search.focus();
+        }
+      });
+      input.addEventListener('input', () => { updatePreview(input.value); onChange(input.value); });
+      search.addEventListener('input', filterOptions);
+      menu.addEventListener('click', (event) => event.stopPropagation());
+      menu.append(search, grid);
+      picker.append(preview, input, menu);
+      updatePreview(value);
+      return { element: picker, setValue: (next) => { input.value = next || ''; updatePreview(next); } };
+    }
+
     function getPresetId(button) {
       return presets.some((preset) => preset.id === button.preset) ? button.preset : 'custom';
     }
@@ -602,11 +813,10 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
         const presetOptions = [{ value: 'custom', label: '自定义' }].concat(presets.map((preset) => ({ value: preset.id, label: preset.name })));
         const preset = selectInput('preset', presetOptions, getPresetId(button));
         const label = textInput('label', button.label, '按钮名称');
-        const icon = textInput('icon', button.icon, 'terminal');
+        const iconPicker = createIconPicker(button.icon, (value) => { button.icon = value; });
         const command = textInput('command', button.command, '例如 codex');
         command.spellcheck = false;
-        icon.setAttribute('list', 'icon-options');
-        row.append(enabled, slot, preset, label, icon, command);
+        row.append(enabled, slot, preset, label, iconPicker.element, command);
 
         preset.addEventListener('change', () => {
           const selected = presets.find((item) => item.id === preset.value);
@@ -618,21 +828,18 @@ function getConfiguratorHtml(webview: vscode.Webview, buttons: ButtonConfig[]) {
           button.cwd = selected.cwd;
           button.context = selected.context;
           label.value = selected.label;
-          icon.value = selected.icon;
+          iconPicker.setValue(selected.icon);
           command.value = selected.command;
         });
         enabled.addEventListener('change', () => { button.enabled = enabled.checked; });
         label.addEventListener('input', () => { button.label = label.value; });
-        icon.addEventListener('input', () => { button.icon = icon.value; });
         command.addEventListener('input', () => { button.command = command.value; });
         app.append(row);
       });
     }
 
-    icons.forEach((icon) => {
-      const option = document.createElement('option');
-      option.value = icon;
-      document.getElementById('icon-options').append(option);
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.icon-menu').forEach((item) => { item.hidden = true; });
     });
 
     document.getElementById('save').addEventListener('click', () => {

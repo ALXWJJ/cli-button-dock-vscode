@@ -6,6 +6,7 @@ Configure multiple editor-title buttons for OpenCode, Codex, Claude Code, Gemini
 
 - Up to 10 buttons in the editor's top-right title bar.
 - One-line graphical configuration: enable, preset, name, Codicon, and command.
+- Click the icon preview to choose an official VS Code Codicon from a searchable grid, or enter a custom Codicon ID.
 - The name is used for both the editor button and terminal, and terminals with the same name are always reused.
 - Built-in presets for common coding agents.
 - Advanced command, working-directory, and file-context options remain available in `settings.json`.
@@ -24,7 +25,7 @@ You can also right-click the editor title bar where the Dock buttons appear and 
 
 The editor title bar also includes a settings gear button for the same action.
 
-The simple editor stores the button name, icon, preset, command, and enabled state. Selecting a preset fills its command and icon automatically, and the command can be edited directly in the same row. Advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
+The simple editor stores the button name, icon, preset, command, and enabled state. Selecting a preset fills its command and icon automatically, and the command can be edited directly in the same row. Click the icon preview to open the official Codicon picker; the search box filters the available icons, while the adjacent field still accepts a custom Codicon ID. Advanced options can be edited with the **编辑高级配置** button or in `settings.json` under `agentActionDock.buttons`.
 
 The default working directory is `current`, which lets VS Code choose the terminal's current directory. Other supported values are `workspace` and `file`. File context is disabled by default. To enable OpenCode context manually:
 
@@ -68,5 +69,7 @@ After changing a button's name, icon, or enabled state, reload the VS Code windo
 4. Press `F5` to start an Extension Development Host.
 
 Create a VSIX with `bun x @vscode/vsce package --no-dependencies`.
+
+The picker bundles the official `@vscode/codicons` font and stylesheet under `media/`.
 
 The project is based on the MIT-licensed OpenCode VS Code SDK and is developed at [github.com/ALXWJJ/agent-action-dock](https://github.com/ALXWJJ/agent-action-dock).

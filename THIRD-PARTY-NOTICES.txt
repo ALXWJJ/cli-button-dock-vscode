@@ -1,0 +1,9 @@
+Agent Action Dock bundles the VS Code Codicons font and stylesheet from:
+
+https://github.com/microsoft/vscode-codicons
+
+Copyright (c) Microsoft Corporation and contributors.
+The bundled icon assets are provided under the Creative Commons Attribution 4.0
+International license:
+
+https://creativecommons.org/licenses/by/4.0/
