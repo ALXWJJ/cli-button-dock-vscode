@@ -19,10 +19,11 @@ settings.
 - A graphical configuration page available from the Command Palette, the
   editor title bar, or the `Cmd/Ctrl+Alt+A` shortcut.
 - Built-in presets for common coding agents, plus fully custom commands.
-- Brand icons and a searchable grid of official VS Code Codicons.
+- Brand icons and a curated set of emoji choices.
 - Custom icons without file uploads: inline SVG, `data:image/...` values, or
   HTTPS image URLs.
-- An interactive custom-icon editor with SVG/link tabs and live preview.
+- An interactive custom-icon editor: 🎨 for SVG, 🔗 for HTTPS image links, and
+  live preview.
 - Reuse an existing integrated terminal by button name.
 - Choose the terminal working directory: current, workspace, or active file.
 - Expand workspace, file, selection, line, and port variables in commands.
@@ -46,7 +47,7 @@ cd cli-button-dock-vscode
 bun install
 bun run package
 bun x @vscode/vsce package --no-dependencies
-code --install-extension ./agent-action-dock-0.1.1.vsix
+code --install-extension ./agent-action-dock-0.1.2.vsix
 ```
 
 The VSIX filename includes the version from `package.json`. You can also use
@@ -98,8 +99,10 @@ fields can be edited directly in `settings.json`:
 - `enabled`: whether the button is shown in the editor title bar.
 - `label`: the button label and the integrated terminal name.
 - `preset`: a built-in preset id or `custom`.
-- `icon`: a Codicon id such as `terminal`, a brand id such as `brand:codex`,
-  an inline SVG, a `data:image/...` value, or an `https://...` image URL.
+- `icon`: an emoji id such as `emoji:🤖`, a brand id such as `brand:codex`, an
+  inline SVG, a `data:image/...` value, or an `https://...` image URL. Legacy
+  Codicon ids remain supported when entered manually in `settings.json`, but
+  the graphical picker no longer offers them.
 - `command`: the command sent to the integrated terminal.
 - `cwd`: `current`, `workspace`, or `file`.
 - `context`: `none` or `opencode`.
@@ -131,9 +134,9 @@ Custom icons do not require uploading a file. Set `icon` to one of these forms:
 ```
 
 You can also use a `data:image/svg+xml,...` or `data:image/png;base64,...`
-value, or an HTTPS image URL. The graphical editor provides a custom-icon
-button next to the icon field, with separate SVG and image-link tabs, live
-preview, and an **Apply icon** action. VS Code command icons require
+value, or an HTTPS image URL. The graphical editor no longer uses a text field
+for the icon value. Use the 🎨 button to edit SVG or the 🔗 button to set an
+image link, then preview it and click **Apply icon**. VS Code command icons require
 extension-local image paths, so the extension downloads HTTPS images and
 caches them under its local `media/user-icons` directory before updating the
 title-bar command. SVG content is sanitized and limited to 1 MiB. HTTP links

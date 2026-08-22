@@ -45,6 +45,11 @@ type BrandIconDefinition = {
   dark: string
   root?: string
 }
+type EmojiIconDefinition = {
+  id: string
+  name: string
+  glyph: string
+}
 
 type ActiveContext = {
   workspaceFolder?: string
@@ -56,138 +61,19 @@ type ActiveContext = {
   lineEnd?: string
 }
 
-const ICON_OPTIONS = [
-  "account",
-  "agent",
-  "alert",
-  "add",
-  "archive",
-  "arrow-down",
-  "arrow-left",
-  "arrow-right",
-  "arrow-up",
-  "ask",
-  "attach",
-  "beaker",
-  "bell",
-  "book",
-  "bookmark",
-  "browser",
-  "bug",
-  "build",
-  "calendar",
-  "check",
-  "check-all",
-  "checklist",
-  "chevron-down",
-  "chevron-left",
-  "chevron-right",
-  "chevron-up",
-  "circle-filled",
-  "circle-outline",
-  "close",
-  "cloud",
-  "code",
-  "comment",
-  "comment-discussion",
-  "copy",
-  "database",
-  "debug",
-  "debug-console",
-  "debug-start",
-  "edit",
-  "error",
-  "eye",
-  "eye-closed",
-  "file",
-  "file-code",
-  "files",
-  "filter",
-  "folder",
-  "folder-opened",
-  "gear",
-  "git-branch",
-  "git-commit",
-  "git-merge",
-  "git-pull-request",
-  "globe",
-  "graph",
-  "heart",
-  "heart-filled",
-  "history",
-  "hubot",
-  "info",
-  "key",
-  "kebab-vertical",
-  "layout",
-  "lightbulb",
-  "link",
-  "list-filter",
-  "list-tree",
-  "list-unordered",
-  "lock-small",
-  "logo-github",
-  "markdown",
-  "menu",
-  "merge",
-  "more",
-  "new-file",
-  "notebook",
-  "package",
-  "person",
-  "pin",
-  "play",
-  "play-circle",
-  "project",
-  "question",
-  "refresh",
-  "remote",
-  "remove",
-  "repo",
-  "repo-sync",
-  "rocket",
-  "run-all",
-  "search",
-  "server",
-  "settings-gear",
-  "shield",
-  "source-control",
-  "sparkle",
-  "split-horizontal",
-  "split-vertical",
-  "star-full",
-  "terminal",
-  "terminal-bash",
-  "terminal-cmd",
-  "terminal-powershell",
-  "thumbsdown",
-  "thumbsup",
-  "tools",
-  "unlock",
-  "vm",
-  "warning-compact",
-  "symbol-misc",
-  "symbol-class",
-  "symbol-color",
-  "symbol-constant",
-  "symbol-enum",
-  "symbol-enum-member",
-  "symbol-field",
-  "symbol-file",
-  "symbol-interface",
-  "symbol-key",
-  "symbol-keyword",
-  "symbol-method",
-  "symbol-module",
-  "symbol-numeric",
-  "symbol-operator",
-  "symbol-parameter",
-  "symbol-property",
-  "symbol-reference",
-  "symbol-ruler",
-  "symbol-snippet",
-  "symbol-string",
-  "symbol-structure",
+const EMOJI_ICON_OPTIONS: EmojiIconDefinition[] = [
+  { id: "emoji:🤖", name: "机器人", glyph: "🤖" },
+  { id: "emoji:🧠", name: "思考", glyph: "🧠" },
+  { id: "emoji:✨", name: "智能", glyph: "✨" },
+  { id: "emoji:⚡", name: "快速", glyph: "⚡" },
+  { id: "emoji:🚀", name: "启动", glyph: "🚀" },
+  { id: "emoji:🎨", name: "创意", glyph: "🎨" },
+  { id: "emoji:🔗", name: "链接", glyph: "🔗" },
+  { id: "emoji:💻", name: "电脑", glyph: "💻" },
+  { id: "emoji:🛠️", name: "工具", glyph: "🛠️" },
+  { id: "emoji:🧪", name: "实验", glyph: "🧪" },
+  { id: "emoji:🎯", name: "目标", glyph: "🎯" },
+  { id: "emoji:🌈", name: "灵感", glyph: "🌈" },
 ]
 
 const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
@@ -469,7 +355,7 @@ function createButton(id: string, preset: AgentPreset, enabled: boolean, presetI
 function emptyPreset(label: string): AgentPreset {
   return {
     label,
-    icon: "terminal",
+    icon: "emoji:🛠️",
     command: "",
     cwd: "current",
     context: "none",
@@ -530,7 +416,7 @@ function normalizeButton(value: unknown, fallback: ButtonConfig, id: string): Bu
 
 function normalizeIcon(value: string) {
   const match = value.match(/^\$\(([^)]+)\)$/)
-  return match ? match[1] : value.trim() || "terminal"
+  return match ? match[1] : value.trim() || "emoji:🛠️"
 }
 
 function normalizePresetIcon(preset: string, icon: string) {
@@ -736,6 +622,31 @@ async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: str
   return `${CUSTOM_ICON_DIR}/${fileName}`
 }
 
+function escapeXml(value: string) {
+  return value
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&apos;")
+}
+
+function ensureEmojiIconAsset(context: vscode.ExtensionContext, emoji: EmojiIconDefinition) {
+  const cacheKey = getCustomIconCacheKey(emoji.id)
+  const directory = path.join(context.extensionPath, CUSTOM_ICON_DIR)
+  const cachedPath = getCachedCustomIconPath(directory, cacheKey)
+  if (cachedPath) {
+    return cachedPath
+  }
+
+  fs.mkdirSync(directory, { recursive: true })
+  const safeGlyph = escapeXml(emoji.glyph)
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="18" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">${safeGlyph}</text></svg>`
+  const fileName = `${cacheKey}.svg`
+  fs.writeFileSync(path.join(directory, fileName), svg)
+  return `${CUSTOM_ICON_DIR}/${fileName}`
+}
+
 async function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[]) {
   const manifestPath = path.join(context.extensionPath, "package.json")
   try {
@@ -801,6 +712,11 @@ function getBrandIcon(icon: string) {
   return BRAND_ICON_OPTIONS.find((item) => item.id === normalized)
 }
 
+function getEmojiIcon(icon: string) {
+  const normalized = normalizeIcon(icon)
+  return EMOJI_ICON_OPTIONS.find((item) => item.id === normalized)
+}
+
 function getBrandAssetPath(brand: BrandIconDefinition, theme: "light" | "dark") {
   const fileName = theme === "light" ? brand.light : brand.dark
   return `${brand.root ?? "media/brands"}/${fileName}`
@@ -816,6 +732,17 @@ async function toManifestIcon(context: vscode.ExtensionContext, icon: string) {
     return {
       light: getBrandAssetPath(brand, "light"),
       dark: getBrandAssetPath(brand, "dark"),
+    }
+  }
+
+  const emoji = getEmojiIcon(icon)
+  if (emoji) {
+    try {
+      const emojiPath = ensureEmojiIconAsset(context, emoji)
+      return { light: emojiPath, dark: emojiPath }
+    } catch (error) {
+      console.warn("[Agent Action Dock] Unable to prepare emoji command icon", error)
+      return toCodicon("terminal")
     }
   }
 
@@ -838,6 +765,18 @@ async function getTerminalIconPath(extensionContext: vscode.ExtensionContext, ic
     return {
       light: getExtensionAssetUri(extensionContext.extensionUri, getBrandAssetPath(brand, "light")),
       dark: getExtensionAssetUri(extensionContext.extensionUri, getBrandAssetPath(brand, "dark")),
+    }
+  }
+
+  const emoji = getEmojiIcon(icon)
+  if (emoji) {
+    try {
+      const emojiPath = ensureEmojiIconAsset(extensionContext, emoji)
+      const emojiUri = getExtensionAssetUri(extensionContext.extensionUri, emojiPath)
+      return { light: emojiUri, dark: emojiUri }
+    } catch (error) {
+      console.warn("[Agent Action Dock] Unable to prepare emoji terminal icon", error)
+      return new vscode.ThemeIcon("terminal")
     }
   }
 
@@ -1025,15 +964,13 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   const nonce = crypto.randomBytes(16).toString("hex")
   const state = JSON.stringify(buttons).replaceAll("<", "\\u003c")
   const presets = JSON.stringify(AGENT_PRESETS).replaceAll("<", "\\u003c")
-  const icons = JSON.stringify(ICON_OPTIONS)
+  const emojiIcons = JSON.stringify(EMOJI_ICON_OPTIONS).replaceAll("<", "\\u003c")
   const brandIcons = JSON.stringify(BRAND_ICON_OPTIONS.map((brand) => ({
     id: brand.id,
     name: brand.name,
     light: webview.asWebviewUri(getExtensionAssetUri(extensionUri, getBrandAssetPath(brand, "light"))).toString(),
     dark: webview.asWebviewUri(getExtensionAssetUri(extensionUri, getBrandAssetPath(brand, "dark"))).toString(),
   }))).replaceAll("<", "\\u003c")
-  const codiconCssUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.css"))
-  const codiconFontUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.ttf"))
 
   return `<!DOCTYPE html>
 <html lang="zh-CN">
@@ -1042,10 +979,8 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agent Action Dock</title>
-  <link rel="stylesheet" href="${codiconCssUri}" />
   <style>
     :root { color-scheme: light dark; }
-    @font-face { font-family: "codicon"; font-display: block; src: url("${codiconFontUri}") format("truetype"); }
     body { color: var(--vscode-foreground); background: var(--vscode-editor-background); font-family: var(--vscode-font-family); padding: 24px; max-width: 1180px; margin: 0 auto; }
     h1 { font-size: 22px; margin: 0 0 6px; }
     .hint { color: var(--vscode-descriptionForeground); margin: 0 0 16px; line-height: 1.5; }
@@ -1065,7 +1000,9 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-icon-foreground, var(--vscode-foreground)); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 18px; }
     .icon-preview:hover { background: var(--vscode-list-hoverBackground); }
     .icon-preview img, .icon-option img, .custom-icon-live-preview img { display: block; width: 20px; height: 20px; object-fit: contain; }
-    .icon-custom-trigger { width: 32px; min-width: 32px; height: 32px; padding: 0; font-size: 16px; }
+    .icon-custom-trigger { width: 32px; min-width: 32px; height: 32px; padding: 0; font-size: 17px; line-height: 1; }
+    .icon-custom-trigger:hover { background: var(--vscode-list-hoverBackground); }
+    .icon-emoji { display: inline-flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; }
     .icon-menu { position: absolute; top: calc(100% + 5px); right: 0; z-index: 10; width: min(420px, 70vw); max-height: 340px; overflow: auto; padding: 8px; background: var(--vscode-quickInput-background, var(--vscode-editor-background)); border: 1px solid var(--vscode-focusBorder); box-shadow: 0 8px 24px var(--vscode-widget-shadow); }
     .icon-menu[hidden] { display: none; }
     .icon-search { margin-bottom: 8px; }
@@ -1077,9 +1014,6 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     .custom-icon-editor-header, .custom-icon-editor-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
     .custom-icon-editor-title { font-weight: 600; }
     .custom-icon-close { width: 26px; height: 26px; padding: 0; font-size: 18px; line-height: 1; }
-    .custom-icon-tabs { display: flex; gap: 6px; margin: 12px 0 8px; }
-    .custom-icon-tab { color: var(--vscode-foreground); background: transparent; border: 1px solid var(--vscode-input-border, transparent); padding: 5px 9px; }
-    .custom-icon-tab.active { color: var(--vscode-button-foreground); background: var(--vscode-button-background); }
     .custom-icon-live-preview { display: flex; align-items: center; justify-content: center; min-height: 68px; margin-top: 8px; color: var(--vscode-descriptionForeground); background: var(--vscode-editor-background); border: 1px dashed var(--vscode-panel-border); }
     .custom-icon-live-preview img { width: 44px; height: 44px; }
     .custom-icon-error { min-height: 18px; margin-top: 6px; color: var(--vscode-errorForeground); font-size: 12px; }
@@ -1097,7 +1031,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 </head>
 <body>
   <h1>Agent Action Dock</h1>
-  <p class="hint">每行配置一个按钮。预设会自动填入命令和 Agent 品牌图标，也可以直接修改执行命令；点击图标预览可从品牌图标和官方 Codicon 网格中选择，也可以直接输入自定义 SVG、图片 data URI 或 HTTPS 图片链接。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
+  <p class="hint">每行配置一个按钮。预设会自动填入命令和 Agent 品牌图标，也可以直接修改执行命令；点击图标预览可从品牌图标和精选 Emoji 中选择。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
@@ -1106,12 +1040,12 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   </div>
   <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标</span><span>执行命令</span></div>
   <main id="app"></main>
-  <p class="advanced-hint">自定义图标不需要上传文件：点击图标右侧的 ✦ 按钮打开交互面板，选择 SVG 或图片链接并预览后应用；也可以直接填写 <code>data:image/...</code>。仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
+  <p class="advanced-hint">自定义图标不需要上传文件：点击图标右侧的 🎨 编辑 SVG，点击 🔗 设置 HTTPS 图片链接，并在面板中预览后应用；也可以填写 <code>data:image/...</code>。仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};
     const presets = ${presets};
-    const icons = ${icons};
+    const emojiIcons = ${emojiIcons};
     const brandIcons = ${brandIcons};
     const app = document.getElementById('app');
     const message = document.getElementById('message');
@@ -1141,10 +1075,6 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       const raw = String(value || '').trim();
       const match = raw.match(/^\\$\\(([^)]+)\\)$/);
       return (match ? match[1] : raw) || 'terminal';
-    }
-
-    function iconClassName(value) {
-      return iconName(value).replace(/[^a-z0-9-]/gi, '') || 'terminal';
     }
 
     function isCustomImage(value) {
@@ -1177,7 +1107,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       return raw.startsWith('<svg') || (raw.startsWith('<?xml') && raw.includes('<svg'));
     }
 
-    function createCustomIconEditor(initialValue, onApply) {
+    function createCustomIconEditor(onApply) {
       const editor = document.createElement('div');
       editor.className = 'custom-icon-editor';
       editor.hidden = true;
@@ -1185,7 +1115,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       header.className = 'custom-icon-editor-header';
       const title = document.createElement('span');
       title.className = 'custom-icon-editor-title';
-      title.textContent = '自定义图标';
+      title.textContent = '自定义 SVG 图标';
       const close = document.createElement('button');
       close.type = 'button';
       close.className = 'custom-icon-close';
@@ -1193,21 +1123,10 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       close.title = '关闭';
       header.append(title, close);
 
-      const tabs = document.createElement('div');
-      tabs.className = 'custom-icon-tabs';
-      const svgTab = document.createElement('button');
-      svgTab.type = 'button';
-      svgTab.className = 'custom-icon-tab';
-      svgTab.textContent = '内联 SVG';
-      const urlTab = document.createElement('button');
-      urlTab.type = 'button';
-      urlTab.className = 'custom-icon-tab';
-      urlTab.textContent = '图片链接 / data URI';
-      tabs.append(svgTab, urlTab);
-
       const field = document.createElement('textarea');
       field.className = 'custom-icon-value';
       field.spellcheck = false;
+      field.setAttribute('aria-label', '自定义图标内容');
       const preview = document.createElement('div');
       preview.className = 'custom-icon-live-preview';
       const error = document.createElement('div');
@@ -1221,14 +1140,13 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       apply.type = 'button';
       apply.textContent = '应用图标';
       actions.append(cancel, apply);
-      editor.append(header, tabs, field, preview, error, actions);
+      editor.append(header, field, preview, error, actions);
 
       let mode = 'svg';
 
       function updateMode(nextMode) {
-        mode = nextMode;
-        svgTab.classList.toggle('active', mode === 'svg');
-        urlTab.classList.toggle('active', mode === 'url');
+        mode = nextMode === 'url' ? 'url' : 'svg';
+        title.textContent = mode === 'svg' ? '自定义 SVG 图标' : '自定义图片链接';
         field.placeholder = mode === 'svg'
           ? '<svg viewBox="0 0 24 24">...</svg>'
           : 'https://.../icon.svg 或 data:image/...';
@@ -1260,21 +1178,12 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         preview.append(image);
       }
 
-      function setValue(next) {
-        const raw = String(next || '').trim();
-        const custom = isCustomImage(raw);
-        field.value = custom ? raw : '';
-        updateMode(custom && !isInlineSvg(raw) ? 'url' : 'svg');
-      }
-
       function hide() {
         editor.hidden = true;
       }
 
       close.addEventListener('click', (event) => { event.stopPropagation(); hide(); });
       cancel.addEventListener('click', (event) => { event.stopPropagation(); hide(); });
-      svgTab.addEventListener('click', (event) => { event.stopPropagation(); updateMode('svg'); });
-      urlTab.addEventListener('click', (event) => { event.stopPropagation(); updateMode('url'); });
       field.addEventListener('input', renderPreview);
       apply.addEventListener('click', (event) => {
         event.stopPropagation();
@@ -1290,11 +1199,18 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       });
       editor.addEventListener('click', (event) => event.stopPropagation());
 
-      setValue(initialValue);
       return {
         element: editor,
-        open: (next) => { setValue(next); editor.hidden = false; field.focus(); },
-        setValue,
+        open: (next, nextMode) => {
+          const raw = String(next || '').trim();
+          updateMode(nextMode);
+          field.value = mode === 'svg'
+            ? (isInlineSvg(raw) ? raw : '')
+            : (isCustomImage(raw) && !isInlineSvg(raw) ? raw : '');
+          renderPreview();
+          editor.hidden = false;
+          field.focus();
+        },
       };
     }
 
@@ -1304,17 +1220,16 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       const preview = document.createElement('button');
       preview.type = 'button';
       preview.className = 'icon-preview';
-      const input = textInput('icon', value, 'Codicon、brand:xxx、HTTPS 图片或 SVG');
-      input.spellcheck = false;
       const menu = document.createElement('div');
       menu.className = 'icon-menu';
       menu.hidden = true;
-      const search = textInput('icon-search', '', '搜索品牌图标或 Codicon');
-      search.setAttribute('aria-label', '搜索品牌图标或 Codicon');
+      const search = textInput('icon-search', '', '搜索品牌图标或 Emoji');
+      search.setAttribute('aria-label', '搜索品牌图标或 Emoji');
       const grid = document.createElement('div');
       grid.className = 'icon-grid';
       const optionElements = [];
       const isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      let currentValue = value || '';
 
       function createBrandImage(brand) {
         const image = document.createElement('img');
@@ -1324,41 +1239,62 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         return image;
       }
 
+      function createEmojiGlyph(emoji) {
+        const glyph = document.createElement('span');
+        glyph.className = 'icon-emoji';
+        glyph.textContent = emoji.glyph;
+        glyph.setAttribute('aria-hidden', 'true');
+        return glyph;
+      }
+
       function updatePreview(next) {
+        currentValue = next || '';
         const custom = isCustomImage(next);
         const name = custom ? '自定义图标' : iconName(next);
         const brand = brandIcons.find((item) => item.id === name);
+        const emoji = emojiIcons.find((item) => item.id === name);
         preview.replaceChildren();
         if (custom) {
           preview.append(createCustomImage(next));
         } else if (brand) {
           preview.append(createBrandImage(brand));
+        } else if (emoji) {
+          preview.append(createEmojiGlyph(emoji));
         } else {
           const glyph = document.createElement('span');
-          glyph.className = 'codicon codicon-' + iconClassName(name);
+          glyph.className = 'icon-emoji';
+          glyph.textContent = '🛠️';
           preview.append(glyph);
         }
-        preview.title = '选择图标：' + name;
-        preview.setAttribute('aria-label', '选择图标：' + name);
+        const displayName = custom ? '自定义图标' : (brand ? brand.name : (emoji ? emoji.name : name));
+        preview.title = '选择图标：' + displayName;
+        preview.setAttribute('aria-label', '选择图标：' + displayName);
         optionElements.forEach((item) => item.element.classList.toggle('selected', item.name === name));
       }
 
-      const customEditor = createCustomIconEditor(value, (next) => {
-        input.value = next;
+      const customEditor = createCustomIconEditor((next) => {
+        currentValue = next;
         updatePreview(next);
         onChange(next);
       });
-      const customTrigger = document.createElement('button');
-      customTrigger.type = 'button';
-      customTrigger.className = 'icon-custom-trigger';
-      customTrigger.textContent = '✦';
-      customTrigger.title = '自定义图标';
-      customTrigger.setAttribute('aria-label', '自定义图标');
-      customTrigger.addEventListener('click', (event) => {
-        event.stopPropagation();
-        menu.hidden = true;
-        customEditor.open(input.value);
-      });
+
+      function createCustomTrigger(glyph, title, mode) {
+        const trigger = document.createElement('button');
+        trigger.type = 'button';
+        trigger.className = 'icon-custom-trigger';
+        trigger.textContent = glyph;
+        trigger.title = title;
+        trigger.setAttribute('aria-label', title);
+        trigger.addEventListener('click', (event) => {
+          event.stopPropagation();
+          menu.hidden = true;
+          customEditor.open(currentValue, mode);
+        });
+        return trigger;
+      }
+
+      const customSvgTrigger = createCustomTrigger('🎨', '自定义 SVG 图标', 'svg');
+      const customUrlTrigger = createCustomTrigger('🔗', '设置 HTTPS 图片链接', 'url');
 
       function filterOptions() {
         const query = search.value.trim().toLowerCase();
@@ -1374,7 +1310,6 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         option.append(createBrandImage(brand));
         option.addEventListener('click', (event) => {
           event.stopPropagation();
-          input.value = brand.id;
           updatePreview(brand.id);
           onChange(brand.id);
           menu.hidden = true;
@@ -1385,25 +1320,22 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         grid.append(option);
       });
 
-      icons.forEach((name) => {
+      emojiIcons.forEach((emoji) => {
         const option = document.createElement('button');
         option.type = 'button';
         option.className = 'icon-option';
-        option.title = name;
-        option.setAttribute('aria-label', name);
-        const optionGlyph = document.createElement('span');
-        optionGlyph.className = 'codicon codicon-' + iconClassName(name);
-        option.append(optionGlyph);
+        option.title = emoji.name + ' (' + emoji.id + ')';
+        option.setAttribute('aria-label', emoji.name);
+        option.append(createEmojiGlyph(emoji));
         option.addEventListener('click', (event) => {
           event.stopPropagation();
-          input.value = name;
-          updatePreview(name);
-          onChange(name);
+          updatePreview(emoji.id);
+          onChange(emoji.id);
           menu.hidden = true;
           search.value = '';
           filterOptions();
         });
-        optionElements.push({ element: option, name, search: name.toLowerCase() });
+        optionElements.push({ element: option, name: emoji.id, search: (emoji.id + ' ' + emoji.name + ' ' + emoji.glyph).toLowerCase() });
         grid.append(option);
       });
 
@@ -1419,18 +1351,15 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
           search.focus();
         }
       });
-      input.addEventListener('input', () => { updatePreview(input.value); onChange(input.value); });
       search.addEventListener('input', filterOptions);
       menu.addEventListener('click', (event) => event.stopPropagation());
       menu.append(search, grid);
-      picker.append(preview, input, customTrigger, menu, customEditor.element);
-      updatePreview(value);
+      picker.append(preview, customSvgTrigger, customUrlTrigger, menu, customEditor.element);
+      updatePreview(currentValue);
       return {
         element: picker,
         setValue: (next) => {
-          input.value = next || '';
-          customEditor.setValue(next);
-          updatePreview(next);
+          updatePreview(next || '');
         },
       };
     }

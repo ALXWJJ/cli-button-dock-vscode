@@ -2,7 +2,7 @@
   "name": "agent-action-dock",
   "displayName": "Agent Action Dock",
   "description": "Configure editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code, and other agents.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
@@ -258,7 +258,7 @@
               "enabled": false,
               "preset": "custom",
               "label": "Agent 06",
-              "icon": "terminal",
+              "icon": "emoji:🛠️",
               "command": "",
               "cwd": "current",
               "context": "none"
@@ -268,7 +268,7 @@
               "enabled": false,
               "preset": "custom",
               "label": "Agent 07",
-              "icon": "terminal",
+              "icon": "emoji:🛠️",
               "command": "",
               "cwd": "current",
               "context": "none"
@@ -278,7 +278,7 @@
               "enabled": false,
               "preset": "custom",
               "label": "Agent 08",
-              "icon": "terminal",
+              "icon": "emoji:🛠️",
               "command": "",
               "cwd": "current",
               "context": "none"
@@ -288,7 +288,7 @@
               "enabled": false,
               "preset": "custom",
               "label": "Agent 09",
-              "icon": "terminal",
+              "icon": "emoji:🛠️",
               "command": "",
               "cwd": "current",
               "context": "none"
@@ -298,7 +298,7 @@
               "enabled": false,
               "preset": "custom",
               "label": "Agent 10",
-              "icon": "terminal",
+              "icon": "emoji:🛠️",
               "command": "",
               "cwd": "current",
               "context": "none"
@@ -314,7 +314,7 @@
               "label": { "type": "string" },
               "icon": {
                 "type": "string",
-                "description": "Codicon or brand icon id, inline SVG, data image URI, or HTTPS image URL. Custom images are cached locally."
+                "description": "Emoji or brand icon id, inline SVG, data image URI, or HTTPS image URL. Legacy Codicon ids remain supported in settings. Custom images are cached locally."
               },
               "command": { "type": "string" },
               "cwd": { "type": "string", "enum": ["current", "workspace", "file"] },
