@@ -18,6 +18,8 @@ settings.
   editor title bar, or the `Cmd/Ctrl+Alt+A` shortcut.
 - Built-in presets for common coding agents, plus fully custom commands.
 - Brand icons and a searchable grid of official VS Code Codicons.
+- Custom icons without file uploads: inline SVG, `data:image/...` values, or
+  HTTPS image URLs.
 - Reuse an existing integrated terminal by button name.
 - Choose the terminal working directory: current, workspace, or active file.
 - Expand workspace, file, selection, line, and port variables in commands.
@@ -93,8 +95,8 @@ fields can be edited directly in `settings.json`:
 - `enabled`: whether the button is shown in the editor title bar.
 - `label`: the button label and the integrated terminal name.
 - `preset`: a built-in preset id or `custom`.
-- `icon`: a Codicon id such as `terminal`, or a brand id such as
-  `brand:codex`.
+- `icon`: a Codicon id such as `terminal`, a brand id such as `brand:codex`,
+  an inline SVG, a `data:image/...` value, or an `https://...` image URL.
 - `command`: the command sent to the integrated terminal.
 - `cwd`: `current`, `workspace`, or `file`.
 - `context`: `none` or `opencode`.
@@ -114,6 +116,23 @@ Commands support both `{{name}}` and `${name}` forms for these variables:
 
 Unknown variables are left unchanged. File and selection variables are empty
 when no editor context is available.
+
+### Custom icons
+
+Custom icons do not require uploading a file. Set `icon` to one of these forms:
+
+```json
+{
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path fill=\"currentColor\" d=\"...\"/></svg>"
+}
+```
+
+You can also use a `data:image/svg+xml,...` or `data:image/png;base64,...`
+value, or an HTTPS image URL. VS Code command icons require extension-local
+image paths, so the extension downloads HTTPS images and caches them under its
+local `media/user-icons` directory before updating the title-bar command. SVG
+content is sanitized and limited to 1 MiB. HTTP links and unsupported image
+types are rejected; a failed custom icon falls back to the terminal icon.
 
 ### OpenCode context
 
@@ -157,8 +176,10 @@ package.json           VS Code manifest and development scripts
 Commands are executed in the VS Code integrated terminal with the permissions
 of the current user. The extension does not sandbox or rewrite commands, so
 review button settings before enabling them. The extension itself only talks to
-`localhost` for the optional OpenCode context integration; it does not upload
-source files or collect telemetry.
+`localhost` for the optional OpenCode context integration. When a button uses
+an HTTPS custom icon URL, that URL is fetched and cached locally; review remote
+icon sources before using them. The extension does not upload source files or
+collect telemetry.
 
 ## Contributing
 

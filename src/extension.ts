@@ -8,6 +8,18 @@ const CONFIGURATION_KEY = "buttons"
 const BUTTON_COUNT = 10
 const BUTTON_IDS = Array.from({ length: BUTTON_COUNT }, (_, index) => String(index + 1).padStart(2, "0"))
 const OPENCODE_PORT_ENV = "_EXTENSION_OPENCODE_PORT"
+const CUSTOM_ICON_DIR = "media/user-icons"
+const CUSTOM_ICON_MAX_BYTES = 1024 * 1024
+const CUSTOM_ICON_MIME_EXTENSIONS: Record<string, string> = {
+  "image/svg+xml": "svg",
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/gif": "gif",
+  "image/webp": "webp",
+  "image/x-icon": "ico",
+  "image/vnd.microsoft.icon": "ico",
+}
+const INLINE_SVG_PATTERN = /^(?:<\?xml[\s\S]*?\?>\s*)?<svg\b/i
 
 type ButtonContext = "none" | "opencode"
 type ButtonCwd = "current" | "workspace" | "file"
@@ -378,9 +390,11 @@ export function activate(context: vscode.ExtensionContext) {
 
   void updateButtonContexts(buttons)
   void migrateLegacyPresetIcons(buttons)
-  if (syncManifest(context, buttons)) {
-    vscode.window.showInformationMessage("Agent Action Dock button metadata changed. Reload the window to apply it.")
-  }
+  void syncManifest(context, buttons).then((changed) => {
+    if (changed) {
+      vscode.window.showInformationMessage("Agent Action Dock button metadata changed. Reload the window to apply it.")
+    }
+  })
 
   for (const buttonId of BUTTON_IDS) {
     const disposable = vscode.commands.registerCommand(`agentActionDock.button${buttonId}`, async () => {
@@ -428,9 +442,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     buttons = loadButtons()
     void updateButtonContexts(buttons)
-    if (syncManifest(context, buttons)) {
-      vscode.window.showInformationMessage("Agent Action Dock button appearance changed. Reload the window to apply it.")
-    }
+    void syncManifest(context, buttons).then((changed) => {
+      if (changed) {
+        vscode.window.showInformationMessage("Agent Action Dock button appearance changed. Reload the window to apply it.")
+      }
+    })
   })
   context.subscriptions.push(configurationDisposable)
 }
@@ -555,7 +571,170 @@ async function updateButtonContexts(buttons: ButtonConfig[]) {
   ))
 }
 
-function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[]) {
+type PreparedCustomIcon = {
+  bytes: Buffer
+  extension: string
+}
+
+function isCustomIcon(icon: string) {
+  const value = icon.trim()
+  return /^(?:https?:\/\/|data:image\/)/i.test(value) || INLINE_SVG_PATTERN.test(value)
+}
+
+function getCustomIconCacheKey(icon: string) {
+  return crypto.createHash("sha256").update(icon.trim()).digest("hex").slice(0, 24)
+}
+
+function getCachedCustomIconPath(directory: string, cacheKey: string) {
+  if (!fs.existsSync(directory)) {
+    return undefined
+  }
+
+  try {
+    const fileName = fs.readdirSync(directory).find((entry) => {
+      if (!entry.startsWith(`${cacheKey}.`)) {
+        return false
+      }
+      return fs.statSync(path.join(directory, entry)).isFile()
+    })
+    return fileName ? `${CUSTOM_ICON_DIR}/${fileName}` : undefined
+  } catch (error) {
+    console.warn("[Agent Action Dock] Unable to inspect custom icon cache", error)
+    return undefined
+  }
+}
+
+function getImageExtensionFromPath(value: string) {
+  try {
+    const extension = path.extname(new URL(value).pathname).slice(1).toLowerCase()
+    if (extension === "jpeg") {
+      return "jpg"
+    }
+    return ["gif", "ico", "jpg", "png", "svg", "webp"].includes(extension) ? extension : undefined
+  } catch {
+    return undefined
+  }
+}
+
+function validateCustomIconSize(bytes: Buffer) {
+  if (bytes.length === 0) {
+    throw new Error("The custom icon is empty.")
+  }
+  if (bytes.length > CUSTOM_ICON_MAX_BYTES) {
+    throw new Error(`The custom icon is larger than ${CUSTOM_ICON_MAX_BYTES} bytes.`)
+  }
+}
+
+function sanitizeSvg(value: string) {
+  const svg = value.trim()
+  if (!INLINE_SVG_PATTERN.test(svg)) {
+    throw new Error("Custom SVG icons must contain an <svg> element.")
+  }
+  if (Buffer.byteLength(svg, "utf8") > CUSTOM_ICON_MAX_BYTES) {
+    throw new Error(`The custom SVG is larger than ${CUSTOM_ICON_MAX_BYTES} bytes.`)
+  }
+  if (/<\/?(?:script|foreignObject|iframe|object|embed)\b/i.test(svg)) {
+    throw new Error("Custom SVG icons cannot contain script or embedded document elements.")
+  }
+  if (/(?:javascript:|vbscript:|data:text\/html)/i.test(svg)) {
+    throw new Error("Custom SVG icons cannot contain executable or HTML data URLs.")
+  }
+
+  const sanitized = svg
+    .replace(/\son[a-z][\w:-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+    .replace(/\s+(?:href|xlink:href)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
+  return sanitized
+}
+
+function decodeDataImage(value: string): PreparedCustomIcon {
+  const match = value.match(/^data:(image\/[^;,]+)(;[^,]*)?,([\s\S]*)$/i)
+  if (!match) {
+    throw new Error("Custom data images must use an image MIME type.")
+  }
+
+  const mimeType = match[1].toLowerCase()
+  const extension = CUSTOM_ICON_MIME_EXTENSIONS[mimeType]
+  if (!extension) {
+    throw new Error(`Unsupported custom image type: ${mimeType}`)
+  }
+
+  const metadata = match[2] ?? ""
+  let bytes: Buffer
+  try {
+    bytes = metadata.toLowerCase().includes(";base64")
+      ? Buffer.from(match[3].replace(/\s/g, ""), "base64")
+      : Buffer.from(decodeURIComponent(match[3]), "utf8")
+  } catch {
+    throw new Error("The custom data image could not be decoded.")
+  }
+
+  if (extension === "svg") {
+    bytes = Buffer.from(sanitizeSvg(bytes.toString("utf8")), "utf8")
+  }
+  validateCustomIconSize(bytes)
+  return { bytes, extension }
+}
+
+async function downloadCustomIcon(value: string): Promise<PreparedCustomIcon> {
+  const url = new URL(value)
+  if (url.protocol !== "https:") {
+    throw new Error("Custom image links must use HTTPS.")
+  }
+
+  const response = await fetch(url, { signal: AbortSignal.timeout(10_000) })
+  if (!response.ok) {
+    throw new Error(`The custom image link returned HTTP ${response.status}.`)
+  }
+  if (new URL(response.url).protocol !== "https:") {
+    throw new Error("Custom image links cannot redirect to HTTP.")
+  }
+
+  const contentLength = Number(response.headers.get("content-length"))
+  if (Number.isFinite(contentLength) && contentLength > CUSTOM_ICON_MAX_BYTES) {
+    throw new Error(`The custom image is larger than ${CUSTOM_ICON_MAX_BYTES} bytes.`)
+  }
+
+  const bytes = Buffer.from(await response.arrayBuffer())
+  validateCustomIconSize(bytes)
+  const mimeType = response.headers.get("content-type")?.split(";", 1)[0].trim().toLowerCase()
+  const extension = (mimeType && CUSTOM_ICON_MIME_EXTENSIONS[mimeType]) ?? getImageExtensionFromPath(value)
+  if (!extension) {
+    throw new Error("The custom image link must point to SVG, PNG, JPEG, GIF, WEBP, or ICO content.")
+  }
+
+  if (extension === "svg") {
+    return { bytes: Buffer.from(sanitizeSvg(bytes.toString("utf8")), "utf8"), extension }
+  }
+  return { bytes, extension }
+}
+
+async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: string) {
+  const source = icon.trim()
+  const cacheKey = getCustomIconCacheKey(source)
+  const directory = path.join(context.extensionPath, CUSTOM_ICON_DIR)
+  const cachedPath = getCachedCustomIconPath(directory, cacheKey)
+  if (cachedPath) {
+    return cachedPath
+  }
+
+  let prepared: PreparedCustomIcon
+  if (INLINE_SVG_PATTERN.test(source)) {
+    prepared = { bytes: Buffer.from(sanitizeSvg(source), "utf8"), extension: "svg" }
+  } else if (/^data:image\//i.test(source)) {
+    prepared = decodeDataImage(source)
+  } else {
+    prepared = await downloadCustomIcon(source)
+  }
+
+  validateCustomIconSize(prepared.bytes)
+  fs.mkdirSync(directory, { recursive: true })
+  const fileName = `${cacheKey}.${prepared.extension}`
+  fs.writeFileSync(path.join(directory, fileName), prepared.bytes)
+  return `${CUSTOM_ICON_DIR}/${fileName}`
+}
+
+async function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[]) {
   const manifestPath = path.join(context.extensionPath, "package.json")
   try {
     const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8")) as {
@@ -568,7 +747,7 @@ function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[])
     const buttonById = new Map(buttons.map((button) => [button.id, button]))
 
     if (manifest.contributes?.commands) {
-      manifest.contributes.commands = manifest.contributes.commands.map((command) => {
+      manifest.contributes.commands = await Promise.all(manifest.contributes.commands.map(async (command) => {
         const commandId = typeof command.command === "string" ? command.command : ""
         const buttonId = commandId.match(/^agentActionDock\.button(\d{2})$/)?.[1]
         const button = buttonId ? buttonById.get(buttonId) : undefined
@@ -578,9 +757,9 @@ function syncManifest(context: vscode.ExtensionContext, buttons: ButtonConfig[])
         return {
           ...command,
           title: button.label,
-          icon: toManifestIcon(button.icon),
+          icon: await toManifestIcon(context, button.icon),
         }
-      })
+      }))
     }
 
     if (manifest.contributes?.menus?.["editor/title"]) {
@@ -620,25 +799,48 @@ function getBrandIcon(icon: string) {
   return BRAND_ICON_OPTIONS.find((item) => item.id === normalized)
 }
 
-function toManifestIcon(icon: string) {
+async function toManifestIcon(context: vscode.ExtensionContext, icon: string) {
   const brand = getBrandIcon(icon)
-  if (!brand) {
+  if (brand) {
+    return {
+      light: `media/brands/${brand.light}`,
+      dark: `media/brands/${brand.dark}`,
+    }
+  }
+
+  if (!isCustomIcon(icon)) {
     return toCodicon(icon)
   }
-  return {
-    light: `media/brands/${brand.light}`,
-    dark: `media/brands/${brand.dark}`,
+
+  try {
+    const customPath = await ensureCustomIconAsset(context, icon)
+    return { light: customPath, dark: customPath }
+  } catch (error) {
+    console.warn("[Agent Action Dock] Unable to prepare custom command icon", error)
+    return toCodicon("terminal")
   }
 }
 
-function getTerminalIconPath(extensionContext: vscode.ExtensionContext, icon: string) {
+async function getTerminalIconPath(extensionContext: vscode.ExtensionContext, icon: string) {
   const brand = getBrandIcon(icon)
-  if (!brand) {
+  if (brand) {
+    return {
+      light: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.light),
+      dark: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.dark),
+    }
+  }
+
+  if (!isCustomIcon(icon)) {
     return new vscode.ThemeIcon(normalizeIcon(icon))
   }
-  return {
-    light: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.light),
-    dark: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.dark),
+
+  try {
+    const customPath = await ensureCustomIconAsset(extensionContext, icon)
+    const customUri = vscode.Uri.joinPath(extensionContext.extensionUri, ...customPath.split("/"))
+    return { light: customUri, dark: customUri }
+  } catch (error) {
+    console.warn("[Agent Action Dock] Unable to prepare custom terminal icon", error)
+    return new vscode.ThemeIcon("terminal")
   }
 }
 
@@ -661,7 +863,7 @@ async function runButton(button: ButtonConfig, extensionContext: vscode.Extensio
   const terminal = vscode.window.createTerminal({
     name: terminalName,
     cwd: getWorkingDirectory(button, activeContext),
-    iconPath: getTerminalIconPath(extensionContext, button.icon),
+    iconPath: await getTerminalIconPath(extensionContext, button.icon),
     location: {
       viewColumn: vscode.ViewColumn.Beside,
       preserveFocus: false,
@@ -826,7 +1028,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource}; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agent Action Dock</title>
   <link rel="stylesheet" href="${codiconCssUri}" />
@@ -870,7 +1072,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 </head>
 <body>
   <h1>Agent Action Dock</h1>
-  <p class="hint">每行配置一个按钮。预设会自动填入命令和 Agent 品牌图标，也可以直接修改执行命令；点击图标预览可从品牌图标和官方 Codicon 网格中选择。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
+  <p class="hint">每行配置一个按钮。预设会自动填入命令和 Agent 品牌图标，也可以直接修改执行命令；点击图标预览可从品牌图标和官方 Codicon 网格中选择，也可以直接输入自定义 SVG、图片 data URI 或 HTTPS 图片链接。名称同时用于按钮和终端。默认使用当前终端目录、不注入文件上下文，并自动复用同名终端。</p>
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
@@ -879,7 +1081,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   </div>
   <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标</span><span>执行命令</span></div>
   <main id="app"></main>
-  <p class="advanced-hint">工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
+  <p class="advanced-hint">自定义图标不需要上传文件：在图标输入框填写完整的 <code>&lt;svg&gt;...&lt;/svg&gt;</code>、<code>data:image/...</code> 或 <code>https://...</code> 图片地址即可；仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};
@@ -920,13 +1122,38 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       return iconName(value).replace(/[^a-z0-9-]/gi, '') || 'terminal';
     }
 
+    function isCustomImage(value) {
+      const raw = String(value || '').trim();
+      const lower = raw.toLowerCase();
+      return lower.startsWith('https://') || lower.startsWith('data:image/') || lower.startsWith('<svg') || (lower.startsWith('<?xml') && lower.includes('<svg'));
+    }
+
+    function customImageSource(value) {
+      const raw = String(value || '').trim();
+      const lower = raw.toLowerCase();
+      if (lower.startsWith('<svg') || (lower.startsWith('<?xml') && lower.includes('<svg'))) {
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(raw);
+      }
+      return raw;
+    }
+
+    function createCustomImage(value) {
+      const image = document.createElement('img');
+      image.src = customImageSource(value);
+      image.alt = '';
+      image.decoding = 'async';
+      image.referrerPolicy = 'no-referrer';
+      image.setAttribute('aria-hidden', 'true');
+      return image;
+    }
+
     function createIconPicker(value, onChange) {
       const picker = document.createElement('div');
       picker.className = 'icon-picker';
       const preview = document.createElement('button');
       preview.type = 'button';
       preview.className = 'icon-preview';
-      const input = textInput('icon', value, 'terminal');
+      const input = textInput('icon', value, 'Codicon、brand:xxx、HTTPS 图片或 SVG');
       input.spellcheck = false;
       const menu = document.createElement('div');
       menu.className = 'icon-menu';
@@ -947,10 +1174,13 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       }
 
       function updatePreview(next) {
-        const name = iconName(next);
+        const custom = isCustomImage(next);
+        const name = custom ? '自定义图标' : iconName(next);
         const brand = brandIcons.find((item) => item.id === name);
         preview.replaceChildren();
-        if (brand) {
+        if (custom) {
+          preview.append(createCustomImage(next));
+        } else if (brand) {
           preview.append(createBrandImage(brand));
         } else {
           const glyph = document.createElement('span');

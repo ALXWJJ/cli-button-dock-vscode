@@ -312,7 +312,10 @@
               "enabled": { "type": "boolean" },
               "preset": { "type": "string" },
               "label": { "type": "string" },
-              "icon": { "type": "string" },
+              "icon": {
+                "type": "string",
+                "description": "Codicon or brand icon id, inline SVG, data image URI, or HTTPS image URL. Custom images are cached locally."
+              },
               "command": { "type": "string" },
               "cwd": { "type": "string", "enum": ["current", "workspace", "file"] },
               "context": { "type": "string", "enum": ["none", "opencode"] }

@@ -16,6 +16,7 @@ Kimi Code 或任意其他命令行工具配置最多 10 个按钮。
 - 通过命令面板、标题栏或 `Cmd/Ctrl+Alt+A` 打开图形化配置页面。
 - 内置常用编码 Agent 预设，也支持完全自定义命令。
 - 提供 Agent 品牌图标和可搜索的官方 VS Code Codicon 图标网格。
+- 不上传文件即可自定义图标：支持内联 SVG、`data:image/...` 和 HTTPS 图片链接。
 - 按钮名称对应集成终端名称，并自动复用同名终端。
 - 可选择终端工作目录：当前目录、工作区目录或当前文件目录。
 - 支持在命令中展开工作区、文件、选区、行号和端口变量。
@@ -90,8 +91,8 @@ code --install-extension ./agent-action-dock-0.1.0.vsix
 - `enabled`：是否在编辑器标题栏显示按钮。
 - `label`：按钮名称，同时也是集成终端名称。
 - `preset`：内置预设 ID，或使用 `custom`。
-- `icon`：例如 `terminal` 这样的 Codicon ID，或 `brand:codex` 这样的
-  品牌图标 ID。
+- `icon`：可以是 `terminal` 这样的 Codicon ID、`brand:codex` 这样的品牌
+  图标 ID，也可以是内联 SVG、`data:image/...` 或 `https://...` 图片链接。
 - `command`：发送给集成终端的命令。
 - `cwd`：`current`、`workspace` 或 `file`。
 - `context`：`none` 或 `opencode`。
@@ -111,6 +112,22 @@ code --install-extension ./agent-action-dock-0.1.0.vsix
 
 未知变量会保持原样。如果没有活动编辑器上下文，文件和选区变量会展开
 为空字符串。
+
+### 自定义图标
+
+自定义图标不需要上传文件。在 `icon` 中填写以下任意一种形式即可：
+
+```json
+{
+  "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\"><path fill=\"currentColor\" d=\"...\"/></svg>"
+}
+```
+
+也可以填写 `data:image/svg+xml,...`、`data:image/png;base64,...`，或者
+HTTPS 图片链接。由于 VS Code 的命令图标需要扩展本地图片路径，扩展会把
+HTTPS 图片下载并缓存到本地插件目录的 `media/user-icons` 下，再更新标题栏
+按钮。SVG 内容会经过清理，单个图标限制为 1 MiB。不支持 HTTP 链接和不支持
+的图片类型；自定义图标加载失败时会回退为终端图标。
 
 ### OpenCode 上下文
 
@@ -148,8 +165,9 @@ package.json           VS Code 扩展清单和开发脚本
 ## 安全和隐私
 
 命令会以当前用户权限在 VS Code 集成终端中执行。扩展不会沙箱化或改写
-命令，因此启用按钮前请检查配置。扩展自身只会在可选的 OpenCode 上下文
-集成功能中访问 `localhost`，不会上传源文件，也不会收集遥测数据。
+命令，因此启用按钮前请检查配置。对于 HTTPS 自定义图标链接，扩展会访问
+该地址并缓存图片；使用前请确认图片来源可信。扩展不会上传源文件，也不会
+收集遥测数据。
 
 ## 参与贡献
 
