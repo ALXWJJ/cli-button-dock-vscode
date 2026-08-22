@@ -62,18 +62,18 @@ type ActiveContext = {
 }
 
 const EMOJI_ICON_OPTIONS: EmojiIconDefinition[] = [
-  { id: "emoji:🤖", name: "机器人", glyph: "🤖" },
-  { id: "emoji:🧠", name: "思考", glyph: "🧠" },
-  { id: "emoji:✨", name: "智能", glyph: "✨" },
-  { id: "emoji:⚡", name: "快速", glyph: "⚡" },
-  { id: "emoji:🚀", name: "启动", glyph: "🚀" },
-  { id: "emoji:🎨", name: "创意", glyph: "🎨" },
-  { id: "emoji:🔗", name: "链接", glyph: "🔗" },
-  { id: "emoji:💻", name: "电脑", glyph: "💻" },
-  { id: "emoji:🛠️", name: "工具", glyph: "🛠️" },
-  { id: "emoji:🧪", name: "实验", glyph: "🧪" },
-  { id: "emoji:🎯", name: "目标", glyph: "🎯" },
-  { id: "emoji:🌈", name: "灵感", glyph: "🌈" },
+  { id: "emoji:👻", name: "幽灵", glyph: "👻" },
+  { id: "emoji:🐱", name: "猫咪", glyph: "🐱" },
+  { id: "emoji:🐰", name: "兔子", glyph: "🐰" },
+  { id: "emoji:🐼", name: "熊猫", glyph: "🐼" },
+  { id: "emoji:🦊", name: "狐狸", glyph: "🦊" },
+  { id: "emoji:🐨", name: "考拉", glyph: "🐨" },
+  { id: "emoji:🐸", name: "青蛙", glyph: "🐸" },
+  { id: "emoji:🐙", name: "章鱼", glyph: "🐙" },
+  { id: "emoji:🐥", name: "小鸡", glyph: "🐥" },
+  { id: "emoji:🐹", name: "仓鼠", glyph: "🐹" },
+  { id: "emoji:🦄", name: "独角兽", glyph: "🦄" },
+  { id: "emoji:🧸", name: "小熊", glyph: "🧸" },
 ]
 
 const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
@@ -355,7 +355,7 @@ function createButton(id: string, preset: AgentPreset, enabled: boolean, presetI
 function emptyPreset(label: string): AgentPreset {
   return {
     label,
-    icon: "emoji:🛠️",
+    icon: "emoji:👻",
     command: "",
     cwd: "current",
     context: "none",
@@ -416,7 +416,7 @@ function normalizeButton(value: unknown, fallback: ButtonConfig, id: string): Bu
 
 function normalizeIcon(value: string) {
   const match = value.match(/^\$\(([^)]+)\)$/)
-  return match ? match[1] : value.trim() || "emoji:🛠️"
+  return match ? match[1] : value.trim() || "emoji:👻"
 }
 
 function normalizePresetIcon(preset: string, icon: string) {
@@ -956,6 +956,8 @@ function openConfigurator(
       panel.webview.postMessage({ type: "config", buttons: nextButtons })
     } else if (data.type === "openAdvanced") {
       await vscode.commands.executeCommand("workbench.action.openSettingsJson")
+    } else if (data.type === "reload") {
+      await vscode.commands.executeCommand("workbench.action.reloadWindow")
     }
   }, undefined, context.subscriptions)
 }
@@ -1000,8 +1002,9 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-icon-foreground, var(--vscode-foreground)); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 18px; }
     .icon-preview:hover { background: var(--vscode-list-hoverBackground); }
     .icon-preview img, .icon-option img, .custom-icon-live-preview img { display: block; width: 20px; height: 20px; object-fit: contain; }
-    .icon-custom-trigger { width: 32px; min-width: 32px; height: 32px; padding: 0; font-size: 17px; line-height: 1; }
+    .icon-custom-trigger { width: 32px; min-width: 32px; height: 32px; padding: 0; line-height: 1; }
     .icon-custom-trigger:hover { background: var(--vscode-list-hoverBackground); }
+    .lucide-icon { display: block; width: 17px; height: 17px; }
     .icon-emoji { display: inline-flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; }
     .icon-menu { position: absolute; top: calc(100% + 5px); right: 0; z-index: 10; width: min(420px, 70vw); max-height: 340px; overflow: auto; padding: 8px; background: var(--vscode-quickInput-background, var(--vscode-editor-background)); border: 1px solid var(--vscode-focusBorder); box-shadow: 0 8px 24px var(--vscode-widget-shadow); }
     .icon-menu[hidden] { display: none; }
@@ -1035,18 +1038,23 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   <div class="toolbar">
     <button id="save">保存配置</button>
     <button id="reset">恢复默认</button>
+    <button id="reload">重载窗口（Reload Window）</button>
     <button id="advanced">编辑高级配置</button>
     <span id="message"></span>
   </div>
   <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标</span><span>执行命令</span></div>
   <main id="app"></main>
-  <p class="advanced-hint">自定义图标不需要上传文件：点击图标右侧的 🎨 编辑 SVG，点击 🔗 设置 HTTPS 图片链接，并在面板中预览后应用；也可以填写 <code>data:image/...</code>。仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
+  <p class="advanced-hint">自定义图标不需要上传文件：点击图标右侧的 Lucide 图片图标编辑 SVG，点击链接图标设置 HTTPS 图片链接，并在面板中预览后应用；也可以填写 <code>data:image/...</code>。仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口，也可以直接点击上方的 Reload Window。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};
     const presets = ${presets};
     const emojiIcons = ${emojiIcons};
     const brandIcons = ${brandIcons};
+    const lucideIcons = {
+      svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>',
+      url: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 0 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>'
+    };
     const app = document.getElementById('app');
     const message = document.getElementById('message');
 
@@ -1069,6 +1077,15 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       });
       select.value = value;
       return select;
+    }
+
+    function createLucideIcon(name) {
+      const template = document.createElement('template');
+      template.innerHTML = lucideIcons[name];
+      const icon = template.content.firstElementChild;
+      icon.classList.add('lucide-icon');
+      icon.setAttribute('aria-hidden', 'true');
+      return icon;
     }
 
     function iconName(value) {
@@ -1263,7 +1280,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         } else {
           const glyph = document.createElement('span');
           glyph.className = 'icon-emoji';
-          glyph.textContent = '🛠️';
+          glyph.textContent = '👻';
           preview.append(glyph);
         }
         const displayName = custom ? '自定义图标' : (brand ? brand.name : (emoji ? emoji.name : name));
@@ -1278,11 +1295,11 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         onChange(next);
       });
 
-      function createCustomTrigger(glyph, title, mode) {
+      function createCustomTrigger(iconName, title, mode) {
         const trigger = document.createElement('button');
         trigger.type = 'button';
         trigger.className = 'icon-custom-trigger';
-        trigger.textContent = glyph;
+        trigger.append(createLucideIcon(iconName));
         trigger.title = title;
         trigger.setAttribute('aria-label', title);
         trigger.addEventListener('click', (event) => {
@@ -1293,8 +1310,8 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         return trigger;
       }
 
-      const customSvgTrigger = createCustomTrigger('🎨', '自定义 SVG 图标', 'svg');
-      const customUrlTrigger = createCustomTrigger('🔗', '设置 HTTPS 图片链接', 'url');
+      const customSvgTrigger = createCustomTrigger('svg', '自定义 SVG 图标', 'svg');
+      const customUrlTrigger = createCustomTrigger('url', '设置 HTTPS 图片链接', 'url');
 
       function filterOptions() {
         const query = search.value.trim().toLowerCase();
@@ -1420,6 +1437,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     });
 
     document.getElementById('reset').addEventListener('click', () => vscode.postMessage({ type: 'reset' }));
+    document.getElementById('reload').addEventListener('click', () => vscode.postMessage({ type: 'reload' }));
     document.getElementById('advanced').addEventListener('click', () => vscode.postMessage({ type: 'openAdvanced' }));
     window.addEventListener('message', (event) => {
       const data = event.data;

@@ -16,9 +16,10 @@ Kimi Code 或任意其他命令行工具配置最多 10 个按钮。
 - 默认只启用 OpenCode 按钮，其他位置可以按需开启。
 - 通过命令面板、标题栏或 `Cmd/Ctrl+Alt+A` 打开图形化配置页面。
 - 内置常用编码 Agent 预设，也支持完全自定义命令。
-- 提供 Agent 品牌图标和一组精选 Emoji 图标。
+- 提供 Agent 品牌图标和一组精选可爱 Emoji 图标，默认图标是 👻（U+1F47B）。
 - 不上传文件即可自定义图标：支持内联 SVG、`data:image/...` 和 HTTPS 图片链接。
-- 提供自定义图标交互面板：用 🎨 编辑 SVG、用 🔗 设置 HTTPS 图片链接，并实时预览。
+- 提供自定义图标交互面板：用 Lucide 图片图标编辑 SVG、用 Lucide 链接图标设置 HTTPS 图片链接，并实时预览。
+- 配置页提供一键“重载窗口（Reload Window）”按钮。
 - 按钮名称对应集成终端名称，并自动复用同名终端。
 - 可选择终端工作目录：当前目录、工作区目录或当前文件目录。
 - 支持在命令中展开工作区、文件、选区、行号和端口变量。
@@ -42,7 +43,7 @@ cd cli-button-dock-vscode
 bun install
 bun run package
 bun x @vscode/vsce package --no-dependencies
-code --install-extension ./agent-action-dock-0.1.2.vsix
+code --install-extension ./agent-action-dock-0.1.3.vsix
 ```
 
 生成的 VSIX 文件名会包含 `package.json` 中的版本号。也可以在 VS Code
@@ -93,7 +94,7 @@ code --install-extension ./agent-action-dock-0.1.2.vsix
 - `enabled`：是否在编辑器标题栏显示按钮。
 - `label`：按钮名称，同时也是集成终端名称。
 - `preset`：内置预设 ID，或使用 `custom`。
-- `icon`：可以是 `emoji:🤖` 这样的 Emoji ID、`brand:codex` 这样的品牌图标
+- `icon`：可以是 `emoji:👻` 这样的 Emoji ID、`brand:codex` 这样的品牌图标
   ID，也可以是内联 SVG、`data:image/...` 或 `https://...` 图片链接。手动写入
   settings.json 的旧 Codicon ID 仍然兼容，但图形化选择器不再提供 Codicon。
 - `command`：发送给集成终端的命令。
@@ -129,10 +130,11 @@ code --install-extension ./agent-action-dock-0.1.2.vsix
 也可以填写 `data:image/svg+xml,...`、`data:image/png;base64,...`，或者
 HTTPS 图片链接。由于 VS Code 的命令图标需要扩展本地图片路径，扩展会把
 HTTPS 图片下载并缓存到本地插件目录的 `media/user-icons` 下，再更新标题栏
-按钮。图形化配置页不再放置图标文本输入框：点击图标旁边的 🎨 可编辑 SVG，
-点击 🔗 可设置图片链接，输入内容后实时预览并点击“应用图标”。SVG 内容会
-经过清理，单个图标限制为 1 MiB。不支持 HTTP 链接和不支持的图片类型；自定义
-图标加载失败时会回退为终端图标。
+按钮。图形化配置页不再放置图标文本输入框：点击图标旁边的 Lucide 图片图标可
+编辑 SVG，点击 Lucide 链接图标可设置图片链接，输入内容后实时预览并点击“应用图标”。SVG 内容
+会经过清理，单个图标限制为 1 MiB。不支持 HTTP 链接和不支持的图片类型；自定义
+图标加载失败时会回退为 👻。配置页上方的“重载窗口（Reload Window）”按钮可以
+一键应用标题栏图标变化。
 
 ### OpenCode 上下文
 

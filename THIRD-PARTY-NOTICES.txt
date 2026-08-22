@@ -45,3 +45,16 @@ The AI Icons project is distributed under the MIT License and credits LobeHub
 Icons as an upstream icon collection:
 
 https://github.com/lobehub/lobe-icons
+
+Lucide icons
+------------
+
+The configuration page includes the Lucide ImagePlus and Link2 icons as inline
+SVG controls:
+
+- https://lucide.dev/icons/image-plus
+- https://lucide.dev/icons/link-2
+
+Lucide is distributed under the ISC License:
+
+https://github.com/lucide-icons/lucide/blob/main/LICENSE
