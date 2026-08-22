@@ -25,11 +25,11 @@ settings.
   HTTPS image URLs.
 - An interactive custom-icon editor with Lucide image and link icons for SVG or
   HTTPS image links, plus live preview.
-- A one-click **Reload Window** button in the configuration page.
-- Reuse an existing integrated terminal by button name.
+- **Save and Reload Window** in the configuration page.
+- Each button click opens a new integrated terminal.
 - Choose the terminal working directory: current, workspace, or active file.
-- Expand workspace, file, selection, line, and port variables in commands.
-- Optional OpenCode file-context integration.
+- Expand workspace, file, selection, and line variables in commands.
+- Localized UI for English, Chinese (Simplified and Traditional), Japanese, Korean, German, French, Spanish, Portuguese (Brazil), Russian, and Italian.
 - A command for inserting the active file reference into the active terminal.
 
 ## Installation
@@ -60,7 +60,7 @@ VS Code's **Extensions: Install from VSIX...** command.
 1. Open the Command Palette.
 2. Run **Agent Action Dock: Configure Buttons**.
 3. Enable a button, choose a preset or enter a custom command, and save.
-4. Reload the VS Code window when prompted.
+4. Click **Save and Reload Window** to apply title-bar changes.
 
 The configuration page can also be opened from the settings gear in the editor
 title bar or its context menu. The default keyboard shortcuts are:
@@ -70,14 +70,16 @@ title bar or its context menu. The default keyboard shortcuts are:
 | Configure buttons | `Cmd+Alt+A` | `Ctrl+Alt+A` |
 | Add active file to terminal | `Cmd+Alt+K` | `Ctrl+Alt+K` |
 
-The extension reuses an existing integrated terminal with the same name. When
-it finds one, clicking the button focuses that terminal without running the
-command again.
+Each click on a title-bar button creates a new integrated terminal and runs the
+configured command there.
 
 ## Configuration
 
-The graphical editor writes the button list to the user settings. Advanced
-fields can be edited directly in `settings.json`:
+The graphical editor writes the button list to the user settings and covers
+`enabled`, `preset`, `label`, `icon`, and `command`.
+
+Advanced fields such as `cwd` and `context` are not shown in the graphical
+editor. Edit them directly in `settings.json`:
 
 ```json
 {
@@ -106,8 +108,9 @@ fields can be edited directly in `settings.json`:
   Codicon ids remain supported when entered manually in `settings.json`, but
   the graphical picker no longer offers them.
 - `command`: the command sent to the integrated terminal.
-- `cwd`: `current`, `workspace`, or `file`.
-- `context`: `none` or `opencode`.
+- `cwd`: `current`, `workspace`, or `file`. Edit in `settings.json`.
+- `context`: legacy field kept for compatibility. It no longer changes runtime
+  behavior. Edit in `settings.json` if needed.
 
 Commands support both `{{name}}` and `${name}` forms for these variables:
 
@@ -120,7 +123,6 @@ Commands support both `{{name}}` and `${name}` forms for these variables:
 | `selection` | The active editor selection |
 | `lineStart` | One-based start line of the active selection |
 | `lineEnd` | One-based end line of the active selection |
-| `port` | The temporary OpenCode integration port |
 
 Unknown variables are left unchanged. File and selection variables are empty
 when no editor context is available.
@@ -143,23 +145,17 @@ extension-local image paths, so the extension downloads HTTPS images and
 caches them under its local `media/user-icons` directory before updating the
 title-bar command. SVG content is sanitized and limited to 1 MiB. HTTP links
 and unsupported image types are rejected; a failed custom icon falls back to
-the 👻 icon. Use the **Reload Window** button at the top of the configuration
-page to apply title-bar icon changes immediately.
-
-### OpenCode context
-
-For a button with `context: "opencode"`, the extension allocates a local port,
-sets the terminal environment variables expected by OpenCode, and sends the
-active file reference to the local OpenCode endpoint after startup. This is an
-optional integration; normal commands use `context: "none"`.
+the 👻 icon. Use **Save and Reload Window** on the configuration page to apply
+title-bar icon changes immediately.
 
 ## Development
 
 ```bash
 bun install
-bun run check       # TypeScript and ESLint
+bun run check       # TypeScript, ESLint, and unit tests
 bun run compile     # Development bundle
 bun run package     # Production bundle
+bun run test        # Unit tests only
 bun run format      # Apply the configured ESLint fixes
 ```
 
@@ -167,19 +163,18 @@ Open the repository in VS Code and press `F5` to launch an Extension
 Development Host. `bun run watch:esbuild` can be used while iterating on the
 extension bundle.
 
-The repository currently has no automated integration test suite. CI runs the
-type check, lint, and production-independent compile step on pushes and pull
-requests.
+CI runs the type check, lint, unit tests, and production-independent compile
+step on pushes and pull requests.
 
 ## Project layout
 
 ```text
-src/extension.ts       Extension activation, commands, terminal handling,
-                       configuration UI, and manifest synchronization
+src/                   Extension source modules
+test/                  Unit tests for pure helpers
 media/brands/          Bundled, normalized agent brand assets
-media/codicon.*        Bundled VS Code Codicon font and stylesheet
 images/icon.png        Extension icon
 esbuild.js             Extension bundler
+package.nls*.json      Localized manifest strings
 package.json           VS Code manifest and development scripts
 ```
 
@@ -187,11 +182,10 @@ package.json           VS Code manifest and development scripts
 
 Commands are executed in the VS Code integrated terminal with the permissions
 of the current user. The extension does not sandbox or rewrite commands, so
-review button settings before enabling them. The extension itself only talks to
-`localhost` for the optional OpenCode context integration. When a button uses
-an HTTPS custom icon URL, that URL is fetched and cached locally; review remote
-icon sources before using them. The extension does not upload source files or
-collect telemetry.
+review button settings before enabling them. When a button uses an HTTPS custom
+icon URL, that URL is fetched and cached locally; review remote icon sources
+before using them. The extension does not upload source files or collect
+telemetry.
 
 ## Contributing
 
@@ -201,10 +195,9 @@ change.
 
 ## License and attribution
 
-This project is released under the [MIT License](LICENSE). It bundles the
-VS Code Codicons font and stylesheet and several agent brand assets. See
-[THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt) for attribution, source
-links, and trademark notes.
+This project is released under the [MIT License](LICENSE). It bundles several
+agent brand assets. See [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt) for
+attribution, source links, and trademark notes.
 
 Agent Action Dock is an independent community project. It is not affiliated
 with Microsoft, OpenCode, OpenAI, Anthropic, Google, Aider, Goose, Qwen,

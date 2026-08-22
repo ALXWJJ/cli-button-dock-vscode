@@ -1,0 +1,8 @@
+{
+  "extension.displayName": "Agent Action Dock",
+  "extension.description": "Настройте кнопки для OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code и других agents на панели заголовка редактора.",
+  "command.configure": "Agent Action Dock: Настроить кнопки",
+  "command.addFilepathToTerminal": "Agent Action Dock: Добавить путь к файлу в терминал",
+  "configuration.title": "Agent Action Dock",
+  "configuration.buttons.description": "Определения кнопок. Откройте графический редактор через Agent Action Dock: Настроить кнопки."
+}

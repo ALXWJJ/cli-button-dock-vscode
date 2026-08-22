@@ -1,0 +1,8 @@
+{
+  "extension.displayName": "Agent Action Dock",
+  "extension.description": "편집기 제목 표시줄에서 OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code 등 Agent 버튼을 설정합니다.",
+  "command.configure": "Agent Action Dock: 버튼 구성",
+  "command.addFilepathToTerminal": "Agent Action Dock: 파일 경로를 터미널에 추가",
+  "configuration.title": "Agent Action Dock",
+  "configuration.buttons.description": "버튼 정의. 그래픽 편집기는 Agent Action Dock: 버튼 구성 으로 엽니다."
+}

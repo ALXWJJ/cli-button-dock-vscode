@@ -19,11 +19,11 @@ Kimi Code 或任意其他命令行工具配置最多 10 个按钮。
 - 提供 Agent 品牌图标和一组精选可爱 Emoji 图标，默认图标是 👻（U+1F47B）。
 - 不上传文件即可自定义图标：支持内联 SVG、`data:image/...` 和 HTTPS 图片链接。
 - 提供自定义图标交互面板：用 Lucide 图片图标编辑 SVG、用 Lucide 链接图标设置 HTTPS 图片链接，并实时预览。
-- 配置页提供一键“重载窗口（Reload Window）”按钮。
-- 按钮名称对应集成终端名称，并自动复用同名终端。
+- 配置页提供 **保存并重载窗口** 按钮。
+- 每次点击按钮都会打开一个新的集成终端。
 - 可选择终端工作目录：当前目录、工作区目录或当前文件目录。
-- 支持在命令中展开工作区、文件、选区、行号和端口变量。
-- 可选的 OpenCode 文件上下文集成。
+- 支持在命令中展开工作区、文件、选区和行号变量。
+- 配置页和命令标题支持 11 种语言：英语、简体中文、繁体中文、日语、韩语、德语、法语、西班牙语、巴西葡萄牙语、俄语和意大利语。
 - 支持把当前文件引用插入当前活动终端。
 
 ## 安装
@@ -52,9 +52,9 @@ code --install-extension ./agent-action-dock-0.1.4.vsix
 ## 使用
 
 1. 打开命令面板。
-2. 执行 **Agent Action Dock: Configure Buttons**。
+2. 执行 **Agent Action Dock: Configure Buttons**（中文环境下为 **Agent Action Dock: 配置按钮**）。
 3. 启用按钮，选择预设或填写自定义命令，然后保存。
-4. 根据提示重载 VS Code 窗口。
+4. 点击 **保存并重载窗口** 以应用标题栏变更。
 
 也可以点击编辑器标题栏中的设置齿轮，或右键标题栏打开配置页面。默认
 快捷键如下：
@@ -64,12 +64,14 @@ code --install-extension ./agent-action-dock-0.1.4.vsix
 | 配置按钮 | `Cmd+Alt+A` | `Ctrl+Alt+A` |
 | 将当前文件加入终端 | `Cmd+Alt+K` | `Ctrl+Alt+K` |
 
-扩展会复用同名的 VS Code 集成终端。如果已经存在同名终端，点击按钮只
-会聚焦该终端，不会再次执行命令。
+每次点击标题栏按钮都会新建一个集成终端，并在其中执行配置的命令。
 
 ## 配置
 
-图形化编辑器会把按钮列表写入用户设置。高级字段可以直接在
+图形化编辑器会把按钮列表写入用户设置，并提供 `enabled`、`preset`、
+`label`、`icon`、`command` 的可视化编辑。
+
+`cwd` 和 `context` 等高级字段不在图形化页面中展示，请直接在
 `settings.json` 中编辑：
 
 ```json
@@ -98,8 +100,9 @@ code --install-extension ./agent-action-dock-0.1.4.vsix
   ID，也可以是内联 SVG、`data:image/...` 或 `https://...` 图片链接。手动写入
   settings.json 的旧 Codicon ID 仍然兼容，但图形化选择器不再提供 Codicon。
 - `command`：发送给集成终端的命令。
-- `cwd`：`current`、`workspace` 或 `file`。
-- `context`：`none` 或 `opencode`。
+- `cwd`：`current`、`workspace` 或 `file`。请在 `settings.json` 中编辑。
+- `context`：保留的兼容字段，已不再改变运行时行为。如需保留旧配置可继续在
+  `settings.json` 中填写。
 
 命令支持 `{{name}}` 和 `${name}` 两种变量写法：
 
@@ -112,7 +115,6 @@ code --install-extension ./agent-action-dock-0.1.4.vsix
 | `selection` | 当前编辑器选中的文本 |
 | `lineStart` | 当前选区的起始行号，从 1 开始 |
 | `lineEnd` | 当前选区的结束行号，从 1 开始 |
-| `port` | OpenCode 集成使用的临时端口 |
 
 未知变量会保持原样。如果没有活动编辑器上下文，文件和选区变量会展开
 为空字符串。
@@ -133,39 +135,33 @@ HTTPS 图片下载并缓存到本地插件目录的 `media/user-icons` 下，再
 按钮。图形化配置页不再放置图标文本输入框：点击图标旁边的 Lucide 图片图标可
 编辑 SVG，点击 Lucide 链接图标可设置图片链接，输入内容后实时预览并点击“应用图标”。SVG 内容
 会经过清理，单个图标限制为 1 MiB。不支持 HTTP 链接和不支持的图片类型；自定义
-图标加载失败时会回退为 👻。配置页上方的“重载窗口（Reload Window）”按钮可以
-一键应用标题栏图标变化。
-
-### OpenCode 上下文
-
-当按钮的 `context` 设置为 `"opencode"` 时，扩展会分配一个本地端口，
-设置 OpenCode 需要的终端环境变量，并在启动后把当前文件引用发送到本地
-OpenCode 接口。这是可选集成；普通命令使用 `context: "none"` 即可。
+图标加载失败时会回退为 👻。请使用 **保存并重载窗口** 应用标题栏图标变化。
 
 ## 开发
 
 ```bash
 bun install
-bun run check       # TypeScript 类型检查和 ESLint
+bun run check       # TypeScript 类型检查、ESLint 和单元测试
 bun run compile     # 开发构建
 bun run package     # 生产构建
+bun run test        # 仅运行单元测试
 bun run format      # 应用 ESLint 修复
 ```
 
 用 VS Code 打开仓库后按 `F5`，即可启动 Extension Development Host。
 开发扩展 bundle 时，也可以运行 `bun run watch:esbuild`。
 
-当前项目还没有自动化集成测试套件。CI 会在 push 和 pull request 时运行
-类型检查、Lint 和构建检查。
+CI 会在 push 和 pull request 时运行类型检查、Lint、单元测试和构建检查。
 
 ## 项目结构
 
 ```text
-src/extension.ts       扩展激活、命令、终端处理、配置页面和清单同步
+src/                   扩展源码模块
+test/                  纯函数单元测试
 media/brands/          内置且统一画布尺寸的 Agent 品牌资源
-media/codicon.*        内置 VS Code Codicon 字体和样式
 images/icon.png        扩展图标
 esbuild.js             扩展打包配置
+package.nls*.json      扩展清单的本地化字符串
 package.json           VS Code 扩展清单和开发脚本
 ```
 
@@ -183,9 +179,8 @@ package.json           VS Code 扩展清单和开发脚本
 
 ## 许可证和第三方声明
 
-本项目使用 [MIT License](LICENSE)。项目内置了 VS Code Codicons 字体、
-样式表以及多个 Agent 品牌资源。版权归属、来源链接和商标说明请参阅
-[THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt)。
+本项目使用 [MIT License](LICENSE)。项目内置了多个 Agent 品牌资源。版权
+归属、来源链接和商标说明请参阅 [THIRD-PARTY-NOTICES.txt](THIRD-PARTY-NOTICES.txt)。
 
 Agent Action Dock 是独立的社区项目，与 Microsoft、OpenCode、OpenAI、
 Anthropic、Google、Aider、Goose、Qwen、DeepSeek、Z.ai、Moonshot AI 或

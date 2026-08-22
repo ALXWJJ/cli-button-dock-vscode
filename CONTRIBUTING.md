@@ -25,6 +25,8 @@ bun run check
 bun run compile
 ```
 
+`bun run check` runs TypeScript, ESLint, and the unit tests in `test/`.
+
 Use `bun run format` for the repository's ESLint fixes. The extension can be
 run in an Extension Development Host by opening the repository in VS Code and
 pressing `F5`.

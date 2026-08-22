@@ -1,7 +1,7 @@
 {
   "name": "agent-action-dock",
-  "displayName": "Agent Action Dock",
-  "description": "Configure editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code, and other agents.",
+  "displayName": "%extension.displayName%",
+  "description": "%extension.description%",
   "version": "0.1.4",
   "publisher": "ALXWJJ",
   "repository": {
@@ -43,12 +43,12 @@
     "commands": [
       {
         "command": "agentActionDock.configure",
-        "title": "Agent Action Dock: Configure Buttons",
+        "title": "%command.configure%",
         "icon": "$(settings-gear)"
       },
       {
         "command": "agentActionDock.addFilepathToTerminal",
-        "title": "Agent Action Dock: Add Filepath to Terminal"
+        "title": "%command.addFilepathToTerminal%"
       },
       {
         "command": "agentActionDock.button01",
@@ -197,11 +197,11 @@
       }
     ],
     "configuration": {
-      "title": "Agent Action Dock",
+      "title": "%configuration.title%",
       "properties": {
         "agentActionDock.buttons": {
           "type": "array",
-          "description": "Button definitions. Use Agent Action Dock: Configure Buttons for the graphical editor.",
+          "description": "%configuration.buttons.description%",
           "default": [
             {
               "id": "01",
@@ -328,13 +328,14 @@
   },
   "scripts": {
     "vscode:prepublish": "bun run package",
-    "check": "bun run check-types && bun run lint",
+    "check": "bun run check-types && bun run lint && bun run test",
     "compile": "bun run check && node esbuild.js",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
     "package": "bun run check && node esbuild.js --production",
     "check-types": "tsc --noEmit",
-    "lint": "eslint src",
+    "lint": "eslint src test",
+    "test": "bun test test",
     "format": "eslint src --fix"
   },
   "devDependencies": {
@@ -342,7 +343,6 @@
     "@types/vscode": "^1.94.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
-    "@vscode/codicons": "^0.0.46-24",
     "esbuild": "^0.25.3",
     "eslint": "^9.25.1",
     "typescript": "^5.8.3"
