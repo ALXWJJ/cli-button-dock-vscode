@@ -4,7 +4,7 @@ export const jaBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ja",
     title: "Agent Action Dock",
-    hint: "1 行に 1 つのボタンを設定します。プリセットはコマンドとブランドアイコンを自動入力します。アイコンのプレビューをクリックしてブランドアイコンまたは絵文字を選べます。ラベルはボタン名とターミナル名の両方に使われます。クリックのたびに新しい統合ターミナルが開きます。",
+    hint: "1 行に 1 ボタン。\nプリセットはコマンドとアイコンを自動入力。手動でも編集できます。\n名前はボタンとターミナル名に使われます。\nクリックのたびに新しいターミナルを開きます。",
     save: "保存",
     saveAndReload: "保存してウィンドウを再読み込み",
     reset: "既定値に戻す",
@@ -41,7 +41,7 @@ export const jaBundle: LocaleBundle = {
     customUrlApplyError: "有効な HTTPS 画像 URL または data:image/... を入力してください。",
     pickIconPrefix: "アイコンを選択: ",
     customIconName: "カスタムアイコン",
-    advancedHint: "カスタムアイコンはファイルのアップロード不要です。Lucide の画像ボタンで SVG を編集し、リンクボタンで HTTPS 画像 URL を設定してプレビュー後に適用してください。<code>data:image/...</code> も使用できます。HTTPS のみ対応し、HTTP は拒否されます。HTTPS 画像は拡張機能がダウンロードしてローカルにキャッシュします。タイトルバーのアイコン変更後はウィンドウを再読み込みするか、<strong>保存してウィンドウを再読み込み</strong> をクリックしてください。<code>cwd</code> や <code>context</code> などの詳細項目は <code>settings.json</code> の <code>agentActionDock.buttons</code> で編集します。",
+    advancedHint: "カスタムアイコン：アイコン横の画像/リンクボタンで編集し、プレビュー後に適用。\nHTTPS 画像はローカルにキャッシュされます。タイトルバーは「保存してウィンドウを再読み込み」。\n<code>cwd</code>、<code>context</code> は <code>settings.json</code> の <code>agentActionDock.buttons</code> で編集。",
     savedMessage: "保存しました。タイトルバーのボタンを更新するにはウィンドウを再読み込みしてください。",
     resetMessage: "既定値を復元しました。",
   },

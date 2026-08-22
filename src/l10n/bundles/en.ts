@@ -4,7 +4,7 @@ export const enBundle: LocaleBundle = {
   configurator: {
     htmlLang: "en",
     title: "Agent Action Dock",
-    hint: "Configure one button per row. Presets fill in the command and brand icon automatically, or enter a custom command directly. Click the icon preview to pick a brand icon or emoji. The label is used for both the button and the terminal. Each click opens a new integrated terminal in the current directory by default.",
+    hint: "One button per row.\nPresets fill command and icon. You can edit them.\nName = button label and terminal name.\nEach click opens a new terminal.",
     save: "Save",
     saveAndReload: "Save and Reload Window",
     reset: "Reset to Defaults",
@@ -41,7 +41,7 @@ export const enBundle: LocaleBundle = {
     customUrlApplyError: "Enter a valid HTTPS image URL or data:image/... value.",
     pickIconPrefix: "Pick icon: ",
     customIconName: "Custom icon",
-    advancedHint: "Custom icons do not require uploading a file. Use the Lucide image button to edit SVG, the link button for HTTPS image URLs, preview the result, then apply. <code>data:image/...</code> values are also supported. Only HTTPS links are allowed. HTTPS images are downloaded and cached locally. Use <strong>Save and Reload Window</strong> to apply title-bar icon changes. Edit advanced fields such as <code>cwd</code> and <code>context</code> in <code>agentActionDock.buttons</code> inside <code>settings.json</code>.",
+    advancedHint: "Custom icons: use the image or link buttons beside the icon. Preview, then apply.\nHTTPS images are cached locally. Use Save and Reload Window for title-bar icons.\nEdit <code>cwd</code> and <code>context</code> in <code>settings.json</code> → <code>agentActionDock.buttons</code>.",
     savedMessage: "Saved. Reload the window to update title-bar buttons.",
     resetMessage: "Defaults restored.",
   },

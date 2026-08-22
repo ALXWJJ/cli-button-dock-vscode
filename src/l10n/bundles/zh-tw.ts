@@ -4,7 +4,7 @@ export const zhTwBundle: LocaleBundle = {
   configurator: {
     htmlLang: "zh-TW",
     title: "Agent Action Dock",
-    hint: "每列設定一個按鈕。預設會自動填入命令與 Agent 品牌圖示，也可以直接修改執行命令；點擊圖示預覽可從品牌圖示和精選 Emoji 中選擇。名稱同時用於按鈕和終端機。預設使用目前終端機目錄。每次點擊按鈕都會開啟新的整合式終端機。",
+    hint: "每列一個按鈕。\n預設會自動填寫命令與圖示，也可手動改。\n名稱用於按鈕和終端機。\n每次點擊都會開啟新的終端機。",
     save: "儲存設定",
     saveAndReload: "儲存並重新載入視窗",
     reset: "恢復預設值",
@@ -41,7 +41,7 @@ export const zhTwBundle: LocaleBundle = {
     customUrlApplyError: "請輸入有效的 HTTPS 圖片連結或 data:image/...。",
     pickIconPrefix: "選擇圖示：",
     customIconName: "自訂圖示",
-    advancedHint: "自訂圖示不需要上傳檔案：點擊圖示右側的 Lucide 圖片圖示編輯 SVG，點擊連結圖示設定 HTTPS 圖片連結，並在面板中預覽後套用；也可以填寫 <code>data:image/...</code>。僅支援 HTTPS 連結，不支援 HTTP。HTTPS 圖片會由擴充功能下載並快取到本機，儲存後請依提示重新載入視窗，也可以直接點擊「儲存並重新載入視窗」。工作目錄（<code>cwd</code>）和上下文（<code>context</code>）等進階項目請在 settings.json 的 <code>agentActionDock.buttons</code> 中編輯。",
+    advancedHint: "自訂圖示：點圖示旁的圖片/連結按鈕，預覽後套用。\nHTTPS 圖片會快取到本機。標題列圖示請用「儲存並重新載入視窗」。\n<code>cwd</code>、<code>context</code> 等在 <code>settings.json</code> 的 <code>agentActionDock.buttons</code> 裡改。",
     savedMessage: "已儲存；重新載入視窗後更新右上角按鈕",
     resetMessage: "已恢復預設設定",
   },

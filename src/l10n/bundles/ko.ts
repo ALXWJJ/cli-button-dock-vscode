@@ -4,7 +4,7 @@ export const koBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ko",
     title: "Agent Action Dock",
-    hint: "한 줄에 버튼 하나를 설정합니다. 프리셋은 명령과 브랜드 아이콘을 자동으로 채웁니다. 아이콘 미리보기를 클릭해 브랜드 아이콘이나 이모지를 선택하세요. 레이블은 버튼과 터미널 이름에 모두 사용됩니다. 클릭할 때마다 새 통합 터미널이 열립니다.",
+    hint: "한 줄에 버튼 하나.\n프리셋이 명령과 아이콘을 자동 입력합니다. 수동으로도 편집할 수 있습니다.\n이름은 버튼과 터미널 이름에 사용됩니다.\n클릭할 때마다 새 터미널이 열립니다.",
     save: "저장",
     saveAndReload: "저장 후 창 다시 로드",
     reset: "기본값으로 재설정",
@@ -41,7 +41,7 @@ export const koBundle: LocaleBundle = {
     customUrlApplyError: "유효한 HTTPS 이미지 URL 또는 data:image/... 값을 입력하세요.",
     pickIconPrefix: "아이콘 선택: ",
     customIconName: "사용자 지정 아이콘",
-    advancedHint: "사용자 지정 아이콘은 파일 업로드가 필요 없습니다. Lucide 이미지 버튼으로 SVG를 편집하고, 링크 버튼으로 HTTPS 이미지 URL을 설정한 뒤 미리보기 후 적용하세요. <code>data:image/...</code> 값도 지원됩니다. HTTPS만 허용되며 HTTP는 거부됩니다. HTTPS 이미지는 확장 기능이 다운로드해 로컬에 캐시합니다. 제목 표시줄 아이콘 변경 후에는 창을 다시 로드하거나 <strong>저장 후 창 다시 로드</strong>를 클릭하세요. <code>cwd</code> 및 <code>context</code> 같은 고급 필드는 <code>settings.json</code>의 <code>agentActionDock.buttons</code>에서 편집하세요.",
+    advancedHint: "사용자 지정 아이콘: 아이콘 옆 이미지/링크 버튼으로 편집 후 적용.\nHTTPS 이미지는 로컬에 캐시됩니다. 제목 표시줄은「저장 후 창 다시 로드」를 사용하세요.\n<code>cwd</code>, <code>context</code>는 <code>settings.json</code>의 <code>agentActionDock.buttons</code>에서 편집.",
     savedMessage: "저장됨. 제목 표시줄 버튼을 업데이트하려면 창을 다시 로드하세요.",
     resetMessage: "기본값이 복원되었습니다.",
   },

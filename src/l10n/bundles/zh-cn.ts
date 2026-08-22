@@ -4,7 +4,7 @@ export const zhCnBundle: LocaleBundle = {
   configurator: {
     htmlLang: "zh-CN",
     title: "Agent Action Dock",
-    hint: "每行配置一个按钮。预设会自动填入命令和 Agent 品牌图标，也可以直接修改执行命令；点击图标预览可从品牌图标和精选 Emoji 中选择。名称同时用于按钮和终端。默认使用当前终端目录。每次点击按钮都会打开一个新的集成终端。",
+    hint: "每行一个按钮。\n预设会自动填写命令和图标，也可以手动改。\n名称用于按钮和终端。\n每次点击都会新开一个终端。",
     save: "保存配置",
     saveAndReload: "保存并重载窗口",
     reset: "恢复默认",
@@ -41,7 +41,7 @@ export const zhCnBundle: LocaleBundle = {
     customUrlApplyError: "请输入有效的 HTTPS 图片链接或 data:image/...。",
     pickIconPrefix: "选择图标：",
     customIconName: "自定义图标",
-    advancedHint: "自定义图标不需要上传文件：点击图标右侧的 Lucide 图片图标编辑 SVG，点击链接图标设置 HTTPS 图片链接，并在面板中预览后应用；也可以填写 <code>data:image/...</code>。仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，请使用「保存并重载窗口」应用标题栏图标变更。工作目录（<code>cwd</code>）和上下文（<code>context</code>）等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。",
+    advancedHint: "自定义图标：点图标旁的图片/链接按钮，预览后应用。\nHTTPS 图片会缓存到本地。标题栏图标请用「保存并重载窗口」。\n<code>cwd</code>、<code>context</code> 等在 <code>settings.json</code> 的 <code>agentActionDock.buttons</code> 里改。",
     savedMessage: "已保存；重载窗口后更新右上角按钮",
     resetMessage: "已恢复默认配置",
   },

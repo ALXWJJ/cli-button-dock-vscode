@@ -4,7 +4,7 @@ export const deBundle: LocaleBundle = {
   configurator: {
     htmlLang: "de",
     title: "Agent Action Dock",
-    hint: "Konfigurieren Sie pro Zeile eine Schaltfläche. Voreinstellungen füllen Befehl und Marken-Icon automatisch aus. Klicken Sie auf die Icon-Vorschau, um ein Marken-Icon oder Emoji zu wählen. Die Bezeichnung gilt für Schaltfläche und Terminal. Jeder Klick öffnet ein neues integriertes Terminal.",
+    hint: "Eine Schaltfläche pro Zeile.\nVoreinstellungen füllen Befehl und Icon. Manuell bearbeiten geht auch.\nName = Schaltfläche und Terminal.\nJeder Klick öffnet ein neues Terminal.",
     save: "Speichern",
     saveAndReload: "Speichern und Fenster neu laden",
     reset: "Standard wiederherstellen",
@@ -41,7 +41,7 @@ export const deBundle: LocaleBundle = {
     customUrlApplyError: "Gültige HTTPS-Bild-URL oder data:image/... eingeben.",
     pickIconPrefix: "Icon wählen: ",
     customIconName: "Benutzerdefiniertes Icon",
-    advancedHint: "Benutzerdefinierte Icons erfordern keinen Datei-Upload. Bearbeiten Sie SVG über die Lucide-Bild-Schaltfläche, setzen Sie HTTPS-Bild-URLs über die Link-Schaltfläche, zeigen Sie eine Vorschau an und wenden Sie sie an. <code>data:image/...</code> wird ebenfalls unterstützt. Nur HTTPS ist erlaubt. HTTPS-Bilder werden heruntergeladen und lokal zwischengespeichert. Laden Sie das Fenster nach dem Speichern neu oder klicken Sie auf <strong>Speichern und Fenster neu laden</strong>. Erweiterte Felder wie <code>cwd</code> und <code>context</code> bearbeiten Sie in <code>agentActionDock.buttons</code> in <code>settings.json</code>.",
+    advancedHint: "Eigene Icons: Bild- oder Link-Schaltfläche neben dem Icon. Vorschau, dann anwenden.\nHTTPS-Bilder werden lokal zwischengespeichert. Titelleiste: Speichern und Fenster neu laden.\n<code>cwd</code> und <code>context</code> in <code>settings.json</code> → <code>agentActionDock.buttons</code>.",
     savedMessage: "Gespeichert. Laden Sie das Fenster neu, um Titelleisten-Schaltflächen zu aktualisieren.",
     resetMessage: "Standardwerte wiederhergestellt.",
   },

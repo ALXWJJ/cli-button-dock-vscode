@@ -4,7 +4,7 @@ export const ptBrBundle: LocaleBundle = {
   configurator: {
     htmlLang: "pt-BR",
     title: "Agent Action Dock",
-    hint: "Configure um botão por linha. As predefinições preenchem o comando e o ícone da marca automaticamente. Clique na visualização do ícone para escolher um ícone de marca ou emoji. O rótulo é usado tanto para o botão quanto para o terminal. Cada clique abre um novo terminal integrado.",
+    hint: "Um botão por linha.\nPredefinições preenchem comando e ícone. Você pode editar.\nO nome vale para o botão e o terminal.\nCada clique abre um terminal novo.",
     save: "Salvar",
     saveAndReload: "Salvar e recarregar janela",
     reset: "Restaurar padrões",
@@ -41,7 +41,7 @@ export const ptBrBundle: LocaleBundle = {
     customUrlApplyError: "Digite uma URL HTTPS ou um valor data:image/... válido.",
     pickIconPrefix: "Escolher ícone: ",
     customIconName: "Ícone personalizado",
-    advancedHint: "Ícones personalizados não exigem upload de arquivo. Use o botão de imagem Lucide para editar SVG, o botão de link para URLs HTTPS, visualize e aplique. Valores <code>data:image/...</code> também são suportados. Apenas HTTPS é permitido. Imagens HTTPS são baixadas e armazenadas em cache localmente. Recarregue a janela após salvar ou clique em <strong>Salvar e recarregar janela</strong>. Edite campos avançados como <code>cwd</code> e <code>context</code> em <code>agentActionDock.buttons</code> no <code>settings.json</code>.",
+    advancedHint: "Ícones personalizados: botões de imagem ou link ao lado do ícone. Visualize e aplique.\nImagens HTTPS são cacheadas localmente. Barra de título: Salvar e recarregar janela.\n<code>cwd</code> e <code>context</code> em <code>settings.json</code> → <code>agentActionDock.buttons</code>.",
     savedMessage: "Salvo. Recarregue a janela para atualizar os botões da barra de título.",
     resetMessage: "Padrões restaurados.",
   },

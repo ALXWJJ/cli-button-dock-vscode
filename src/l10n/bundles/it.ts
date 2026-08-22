@@ -4,7 +4,7 @@ export const itBundle: LocaleBundle = {
   configurator: {
     htmlLang: "it",
     title: "Agent Action Dock",
-    hint: "Configura un pulsante per riga. I preset compilano automaticamente comando e icona del brand. Fai clic sull'anteprima dell'icona per scegliere un'icona del brand o un emoji. L'etichetta viene usata sia per il pulsante sia per il terminale. Ogni clic apre un nuovo terminale integrato.",
+    hint: "Un pulsante per riga.\nI preset compilano comando e icona. Puoi modificarli.\nIl nome vale per il pulsante e il terminale.\nOgni clic apre un nuovo terminale.",
     save: "Salva",
     saveAndReload: "Salva e ricarica finestra",
     reset: "Ripristina predefiniti",
@@ -41,7 +41,7 @@ export const itBundle: LocaleBundle = {
     customUrlApplyError: "Inserisci un URL HTTPS o un valore data:image/... valido.",
     pickIconPrefix: "Scegli icona: ",
     customIconName: "Icona personalizzata",
-    advancedHint: "Le icone personalizzate non richiedono il caricamento di file. Usa il pulsante immagine Lucide per modificare SVG, il pulsante link per URL HTTPS, visualizza l'anteprima e applica. Sono supportati anche valori <code>data:image/...</code>. È consentito solo HTTPS. Le immagini HTTPS vengono scaricate e memorizzate nella cache locale. Ricarica la finestra dopo il salvataggio o fai clic su <strong>Salva e ricarica finestra</strong>. Modifica campi avanzati come <code>cwd</code> e <code>context</code> in <code>agentActionDock.buttons</code> dentro <code>settings.json</code>.",
+    advancedHint: "Icone personalizzate: pulsanti immagine o link accanto all'icona. Anteprima, poi applica.\nLe immagini HTTPS sono cacheate in locale. Barra del titolo: Salva e ricarica finestra.\n<code>cwd</code> e <code>context</code> in <code>settings.json</code> → <code>agentActionDock.buttons</code>.",
     savedMessage: "Salvato. Ricarica la finestra per aggiornare i pulsanti della barra del titolo.",
     resetMessage: "Predefiniti ripristinati.",
   },

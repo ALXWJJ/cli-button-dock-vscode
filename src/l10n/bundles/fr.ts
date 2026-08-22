@@ -4,7 +4,7 @@ export const frBundle: LocaleBundle = {
   configurator: {
     htmlLang: "fr",
     title: "Agent Action Dock",
-    hint: "Configurez un bouton par ligne. Les préréglages remplissent automatiquement la commande et l'icône de marque. Cliquez sur l'aperçu de l'icône pour choisir une icône de marque ou un emoji. Le libellé sert à la fois pour le bouton et le terminal. Chaque clic ouvre un nouveau terminal intégré.",
+    hint: "Un bouton par ligne.\nLes préréglages remplissent commande et icône. Vous pouvez les modifier.\nLe nom sert pour le bouton et le terminal.\nChaque clic ouvre un nouveau terminal.",
     save: "Enregistrer",
     saveAndReload: "Enregistrer et recharger la fenêtre",
     reset: "Réinitialiser",
@@ -41,7 +41,7 @@ export const frBundle: LocaleBundle = {
     customUrlApplyError: "Saisissez une URL d'image HTTPS ou une valeur data:image/... valide.",
     pickIconPrefix: "Choisir l'icône : ",
     customIconName: "Icône personnalisée",
-    advancedHint: "Les icônes personnalisées ne nécessitent pas de téléversement. Utilisez le bouton image Lucide pour éditer un SVG, le bouton lien pour une URL HTTPS, prévisualisez puis appliquez. Les valeurs <code>data:image/...</code> sont prises en charge. Seul HTTPS est autorisé. Les images HTTPS sont téléchargées et mises en cache localement. Rechargez la fenêtre après l'enregistrement ou cliquez sur <strong>Enregistrer et recharger la fenêtre</strong>. Modifiez les champs avancés comme <code>cwd</code> et <code>context</code> dans <code>agentActionDock.buttons</code> de <code>settings.json</code>.",
+    advancedHint: "Icônes perso : boutons image ou lien à côté de l'icône. Aperçu, puis appliquer.\nLes images HTTPS sont mises en cache localement. Barre de titre : Enregistrer et recharger la fenêtre.\n<code>cwd</code> et <code>context</code> dans <code>settings.json</code> → <code>agentActionDock.buttons</code>.",
     savedMessage: "Enregistré. Rechargez la fenêtre pour mettre à jour les boutons de la barre de titre.",
     resetMessage: "Valeurs par défaut restaurées.",
   },
