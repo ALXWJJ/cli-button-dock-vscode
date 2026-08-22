@@ -8,6 +8,10 @@
     "type": "git",
     "url": "https://github.com/ALXWJJ/cli-button-dock-vscode"
   },
+  "homepage": "https://github.com/ALXWJJ/cli-button-dock-vscode#readme",
+  "bugs": {
+    "url": "https://github.com/ALXWJJ/cli-button-dock-vscode/issues"
+  },
   "license": "MIT",
   "icon": "images/icon.png",
   "galleryBanner": {
@@ -19,6 +23,17 @@
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "vscode-extension",
+    "terminal",
+    "cli",
+    "ai",
+    "coding-agent",
+    "opencode",
+    "codex",
+    "claude-code",
+    "gemini-cli"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -310,26 +325,21 @@
   },
   "scripts": {
     "vscode:prepublish": "bun run package",
-    "compile": "bun run check-types && bun run lint && node esbuild.js",
+    "check": "bun run check-types && bun run lint",
+    "compile": "bun run check && node esbuild.js",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "bun run check-types && bun run lint && node esbuild.js --production",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "bun run compile-tests && bun run compile && bun run lint",
+    "package": "bun run check && node esbuild.js --production",
     "check-types": "tsc --noEmit",
     "lint": "eslint src",
-    "test": "vscode-test"
+    "format": "eslint src --fix"
   },
   "devDependencies": {
-    "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
     "@types/vscode": "^1.94.0",
     "@typescript-eslint/eslint-plugin": "^8.31.1",
     "@typescript-eslint/parser": "^8.31.1",
     "@vscode/codicons": "^0.0.46-24",
-    "@vscode/test-cli": "^0.0.11",
-    "@vscode/test-electron": "^2.5.2",
     "esbuild": "^0.25.3",
     "eslint": "^9.25.1",
     "typescript": "^5.8.3"
