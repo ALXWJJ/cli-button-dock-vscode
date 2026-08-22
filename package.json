@@ -219,7 +219,7 @@
               "label": "Codex",
               "icon": "brand:codex",
               "command": "codex",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "03",
@@ -228,7 +228,7 @@
               "label": "Claude Code",
               "icon": "brand:claude",
               "command": "claude",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "04",
@@ -237,7 +237,7 @@
               "label": "Gemini CLI",
               "icon": "brand:gemini",
               "command": "gemini",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "05",
@@ -246,7 +246,7 @@
               "label": "Aider",
               "icon": "brand:aider",
               "command": "aider",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "06",
@@ -255,7 +255,7 @@
               "label": "Agent 06",
               "icon": "emoji:👻",
               "command": "",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "07",
@@ -264,7 +264,7 @@
               "label": "Agent 07",
               "icon": "emoji:👻",
               "command": "",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "08",
@@ -273,7 +273,7 @@
               "label": "Agent 08",
               "icon": "emoji:👻",
               "command": "",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "09",
@@ -282,7 +282,7 @@
               "label": "Agent 09",
               "icon": "emoji:👻",
               "command": "",
-              "cwd": "current",
+              "cwd": "current"
             },
             {
               "id": "10",
