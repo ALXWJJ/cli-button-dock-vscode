@@ -12,7 +12,6 @@ export type ConfiguratorStrings = {
   colLabel: string
   colIcon: string
   colCommand: string
-  slotLabel: string
   presetCustom: string
   commandPlaceholder: string
   labelPlaceholder: string

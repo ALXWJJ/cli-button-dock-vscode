@@ -32,7 +32,7 @@ function getCachedCustomIconPath(directory: string, cacheKey: string) {
     })
     return fileName ? `${CUSTOM_ICON_DIR}/${fileName}` : undefined
   } catch (error) {
-    console.warn("[Agent Action Dock] Unable to inspect custom icon cache", error)
+    console.warn("[Cli Button Dock] Unable to inspect custom icon cache", error)
     return undefined
   }
 }
@@ -177,7 +177,7 @@ export async function toManifestIcon(context: vscode.ExtensionContext, icon: str
       const emojiPath = ensureEmojiIconAsset(context, emoji)
       return { light: emojiPath, dark: emojiPath }
     } catch (error) {
-      console.warn("[Agent Action Dock] Unable to prepare emoji command icon", error)
+      console.warn("[Cli Button Dock] Unable to prepare emoji command icon", error)
       return toCodicon("terminal")
     }
   }
@@ -190,7 +190,7 @@ export async function toManifestIcon(context: vscode.ExtensionContext, icon: str
     const customPath = await ensureCustomIconAsset(context, icon)
     return { light: customPath, dark: customPath }
   } catch (error) {
-    console.warn("[Agent Action Dock] Unable to prepare custom command icon", error)
+    console.warn("[Cli Button Dock] Unable to prepare custom command icon", error)
     return toCodicon("terminal")
   }
 }
@@ -211,7 +211,7 @@ export async function getTerminalIconPath(extensionContext: vscode.ExtensionCont
       const emojiUri = getExtensionAssetUri(extensionContext.extensionUri, emojiPath)
       return { light: emojiUri, dark: emojiUri }
     } catch (error) {
-      console.warn("[Agent Action Dock] Unable to prepare emoji terminal icon", error)
+      console.warn("[Cli Button Dock] Unable to prepare emoji terminal icon", error)
       return new vscode.ThemeIcon("terminal")
     }
   }
@@ -225,7 +225,7 @@ export async function getTerminalIconPath(extensionContext: vscode.ExtensionCont
     const customUri = getExtensionAssetUri(extensionContext.extensionUri, customPath)
     return { light: customUri, dark: customUri }
   } catch (error) {
-    console.warn("[Agent Action Dock] Unable to prepare custom terminal icon", error)
+    console.warn("[Cli Button Dock] Unable to prepare custom terminal icon", error)
     return new vscode.ThemeIcon("terminal")
   }
 }

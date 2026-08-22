@@ -2,7 +2,6 @@ import * as vscode from "vscode"
 import { BUTTON_IDS } from "./constants"
 import {
   loadButtons,
-  migrateLegacyPresetIcons,
   saveButtons,
   updateButtonContexts,
 } from "./config"
@@ -15,7 +14,6 @@ export function activate(context: vscode.ExtensionContext) {
   let buttons = loadButtons()
 
   void updateButtonContexts(buttons)
-  void migrateLegacyPresetIcons(buttons)
   void syncManifest(context, buttons).then((changed) => {
     if (changed) {
       vscode.window.showInformationMessage(tManifestMetadataChanged())
@@ -23,7 +21,7 @@ export function activate(context: vscode.ExtensionContext) {
   })
 
   for (const buttonId of BUTTON_IDS) {
-    const disposable = vscode.commands.registerCommand(`agentActionDock.button${buttonId}`, async () => {
+    const disposable = vscode.commands.registerCommand(`cliButtonDock.button${buttonId}`, async () => {
       const button = buttons.find((item) => item.id === buttonId)
       if (button) {
         await runButton(button, context)
@@ -32,7 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(disposable)
   }
 
-  const configureDisposable = vscode.commands.registerCommand("agentActionDock.configure", () => {
+  const configureDisposable = vscode.commands.registerCommand("cliButtonDock.configure", () => {
     openConfigurator(context, buttons, async (nextButtons) => {
       buttons = nextButtons
       await updateButtonContexts(nextButtons)
@@ -41,13 +39,13 @@ export function activate(context: vscode.ExtensionContext) {
   })
   context.subscriptions.push(configureDisposable)
 
-  const addFilepathDisposable = vscode.commands.registerCommand("agentActionDock.addFilepathToTerminal", async () => {
+  const addFilepathDisposable = vscode.commands.registerCommand("cliButtonDock.addFilepathToTerminal", async () => {
     await addFilepathToActiveTerminal()
   })
   context.subscriptions.push(addFilepathDisposable)
 
   const configurationDisposable = vscode.workspace.onDidChangeConfiguration((event) => {
-    if (!event.affectsConfiguration("agentActionDock.buttons")) {
+    if (!event.affectsConfiguration("cliButtonDock.buttons")) {
       return
     }
 

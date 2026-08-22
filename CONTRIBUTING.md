@@ -1,6 +1,6 @@
 # Contributing
 
-Thank you for helping improve Agent Action Dock. Small fixes, documentation
+Thank you for helping improve Cli Button Dock. Small fixes, documentation
 updates, new presets, and focused feature changes are all welcome.
 
 ## Before you start
@@ -35,7 +35,7 @@ pressing `F5`.
 
 - Keep each pull request focused on one change.
 - Explain the user-visible behavior and any configuration changes.
-- Update both `README.md` and `README.zh-CN.md` when documentation changes are
+- Update `README.md` and `README.en.md` when documentation changes are
   user-facing.
 - Add or update third-party attribution when adding an icon or other bundled
   asset.
@@ -44,10 +44,10 @@ pressing `F5`.
 
 ## Code guidelines
 
-- Keep command IDs and the `agentActionDock.*` configuration keys compatible
-  unless a migration is included.
-- Validate configuration loaded from `settings.json`; users may have older or
-  partially configured values.
+- Keep command IDs and the `cliButtonDock.*` configuration keys stable unless a
+  breaking change is intentional and documented.
+- Validate configuration loaded from `settings.json`; users may have partially
+  configured values.
 - Keep terminal commands explicit and avoid introducing hidden network calls.
 - Prefer small, readable functions and keep the extension bundle free of
   unnecessary dependencies.

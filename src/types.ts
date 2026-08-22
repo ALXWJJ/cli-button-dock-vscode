@@ -1,4 +1,3 @@
-export type ButtonContext = "none" | "opencode"
 export type ButtonCwd = "current" | "workspace" | "file"
 export type ButtonIcon = string
 
@@ -10,7 +9,6 @@ export type ButtonConfig = {
   icon: ButtonIcon
   command: string
   cwd: ButtonCwd
-  context: ButtonContext
 }
 
 export type AgentPreset = Omit<ButtonConfig, "id" | "enabled" | "preset">

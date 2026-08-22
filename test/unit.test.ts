@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { DEFAULT_BUTTONS, normalizeButton, normalizeIcon, normalizePresetIcon } from "../src/presets"
+import { DEFAULT_BUTTONS, normalizeButton, normalizeIcon } from "../src/presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "../src/svg"
 import { expandCommand } from "../src/template"
 
@@ -31,12 +31,6 @@ describe("normalizeIcon", () => {
   })
 })
 
-describe("normalizePresetIcon", () => {
-  test("migrates legacy codex icon", () => {
-    expect(normalizePresetIcon("codex", "hubot")).toBe("brand:codex")
-  })
-})
-
 describe("normalizeButton", () => {
   test("fills missing fields from fallback", () => {
     const button = normalizeButton({ enabled: true, label: "My Agent", icon: "emoji:🐱", command: "agent" }, DEFAULT_BUTTONS[5], "06")
@@ -47,7 +41,6 @@ describe("normalizeButton", () => {
       icon: "emoji:🐱",
       command: "agent",
       cwd: "current",
-      context: "none",
     })
   })
 })

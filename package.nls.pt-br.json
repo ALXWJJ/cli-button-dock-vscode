@@ -1,8 +1,8 @@
 {
-  "extension.displayName": "Agent Action Dock",
+  "extension.displayName": "Cli Button Dock",
   "extension.description": "Configure botões para OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code e outros agents na barra de título do editor.",
-  "command.configure": "Agent Action Dock: Configurar botões",
-  "command.addFilepathToTerminal": "Agent Action Dock: Adicionar caminho do arquivo ao terminal",
-  "configuration.title": "Agent Action Dock",
-  "configuration.buttons.description": "Definições de botões. Use Agent Action Dock: Configurar botões para abrir o editor gráfico."
+  "command.configure": "Cli Button Dock: Configurar botões",
+  "command.addFilepathToTerminal": "Cli Button Dock: Adicionar caminho do arquivo ao terminal",
+  "configuration.title": "Cli Button Dock",
+  "configuration.buttons.description": "Definições de botões. Use Cli Button Dock: Configurar botões para abrir o editor gráfico."
 }

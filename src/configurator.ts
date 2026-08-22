@@ -1,6 +1,7 @@
 import * as crypto from "node:crypto"
 import * as vscode from "vscode"
 import { normalizeButtons } from "./config"
+import { SLOT_EMOJIS } from "./constants"
 import { getBrandAssetPath, getExtensionAssetUriForWebview } from "./icons"
 import { getConfiguratorStrings, getEmojiDisplayName, getLanguage } from "./l10n"
 import { AGENT_PRESETS, BRAND_ICON_OPTIONS, DEFAULT_BUTTONS, EMOJI_ICON_OPTIONS } from "./presets"
@@ -14,7 +15,7 @@ export function openConfigurator(
   const language = getLanguage()
   const strings = getConfiguratorStrings(language)
   const panel = vscode.window.createWebviewPanel(
-    "agentActionDock.configurator",
+    "cliButtonDock.configurator",
     strings.title,
     vscode.ViewColumn.Active,
     {
@@ -95,6 +96,7 @@ function getConfiguratorHtml(
     }
   })).replaceAll("<", "\\u003c")
   const uiStrings = JSON.stringify(strings).replaceAll("<", "\\u003c")
+  const slotEmojis = JSON.stringify(SLOT_EMOJIS).replaceAll("<", "\\u003c")
 
   return `<!DOCTYPE html>
 <html lang="${strings.htmlLang}">
@@ -117,7 +119,7 @@ function getConfiguratorHtml(
     .table-head { color: var(--vscode-descriptionForeground); font-size: 12px; padding: 0 12px 6px; }
     .button-row { border: 1px solid var(--vscode-panel-border); padding: 9px 12px; margin: 6px 0; border-radius: 4px; }
     .button-row:focus-within { border-color: var(--vscode-focusBorder); }
-    .slot { color: var(--vscode-descriptionForeground); font-weight: 600; }
+    .slot { display: flex; align-items: center; justify-content: center; font-size: 16px; line-height: 1; }
     .enabled { width: 16px; height: 16px; justify-self: center; }
     input, select, textarea { box-sizing: border-box; width: 100%; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
     textarea { resize: vertical; min-height: 100px; line-height: 1.4; }
@@ -177,6 +179,7 @@ function getConfiguratorHtml(
     const emojiIcons = ${emojiIcons};
     const brandIcons = ${brandIcons};
     const strings = ${uiStrings};
+    const slotEmojis = ${slotEmojis};
     let themeKind = ${themeKind};
     const lucideIcons = {
       svg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 5h6"/><path d="M19 2v6"/><rect width="18" height="18" x="3" y="3" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>',
@@ -575,7 +578,7 @@ function getConfiguratorHtml(
         enabled.checked = !!button.enabled;
         const slot = document.createElement('span');
         slot.className = 'slot';
-        slot.textContent = strings.slotLabel + ' ' + button.id;
+        slot.textContent = slotEmojis[button.id] || button.id;
         const presetOptions = [{ value: 'custom', label: strings.presetCustom }].concat(presets.map((preset) => ({ value: preset.id, label: preset.name })));
         const preset = selectInput('preset', presetOptions, getPresetId(button));
         const label = textInput('label', button.label, strings.labelPlaceholder);
@@ -593,7 +596,6 @@ function getConfiguratorHtml(
           button.icon = selected.icon;
           button.command = selected.command;
           button.cwd = selected.cwd;
-          button.context = selected.context;
           label.value = selected.label;
           iconPicker.setValue(selected.icon);
           command.value = selected.command;

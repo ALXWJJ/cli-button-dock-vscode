@@ -1,8 +1,8 @@
 {
-  "extension.displayName": "Agent Action Dock",
+  "extension.displayName": "Cli Button Dock",
   "extension.description": "エディターのタイトルバーに OpenCode、Codex、Claude Code、Gemini CLI、Aider、Goose、Qwen Code、Pi Agent、DeepSeek、ZCode、Kimi Code などの Agent ボタンを設定します。",
-  "command.configure": "Agent Action Dock: ボタンを設定",
-  "command.addFilepathToTerminal": "Agent Action Dock: ファイルパスをターミナルに追加",
-  "configuration.title": "Agent Action Dock",
-  "configuration.buttons.description": "ボタン定義。グラフィカル エディターは Agent Action Dock: ボタンを設定 から開きます。"
+  "command.configure": "Cli Button Dock: ボタンを設定",
+  "command.addFilepathToTerminal": "Cli Button Dock: ファイルパスをターミナルに追加",
+  "configuration.title": "Cli Button Dock",
+  "configuration.buttons.description": "ボタン定義。グラフィカル エディターは Cli Button Dock: ボタンを設定 から開きます。"
 }

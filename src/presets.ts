@@ -86,15 +86,6 @@ export const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   },
 ]
 
-export const LEGACY_PRESET_ICONS: Record<string, string[]> = {
-  opencode: ["sparkle"],
-  codex: ["hubot"],
-  claude: ["comment-discussion"],
-  gemini: ["sparkle"],
-  aider: ["code"],
-  goose: ["rocket"],
-  qwen: ["lightbulb"],
-}
 
 export const AGENT_PRESETS: AgentPresetDefinition[] = [
   {
@@ -104,7 +95,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:opencode",
     command: "opencode",
     cwd: "current",
-    context: "none",
   },
   {
     id: "codex",
@@ -113,7 +103,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:codex",
     command: "codex",
     cwd: "current",
-    context: "none",
   },
   {
     id: "claude",
@@ -122,7 +111,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:claude",
     command: "claude",
     cwd: "current",
-    context: "none",
   },
   {
     id: "gemini",
@@ -131,7 +119,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:gemini",
     command: "gemini",
     cwd: "current",
-    context: "none",
   },
   {
     id: "aider",
@@ -140,7 +127,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:aider",
     command: "aider",
     cwd: "current",
-    context: "none",
   },
   {
     id: "goose",
@@ -149,7 +135,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:goose",
     command: "goose",
     cwd: "current",
-    context: "none",
   },
   {
     id: "qwen",
@@ -158,7 +143,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:qwen",
     command: "qwen",
     cwd: "current",
-    context: "none",
   },
   {
     id: "pi",
@@ -167,7 +151,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:pi",
     command: "pi",
     cwd: "current",
-    context: "none",
   },
   {
     id: "deepseek",
@@ -176,7 +159,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:deepseek",
     command: "deepseek",
     cwd: "current",
-    context: "none",
   },
   {
     id: "zcode",
@@ -185,7 +167,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:zcode",
     command: "zcode",
     cwd: "current",
-    context: "none",
   },
   {
     id: "kimi",
@@ -194,7 +175,6 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     icon: "brand:kimi",
     command: "kimi",
     cwd: "current",
-    context: "none",
   },
 ]
 
@@ -207,7 +187,6 @@ function createButton(id: string, preset: AgentPreset, enabled: boolean, presetI
     icon: preset.icon,
     command: preset.command,
     cwd: preset.cwd,
-    context: preset.context,
   }
 }
 
@@ -217,7 +196,6 @@ function emptyPreset(label: string): AgentPreset {
     icon: "emoji:👻",
     command: "",
     cwd: "current",
-    context: "none",
   }
 }
 
@@ -234,25 +212,13 @@ export const DEFAULT_BUTTONS: ButtonConfig[] = [
   createButton("10", emptyPreset("Agent 10"), false),
 ]
 
-export function getConfiguredEntry(entries: unknown[], id: string, index: number) {
-  const entryById = entries.find((entry) => {
+export function getConfiguredEntry(entries: unknown[], id: string) {
+  return entries.find((entry) => {
     if (!entry || typeof entry !== "object") {
       return false
     }
     return (entry as Record<string, unknown>).id === id
   })
-  if (entryById) {
-    return entryById
-  }
-
-  const entryByIndex = entries[index]
-  if (entryByIndex && typeof entryByIndex === "object") {
-    const indexedId = (entryByIndex as Record<string, unknown>).id
-    if (typeof indexedId === "string" && indexedId !== id) {
-      return undefined
-    }
-  }
-  return entryByIndex
 }
 
 export function normalizeIcon(value: string) {
@@ -260,18 +226,8 @@ export function normalizeIcon(value: string) {
   return match ? match[1] : value.trim() || "emoji:👻"
 }
 
-export function normalizePresetIcon(preset: string, icon: string) {
-  const presetDefinition = AGENT_PRESETS.find((item) => item.id === preset)
-  const legacyIcons = LEGACY_PRESET_ICONS[preset]
-  if (presetDefinition && legacyIcons?.includes(icon)) {
-    return presetDefinition.icon
-  }
-  return icon
-}
-
 export function normalizeButton(value: unknown, fallback: ButtonConfig, id: string): ButtonConfig {
   const record = value && typeof value === "object" ? value as Record<string, unknown> : {}
-  const context = record.context === "opencode" ? "opencode" : fallback.context
   const cwd = record.cwd === "workspace" || record.cwd === "file" || record.cwd === "current"
     ? record.cwd
     : fallback.cwd
@@ -282,14 +238,13 @@ export function normalizeButton(value: unknown, fallback: ButtonConfig, id: stri
     enabled: typeof record.enabled === "boolean" ? record.enabled : fallback.enabled,
     preset,
     label: typeof record.label === "string" && record.label.trim() ? record.label.trim() : fallback.label,
-    icon: normalizePresetIcon(preset, icon),
+    icon,
     command: typeof record.command === "string" ? record.command : fallback.command,
     cwd,
-    context,
   }
 }
 
 export function normalizeButtons(value: unknown): ButtonConfig[] {
   const entries = Array.isArray(value) ? value : []
-  return BUTTON_IDS.map((id, index) => normalizeButton(getConfiguredEntry(entries, id, index), DEFAULT_BUTTONS[index], id))
+  return BUTTON_IDS.map((id, index) => normalizeButton(getConfiguredEntry(entries, id), DEFAULT_BUTTONS[index], id))
 }

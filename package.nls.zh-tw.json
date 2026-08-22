@@ -1,8 +1,8 @@
 {
-  "extension.displayName": "Agent Action Dock",
+  "extension.displayName": "Cli Button Dock",
   "extension.description": "在編輯器標題列設定 OpenCode、Codex、Claude Code、Gemini CLI、Aider、Goose、Qwen Code、Pi Agent、DeepSeek、ZCode、Kimi Code 等 Agent 按鈕。",
-  "command.configure": "Agent Action Dock: 設定按鈕",
-  "command.addFilepathToTerminal": "Agent Action Dock: 將檔案路徑插入終端機",
-  "configuration.title": "Agent Action Dock",
-  "configuration.buttons.description": "按鈕定義。請使用 Agent Action Dock: 設定按鈕 開啟圖形化編輯器。"
+  "command.configure": "Cli Button Dock: 設定按鈕",
+  "command.addFilepathToTerminal": "Cli Button Dock: 將檔案路徑插入終端機",
+  "configuration.title": "Cli Button Dock",
+  "configuration.buttons.description": "按鈕定義。請使用 Cli Button Dock: 設定按鈕 開啟圖形化編輯器。"
 }

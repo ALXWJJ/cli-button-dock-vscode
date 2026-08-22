@@ -1,4 +1,4 @@
-Agent Action Dock bundles the VS Code Codicons font and stylesheet from:
+Cli Button Dock bundles the VS Code Codicons font and stylesheet from:
 
 https://github.com/microsoft/vscode-codicons
 
@@ -13,7 +13,7 @@ Agent brand assets
 
 The preset brand assets are included as supplied for identifying the corresponding
 terminal agents. The names, logos, and marks remain the property of their
-respective owners. Agent Action Dock is an independent project and does not
+respective owners. Cli Button Dock is an independent project and does not
 claim affiliation, sponsorship, or endorsement by any of these projects.
 
 Sources:

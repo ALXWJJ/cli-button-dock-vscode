@@ -1,5 +1,5 @@
 {
-  "name": "agent-action-dock",
+  "name": "cli-button-dock",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
   "version": "0.1.4",
@@ -42,16 +42,16 @@
   "contributes": {
     "commands": [
       {
-        "command": "agentActionDock.configure",
+        "command": "cliButtonDock.configure",
         "title": "%command.configure%",
         "icon": "$(settings-gear)"
       },
       {
-        "command": "agentActionDock.addFilepathToTerminal",
+        "command": "cliButtonDock.addFilepathToTerminal",
         "title": "%command.addFilepathToTerminal%"
       },
       {
-        "command": "agentActionDock.button01",
+        "command": "cliButtonDock.button01",
         "title": "OpenCode",
         "icon": {
           "light": "images/icon.png",
@@ -59,7 +59,7 @@
         }
       },
       {
-        "command": "agentActionDock.button02",
+        "command": "cliButtonDock.button02",
         "title": "Codex",
         "icon": {
           "light": "media/brands/codex-light.svg",
@@ -67,7 +67,7 @@
         }
       },
       {
-        "command": "agentActionDock.button03",
+        "command": "cliButtonDock.button03",
         "title": "Claude Code",
         "icon": {
           "light": "media/brands/claude.svg",
@@ -75,7 +75,7 @@
         }
       },
       {
-        "command": "agentActionDock.button04",
+        "command": "cliButtonDock.button04",
         "title": "Gemini CLI",
         "icon": {
           "light": "media/brands/gemini.svg",
@@ -83,7 +83,7 @@
         }
       },
       {
-        "command": "agentActionDock.button05",
+        "command": "cliButtonDock.button05",
         "title": "Aider",
         "icon": {
           "light": "media/brands/aider.png",
@@ -91,27 +91,27 @@
         }
       },
       {
-        "command": "agentActionDock.button06",
+        "command": "cliButtonDock.button06",
         "title": "Agent 06",
         "icon": "$(terminal)"
       },
       {
-        "command": "agentActionDock.button07",
+        "command": "cliButtonDock.button07",
         "title": "Agent 07",
         "icon": "$(terminal)"
       },
       {
-        "command": "agentActionDock.button08",
+        "command": "cliButtonDock.button08",
         "title": "Agent 08",
         "icon": "$(terminal)"
       },
       {
-        "command": "agentActionDock.button09",
+        "command": "cliButtonDock.button09",
         "title": "Agent 09",
         "icon": "$(terminal)"
       },
       {
-        "command": "agentActionDock.button10",
+        "command": "cliButtonDock.button10",
         "title": "Agent 10",
         "icon": "$(terminal)"
       }
@@ -119,77 +119,77 @@
     "menus": {
       "editor/title": [
         {
-          "command": "agentActionDock.button01",
-          "when": "agentActionDock.button01Enabled",
+          "command": "cliButtonDock.button01",
+          "when": "cliButtonDock.button01Enabled",
           "group": "navigation@1"
         },
         {
-          "command": "agentActionDock.button02",
-          "when": "agentActionDock.button02Enabled",
+          "command": "cliButtonDock.button02",
+          "when": "cliButtonDock.button02Enabled",
           "group": "navigation@2"
         },
         {
-          "command": "agentActionDock.button03",
-          "when": "agentActionDock.button03Enabled",
+          "command": "cliButtonDock.button03",
+          "when": "cliButtonDock.button03Enabled",
           "group": "navigation@3"
         },
         {
-          "command": "agentActionDock.button04",
-          "when": "agentActionDock.button04Enabled",
+          "command": "cliButtonDock.button04",
+          "when": "cliButtonDock.button04Enabled",
           "group": "navigation@4"
         },
         {
-          "command": "agentActionDock.button05",
-          "when": "agentActionDock.button05Enabled",
+          "command": "cliButtonDock.button05",
+          "when": "cliButtonDock.button05Enabled",
           "group": "navigation@5"
         },
         {
-          "command": "agentActionDock.button06",
-          "when": "agentActionDock.button06Enabled",
+          "command": "cliButtonDock.button06",
+          "when": "cliButtonDock.button06Enabled",
           "group": "navigation@6"
         },
         {
-          "command": "agentActionDock.button07",
-          "when": "agentActionDock.button07Enabled",
+          "command": "cliButtonDock.button07",
+          "when": "cliButtonDock.button07Enabled",
           "group": "navigation@7"
         },
         {
-          "command": "agentActionDock.button08",
-          "when": "agentActionDock.button08Enabled",
+          "command": "cliButtonDock.button08",
+          "when": "cliButtonDock.button08Enabled",
           "group": "navigation@8"
         },
         {
-          "command": "agentActionDock.button09",
-          "when": "agentActionDock.button09Enabled",
+          "command": "cliButtonDock.button09",
+          "when": "cliButtonDock.button09Enabled",
           "group": "navigation@9"
         },
         {
-          "command": "agentActionDock.button10",
-          "when": "agentActionDock.button10Enabled",
+          "command": "cliButtonDock.button10",
+          "when": "cliButtonDock.button10Enabled",
           "group": "navigation@10"
         },
         {
-          "command": "agentActionDock.configure",
+          "command": "cliButtonDock.configure",
           "group": "navigation@99"
         }
       ],
       "editor/title/context": [
         {
-          "command": "agentActionDock.configure",
+          "command": "cliButtonDock.configure",
           "group": "navigation@99"
         }
       ]
     },
     "keybindings": [
       {
-        "command": "agentActionDock.configure",
+        "command": "cliButtonDock.configure",
         "key": "ctrl+alt+a",
         "mac": "cmd+alt+a",
         "win": "ctrl+alt+a",
         "linux": "ctrl+alt+a"
       },
       {
-        "command": "agentActionDock.addFilepathToTerminal",
+        "command": "cliButtonDock.addFilepathToTerminal",
         "key": "ctrl+alt+k",
         "mac": "cmd+alt+k",
         "win": "ctrl+alt+k",
@@ -199,7 +199,7 @@
     "configuration": {
       "title": "%configuration.title%",
       "properties": {
-        "agentActionDock.buttons": {
+        "cliButtonDock.buttons": {
           "type": "array",
           "description": "%configuration.buttons.description%",
           "default": [
@@ -210,8 +210,7 @@
               "label": "OpenCode",
               "icon": "brand:opencode",
               "command": "opencode",
-              "cwd": "current",
-              "context": "none"
+              "cwd": "current"
             },
             {
               "id": "02",
@@ -221,7 +220,6 @@
               "icon": "brand:codex",
               "command": "codex",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "03",
@@ -231,7 +229,6 @@
               "icon": "brand:claude",
               "command": "claude",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "04",
@@ -241,7 +238,6 @@
               "icon": "brand:gemini",
               "command": "gemini",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "05",
@@ -251,7 +247,6 @@
               "icon": "brand:aider",
               "command": "aider",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "06",
@@ -261,7 +256,6 @@
               "icon": "emoji:👻",
               "command": "",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "07",
@@ -271,7 +265,6 @@
               "icon": "emoji:👻",
               "command": "",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "08",
@@ -281,7 +274,6 @@
               "icon": "emoji:👻",
               "command": "",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "09",
@@ -291,7 +283,6 @@
               "icon": "emoji:👻",
               "command": "",
               "cwd": "current",
-              "context": "none"
             },
             {
               "id": "10",
@@ -300,8 +291,7 @@
               "label": "Agent 10",
               "icon": "emoji:👻",
               "command": "",
-              "cwd": "current",
-              "context": "none"
+              "cwd": "current"
             }
           ],
           "items": {
@@ -314,11 +304,10 @@
               "label": { "type": "string" },
               "icon": {
                 "type": "string",
-                "description": "Emoji or brand icon id, inline SVG, data image URI, or HTTPS image URL. Legacy Codicon ids remain supported in settings. Custom images are cached locally."
+                "description": "Emoji or brand icon id, inline SVG, data image URI, or HTTPS image URL. Custom images are cached locally."
               },
               "command": { "type": "string" },
-              "cwd": { "type": "string", "enum": ["current", "workspace", "file"] },
-              "context": { "type": "string", "enum": ["none", "opencode"] }
+              "cwd": { "type": "string", "enum": ["current", "workspace", "file"] }
             },
             "additionalProperties": true
           }

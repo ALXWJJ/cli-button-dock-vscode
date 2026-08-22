@@ -2,7 +2,7 @@
 .vscode-test/**
 .github/**
 CONTRIBUTING.md
-README.zh-CN.md
+README.en.md
 out/**
 node_modules/**
 src/**

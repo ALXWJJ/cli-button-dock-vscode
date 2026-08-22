@@ -19,7 +19,7 @@ export async function syncManifest(context: vscode.ExtensionContext, buttons: Bu
     if (manifest.contributes?.commands) {
       manifest.contributes.commands = await Promise.all(manifest.contributes.commands.map(async (command) => {
         const commandId = typeof command.command === "string" ? command.command : ""
-        const buttonId = commandId.match(/^agentActionDock\.button(\d{2})$/)?.[1]
+        const buttonId = commandId.match(/^cliButtonDock\.button(\d{2})$/)?.[1]
         const button = buttonId ? buttonById.get(buttonId) : undefined
         if (!button) {
           return command
@@ -34,14 +34,14 @@ export async function syncManifest(context: vscode.ExtensionContext, buttons: Bu
 
     if (manifest.contributes?.menus?.["editor/title"]) {
       const titleMenus = manifest.contributes.menus["editor/title"]
-      const configureEntry = titleMenus.find((entry) => entry.command === "agentActionDock.configure") ?? {
-        command: "agentActionDock.configure",
+      const configureEntry = titleMenus.find((entry) => entry.command === "cliButtonDock.configure") ?? {
+        command: "cliButtonDock.configure",
         group: "navigation@99",
       }
       manifest.contributes.menus["editor/title"] = [
         ...buttons.map((button, index) => ({
-          command: `agentActionDock.button${button.id}`,
-          when: `agentActionDock.button${button.id}Enabled`,
+          command: `cliButtonDock.button${button.id}`,
+          when: `cliButtonDock.button${button.id}Enabled`,
           group: `navigation@${index + 1}`,
         })),
         configureEntry,
@@ -55,7 +55,7 @@ export async function syncManifest(context: vscode.ExtensionContext, buttons: Bu
     fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
     return true
   } catch (error) {
-    console.error("[Agent Action Dock] Unable to update package.json", error)
+    console.error("[Cli Button Dock] Unable to update package.json", error)
     return false
   }
 }
