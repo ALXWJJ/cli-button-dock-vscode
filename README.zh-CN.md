@@ -43,7 +43,7 @@ cd cli-button-dock-vscode
 bun install
 bun run package
 bun x @vscode/vsce package --no-dependencies
-code --install-extension ./agent-action-dock-0.1.3.vsix
+code --install-extension ./agent-action-dock-0.1.4.vsix
 ```
 
 生成的 VSIX 文件名会包含 `package.json` 中的版本号。也可以在 VS Code

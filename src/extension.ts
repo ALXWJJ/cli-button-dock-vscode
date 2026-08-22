@@ -998,11 +998,11 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     .enabled { width: 16px; height: 16px; justify-self: center; }
     input, select, textarea { box-sizing: border-box; width: 100%; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
     textarea { resize: vertical; min-height: 100px; line-height: 1.4; }
-    .icon-picker { position: relative; display: flex; gap: 5px; min-width: 0; }
+    .icon-picker { position: relative; display: flex; align-items: center; gap: 5px; min-width: 0; }
     .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-icon-foreground, var(--vscode-foreground)); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 18px; }
     .icon-preview:hover { background: var(--vscode-list-hoverBackground); }
     .icon-preview img, .icon-option img, .custom-icon-live-preview img { display: block; width: 20px; height: 20px; object-fit: contain; }
-    .icon-custom-trigger { width: 32px; min-width: 32px; height: 32px; padding: 0; line-height: 1; }
+    .icon-custom-trigger { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 0; line-height: 1; vertical-align: middle; }
     .icon-custom-trigger:hover { background: var(--vscode-list-hoverBackground); }
     .lucide-icon { display: block; width: 17px; height: 17px; }
     .icon-emoji { display: inline-flex; align-items: center; justify-content: center; font-size: 18px; line-height: 1; }

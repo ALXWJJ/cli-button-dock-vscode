@@ -49,7 +49,7 @@ cd cli-button-dock-vscode
 bun install
 bun run package
 bun x @vscode/vsce package --no-dependencies
-code --install-extension ./agent-action-dock-0.1.3.vsix
+code --install-extension ./agent-action-dock-0.1.4.vsix
 ```
 
 The VSIX filename includes the version from `package.json`. You can also use
