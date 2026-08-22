@@ -2,7 +2,7 @@
   "name": "agent-action-dock",
   "displayName": "Agent Action Dock",
   "description": "Configure editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code, and other agents.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
@@ -54,8 +54,8 @@
         "command": "agentActionDock.button01",
         "title": "OpenCode",
         "icon": {
-          "light": "media/brands/opencode-light.svg",
-          "dark": "media/brands/opencode-dark.svg"
+          "light": "images/icon.png",
+          "dark": "images/icon.png"
         }
       },
       {
@@ -78,8 +78,8 @@
         "command": "agentActionDock.button04",
         "title": "Gemini CLI",
         "icon": {
-          "light": "media/brands/gemini.png",
-          "dark": "media/brands/gemini.png"
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
         }
       },
       {
@@ -215,7 +215,7 @@
             },
             {
               "id": "02",
-              "enabled": true,
+              "enabled": false,
               "preset": "codex",
               "label": "Codex",
               "icon": "brand:codex",

@@ -14,12 +14,15 @@ settings.
 ## Features
 
 - Up to 10 configurable buttons in the editor title bar.
+- The default configuration enables only the OpenCode button; other slots can
+  be enabled when needed.
 - A graphical configuration page available from the Command Palette, the
   editor title bar, or the `Cmd/Ctrl+Alt+A` shortcut.
 - Built-in presets for common coding agents, plus fully custom commands.
 - Brand icons and a searchable grid of official VS Code Codicons.
 - Custom icons without file uploads: inline SVG, `data:image/...` values, or
   HTTPS image URLs.
+- An interactive custom-icon editor with SVG/link tabs and live preview.
 - Reuse an existing integrated terminal by button name.
 - Choose the terminal working directory: current, workspace, or active file.
 - Expand workspace, file, selection, line, and port variables in commands.
@@ -43,7 +46,7 @@ cd cli-button-dock-vscode
 bun install
 bun run package
 bun x @vscode/vsce package --no-dependencies
-code --install-extension ./agent-action-dock-0.1.0.vsix
+code --install-extension ./agent-action-dock-0.1.1.vsix
 ```
 
 The VSIX filename includes the version from `package.json`. You can also use
@@ -128,11 +131,14 @@ Custom icons do not require uploading a file. Set `icon` to one of these forms:
 ```
 
 You can also use a `data:image/svg+xml,...` or `data:image/png;base64,...`
-value, or an HTTPS image URL. VS Code command icons require extension-local
-image paths, so the extension downloads HTTPS images and caches them under its
-local `media/user-icons` directory before updating the title-bar command. SVG
-content is sanitized and limited to 1 MiB. HTTP links and unsupported image
-types are rejected; a failed custom icon falls back to the terminal icon.
+value, or an HTTPS image URL. The graphical editor provides a custom-icon
+button next to the icon field, with separate SVG and image-link tabs, live
+preview, and an **Apply icon** action. VS Code command icons require
+extension-local image paths, so the extension downloads HTTPS images and
+caches them under its local `media/user-icons` directory before updating the
+title-bar command. SVG content is sanitized and limited to 1 MiB. HTTP links
+and unsupported image types are rejected; a failed custom icon falls back to
+the terminal icon.
 
 ### OpenCode context
 
@@ -164,7 +170,7 @@ requests.
 ```text
 src/extension.ts       Extension activation, commands, terminal handling,
                        configuration UI, and manifest synchronization
-media/brands/          Bundled agent brand assets
+media/brands/          Bundled, normalized agent brand assets
 media/codicon.*        Bundled VS Code Codicon font and stylesheet
 images/icon.png        Extension icon
 esbuild.js             Extension bundler

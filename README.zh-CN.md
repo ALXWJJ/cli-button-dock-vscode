@@ -13,10 +13,12 @@ Kimi Code 或任意其他命令行工具配置最多 10 个按钮。
 ## 功能
 
 - 在编辑器标题栏配置最多 10 个按钮。
+- 默认只启用 OpenCode 按钮，其他位置可以按需开启。
 - 通过命令面板、标题栏或 `Cmd/Ctrl+Alt+A` 打开图形化配置页面。
 - 内置常用编码 Agent 预设，也支持完全自定义命令。
 - 提供 Agent 品牌图标和可搜索的官方 VS Code Codicon 图标网格。
 - 不上传文件即可自定义图标：支持内联 SVG、`data:image/...` 和 HTTPS 图片链接。
+- 提供自定义图标交互面板，可切换 SVG / 图片链接并实时预览。
 - 按钮名称对应集成终端名称，并自动复用同名终端。
 - 可选择终端工作目录：当前目录、工作区目录或当前文件目录。
 - 支持在命令中展开工作区、文件、选区、行号和端口变量。
@@ -40,7 +42,7 @@ cd cli-button-dock-vscode
 bun install
 bun run package
 bun x @vscode/vsce package --no-dependencies
-code --install-extension ./agent-action-dock-0.1.0.vsix
+code --install-extension ./agent-action-dock-0.1.1.vsix
 ```
 
 生成的 VSIX 文件名会包含 `package.json` 中的版本号。也可以在 VS Code
@@ -126,8 +128,10 @@ code --install-extension ./agent-action-dock-0.1.0.vsix
 也可以填写 `data:image/svg+xml,...`、`data:image/png;base64,...`，或者
 HTTPS 图片链接。由于 VS Code 的命令图标需要扩展本地图片路径，扩展会把
 HTTPS 图片下载并缓存到本地插件目录的 `media/user-icons` 下，再更新标题栏
-按钮。SVG 内容会经过清理，单个图标限制为 1 MiB。不支持 HTTP 链接和不支持
-的图片类型；自定义图标加载失败时会回退为终端图标。
+按钮。图形化配置页的图标输入框右侧有 ✦ 按钮，点击后可在 SVG / 图片链接
+两个选项卡中填写内容、实时预览并点击“应用图标”。SVG 内容会经过清理，单个
+图标限制为 1 MiB。不支持 HTTP 链接和不支持的图片类型；自定义图标加载失败
+时会回退为终端图标。
 
 ### OpenCode 上下文
 
@@ -155,7 +159,7 @@ bun run format      # 应用 ESLint 修复
 
 ```text
 src/extension.ts       扩展激活、命令、终端处理、配置页面和清单同步
-media/brands/          内置 Agent 品牌资源
+media/brands/          内置且统一画布尺寸的 Agent 品牌资源
 media/codicon.*        内置 VS Code Codicon 字体和样式
 images/icon.png        扩展图标
 esbuild.js             扩展打包配置

@@ -43,6 +43,7 @@ type BrandIconDefinition = {
   name: string
   light: string
   dark: string
+  root?: string
 }
 
 type ActiveContext = {
@@ -193,8 +194,9 @@ const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   {
     id: "brand:opencode",
     name: "OpenCode",
-    light: "opencode-light.svg",
-    dark: "opencode-dark.svg",
+    light: "icon.png",
+    dark: "icon.png",
+    root: "images",
   },
   {
     id: "brand:codex",
@@ -211,8 +213,8 @@ const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   {
     id: "brand:gemini",
     name: "Gemini",
-    light: "gemini.png",
-    dark: "gemini.png",
+    light: "gemini.svg",
+    dark: "gemini.svg",
   },
   {
     id: "brand:aider",
@@ -235,20 +237,20 @@ const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   {
     id: "brand:pi",
     name: "Pi Agent",
-    light: "pi.svg",
-    dark: "pi.svg",
+    light: "pi-light.svg",
+    dark: "pi-dark.svg",
   },
   {
     id: "brand:deepseek",
     name: "DeepSeek",
-    light: "deepseek.ico",
-    dark: "deepseek.ico",
+    light: "deepseek.svg",
+    dark: "deepseek.svg",
   },
   {
     id: "brand:zcode",
     name: "ZCode",
-    light: "zcode.ico",
-    dark: "zcode.ico",
+    light: "zcode.svg",
+    dark: "zcode.svg",
   },
   {
     id: "brand:kimi",
@@ -372,7 +374,7 @@ const AGENT_PRESETS: AgentPresetDefinition[] = [
 
 const DEFAULT_BUTTONS: ButtonConfig[] = [
   createButton("01", AGENT_PRESETS[0], true, AGENT_PRESETS[0].id),
-  createButton("02", AGENT_PRESETS[1], true, AGENT_PRESETS[1].id),
+  createButton("02", AGENT_PRESETS[1], false, AGENT_PRESETS[1].id),
   createButton("03", AGENT_PRESETS[2], false, AGENT_PRESETS[2].id),
   createButton("04", AGENT_PRESETS[3], false, AGENT_PRESETS[3].id),
   createButton("05", AGENT_PRESETS[4], false, AGENT_PRESETS[4].id),
@@ -799,12 +801,21 @@ function getBrandIcon(icon: string) {
   return BRAND_ICON_OPTIONS.find((item) => item.id === normalized)
 }
 
+function getBrandAssetPath(brand: BrandIconDefinition, theme: "light" | "dark") {
+  const fileName = theme === "light" ? brand.light : brand.dark
+  return `${brand.root ?? "media/brands"}/${fileName}`
+}
+
+function getExtensionAssetUri(extensionUri: vscode.Uri, relativePath: string) {
+  return vscode.Uri.joinPath(extensionUri, ...relativePath.split("/"))
+}
+
 async function toManifestIcon(context: vscode.ExtensionContext, icon: string) {
   const brand = getBrandIcon(icon)
   if (brand) {
     return {
-      light: `media/brands/${brand.light}`,
-      dark: `media/brands/${brand.dark}`,
+      light: getBrandAssetPath(brand, "light"),
+      dark: getBrandAssetPath(brand, "dark"),
     }
   }
 
@@ -825,8 +836,8 @@ async function getTerminalIconPath(extensionContext: vscode.ExtensionContext, ic
   const brand = getBrandIcon(icon)
   if (brand) {
     return {
-      light: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.light),
-      dark: vscode.Uri.joinPath(extensionContext.extensionUri, "media", "brands", brand.dark),
+      light: getExtensionAssetUri(extensionContext.extensionUri, getBrandAssetPath(brand, "light")),
+      dark: getExtensionAssetUri(extensionContext.extensionUri, getBrandAssetPath(brand, "dark")),
     }
   }
 
@@ -836,7 +847,7 @@ async function getTerminalIconPath(extensionContext: vscode.ExtensionContext, ic
 
   try {
     const customPath = await ensureCustomIconAsset(extensionContext, icon)
-    const customUri = vscode.Uri.joinPath(extensionContext.extensionUri, ...customPath.split("/"))
+    const customUri = getExtensionAssetUri(extensionContext.extensionUri, customPath)
     return { light: customUri, dark: customUri }
   } catch (error) {
     console.warn("[Agent Action Dock] Unable to prepare custom terminal icon", error)
@@ -1018,8 +1029,8 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   const brandIcons = JSON.stringify(BRAND_ICON_OPTIONS.map((brand) => ({
     id: brand.id,
     name: brand.name,
-    light: webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "brands", brand.light)).toString(),
-    dark: webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "brands", brand.dark)).toString(),
+    light: webview.asWebviewUri(getExtensionAssetUri(extensionUri, getBrandAssetPath(brand, "light"))).toString(),
+    dark: webview.asWebviewUri(getExtensionAssetUri(extensionUri, getBrandAssetPath(brand, "dark"))).toString(),
   }))).replaceAll("<", "\\u003c")
   const codiconCssUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.css"))
   const codiconFontUri = webview.asWebviewUri(vscode.Uri.joinPath(extensionUri, "media", "codicon.ttf"))
@@ -1048,17 +1059,31 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
     .button-row:focus-within { border-color: var(--vscode-focusBorder); }
     .slot { color: var(--vscode-descriptionForeground); font-weight: 600; }
     .enabled { width: 16px; height: 16px; justify-self: center; }
-    input, select { box-sizing: border-box; width: 100%; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
+    input, select, textarea { box-sizing: border-box; width: 100%; color: var(--vscode-input-foreground); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); padding: 6px 8px; font: inherit; }
+    textarea { resize: vertical; min-height: 100px; line-height: 1.4; }
     .icon-picker { position: relative; display: flex; gap: 5px; min-width: 0; }
     .icon-preview { display: inline-flex; align-items: center; justify-content: center; width: 32px; min-width: 32px; height: 32px; padding: 0; color: var(--vscode-icon-foreground, var(--vscode-foreground)); background: var(--vscode-input-background); border: 1px solid var(--vscode-input-border, transparent); font-size: 18px; }
     .icon-preview:hover { background: var(--vscode-list-hoverBackground); }
-    .icon-preview img, .icon-option img { width: 20px; height: 20px; object-fit: contain; }
+    .icon-preview img, .icon-option img, .custom-icon-live-preview img { display: block; width: 20px; height: 20px; object-fit: contain; }
+    .icon-custom-trigger { width: 32px; min-width: 32px; height: 32px; padding: 0; font-size: 16px; }
     .icon-menu { position: absolute; top: calc(100% + 5px); right: 0; z-index: 10; width: min(420px, 70vw); max-height: 340px; overflow: auto; padding: 8px; background: var(--vscode-quickInput-background, var(--vscode-editor-background)); border: 1px solid var(--vscode-focusBorder); box-shadow: 0 8px 24px var(--vscode-widget-shadow); }
     .icon-menu[hidden] { display: none; }
     .icon-search { margin-bottom: 8px; }
     .icon-grid { display: grid; grid-template-columns: repeat(8, minmax(32px, 1fr)); gap: 4px; }
     .icon-option { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; padding: 0; color: var(--vscode-foreground); background: transparent; border: 0; }
     .icon-option:hover, .icon-option.selected { color: var(--vscode-list-activeSelectionForeground); background: var(--vscode-list-activeSelectionBackground); }
+    .custom-icon-editor { position: absolute; top: calc(100% + 5px); right: 0; z-index: 12; width: min(440px, 78vw); padding: 12px; background: var(--vscode-quickInput-background, var(--vscode-editor-background)); border: 1px solid var(--vscode-focusBorder); box-shadow: 0 8px 24px var(--vscode-widget-shadow); }
+    .custom-icon-editor[hidden] { display: none; }
+    .custom-icon-editor-header, .custom-icon-editor-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .custom-icon-editor-title { font-weight: 600; }
+    .custom-icon-close { width: 26px; height: 26px; padding: 0; font-size: 18px; line-height: 1; }
+    .custom-icon-tabs { display: flex; gap: 6px; margin: 12px 0 8px; }
+    .custom-icon-tab { color: var(--vscode-foreground); background: transparent; border: 1px solid var(--vscode-input-border, transparent); padding: 5px 9px; }
+    .custom-icon-tab.active { color: var(--vscode-button-foreground); background: var(--vscode-button-background); }
+    .custom-icon-live-preview { display: flex; align-items: center; justify-content: center; min-height: 68px; margin-top: 8px; color: var(--vscode-descriptionForeground); background: var(--vscode-editor-background); border: 1px dashed var(--vscode-panel-border); }
+    .custom-icon-live-preview img { width: 44px; height: 44px; }
+    .custom-icon-error { min-height: 18px; margin-top: 6px; color: var(--vscode-errorForeground); font-size: 12px; }
+    .custom-icon-editor-actions { justify-content: flex-end; margin-top: 8px; }
     .advanced-hint { color: var(--vscode-descriptionForeground); font-size: 12px; margin-top: 14px; line-height: 1.5; }
     @media (max-width: 760px) {
       .table-head { display: none; }
@@ -1081,7 +1106,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
   </div>
   <div class="table-head"><span>启用</span><span>按钮</span><span>预设</span><span>名称 / 终端</span><span>图标</span><span>执行命令</span></div>
   <main id="app"></main>
-  <p class="advanced-hint">自定义图标不需要上传文件：在图标输入框填写完整的 <code>&lt;svg&gt;...&lt;/svg&gt;</code>、<code>data:image/...</code> 或 <code>https://...</code> 图片地址即可；仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
+  <p class="advanced-hint">自定义图标不需要上传文件：点击图标右侧的 ✦ 按钮打开交互面板，选择 SVG 或图片链接并预览后应用；也可以直接填写 <code>data:image/...</code>。仅支持 HTTPS 链接，不支持 HTTP。HTTPS 图片会由扩展下载并缓存到本地，保存后请按提示重载窗口。工作目录、上下文和变量等高级项请在 settings.json 的 <code>agentActionDock.buttons</code> 中编辑。</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};
@@ -1147,6 +1172,132 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       return image;
     }
 
+    function isInlineSvg(value) {
+      const raw = String(value || '').trim().toLowerCase();
+      return raw.startsWith('<svg') || (raw.startsWith('<?xml') && raw.includes('<svg'));
+    }
+
+    function createCustomIconEditor(initialValue, onApply) {
+      const editor = document.createElement('div');
+      editor.className = 'custom-icon-editor';
+      editor.hidden = true;
+      const header = document.createElement('div');
+      header.className = 'custom-icon-editor-header';
+      const title = document.createElement('span');
+      title.className = 'custom-icon-editor-title';
+      title.textContent = '自定义图标';
+      const close = document.createElement('button');
+      close.type = 'button';
+      close.className = 'custom-icon-close';
+      close.textContent = '×';
+      close.title = '关闭';
+      header.append(title, close);
+
+      const tabs = document.createElement('div');
+      tabs.className = 'custom-icon-tabs';
+      const svgTab = document.createElement('button');
+      svgTab.type = 'button';
+      svgTab.className = 'custom-icon-tab';
+      svgTab.textContent = '内联 SVG';
+      const urlTab = document.createElement('button');
+      urlTab.type = 'button';
+      urlTab.className = 'custom-icon-tab';
+      urlTab.textContent = '图片链接 / data URI';
+      tabs.append(svgTab, urlTab);
+
+      const field = document.createElement('textarea');
+      field.className = 'custom-icon-value';
+      field.spellcheck = false;
+      const preview = document.createElement('div');
+      preview.className = 'custom-icon-live-preview';
+      const error = document.createElement('div');
+      error.className = 'custom-icon-error';
+      const actions = document.createElement('div');
+      actions.className = 'custom-icon-editor-actions';
+      const cancel = document.createElement('button');
+      cancel.type = 'button';
+      cancel.textContent = '取消';
+      const apply = document.createElement('button');
+      apply.type = 'button';
+      apply.textContent = '应用图标';
+      actions.append(cancel, apply);
+      editor.append(header, tabs, field, preview, error, actions);
+
+      let mode = 'svg';
+
+      function updateMode(nextMode) {
+        mode = nextMode;
+        svgTab.classList.toggle('active', mode === 'svg');
+        urlTab.classList.toggle('active', mode === 'url');
+        field.placeholder = mode === 'svg'
+          ? '<svg viewBox="0 0 24 24">...</svg>'
+          : 'https://.../icon.svg 或 data:image/...';
+        renderPreview();
+      }
+
+      function renderPreview() {
+        const raw = field.value.trim();
+        preview.replaceChildren();
+        error.textContent = '';
+        if (!raw) {
+          preview.textContent = mode === 'svg' ? '粘贴 SVG 后预览' : '输入图片链接后预览';
+          return;
+        }
+
+        const valid = isCustomImage(raw) && (mode === 'svg' ? isInlineSvg(raw) : !isInlineSvg(raw));
+        if (!valid) {
+          preview.textContent = '暂时无法预览';
+          error.textContent = mode === 'svg' ? '请输入以 <svg 开头的 SVG 内容。' : '请输入 HTTPS 图片链接或 data:image/...。';
+          return;
+        }
+
+        const image = createCustomImage(raw);
+        image.addEventListener('error', () => {
+          preview.replaceChildren();
+          preview.textContent = '图片无法加载';
+          error.textContent = '请检查 SVG 内容、图片地址和网络连接。';
+        });
+        preview.append(image);
+      }
+
+      function setValue(next) {
+        const raw = String(next || '').trim();
+        const custom = isCustomImage(raw);
+        field.value = custom ? raw : '';
+        updateMode(custom && !isInlineSvg(raw) ? 'url' : 'svg');
+      }
+
+      function hide() {
+        editor.hidden = true;
+      }
+
+      close.addEventListener('click', (event) => { event.stopPropagation(); hide(); });
+      cancel.addEventListener('click', (event) => { event.stopPropagation(); hide(); });
+      svgTab.addEventListener('click', (event) => { event.stopPropagation(); updateMode('svg'); });
+      urlTab.addEventListener('click', (event) => { event.stopPropagation(); updateMode('url'); });
+      field.addEventListener('input', renderPreview);
+      apply.addEventListener('click', (event) => {
+        event.stopPropagation();
+        const raw = field.value.trim();
+        const valid = isCustomImage(raw) && (mode === 'svg' ? isInlineSvg(raw) : !isInlineSvg(raw));
+        if (!valid) {
+          renderPreview();
+          error.textContent = mode === 'svg' ? '请输入有效的 SVG 内容。' : '请输入有效的 HTTPS 图片链接或 data:image/...。';
+          return;
+        }
+        onApply(raw);
+        hide();
+      });
+      editor.addEventListener('click', (event) => event.stopPropagation());
+
+      setValue(initialValue);
+      return {
+        element: editor,
+        open: (next) => { setValue(next); editor.hidden = false; field.focus(); },
+        setValue,
+      };
+    }
+
     function createIconPicker(value, onChange) {
       const picker = document.createElement('div');
       picker.className = 'icon-picker';
@@ -1191,6 +1342,23 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
         preview.setAttribute('aria-label', '选择图标：' + name);
         optionElements.forEach((item) => item.element.classList.toggle('selected', item.name === name));
       }
+
+      const customEditor = createCustomIconEditor(value, (next) => {
+        input.value = next;
+        updatePreview(next);
+        onChange(next);
+      });
+      const customTrigger = document.createElement('button');
+      customTrigger.type = 'button';
+      customTrigger.className = 'icon-custom-trigger';
+      customTrigger.textContent = '✦';
+      customTrigger.title = '自定义图标';
+      customTrigger.setAttribute('aria-label', '自定义图标');
+      customTrigger.addEventListener('click', (event) => {
+        event.stopPropagation();
+        menu.hidden = true;
+        customEditor.open(input.value);
+      });
 
       function filterOptions() {
         const query = search.value.trim().toLowerCase();
@@ -1241,6 +1409,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 
       preview.addEventListener('click', (event) => {
         event.stopPropagation();
+        customEditor.element.hidden = true;
         const shouldOpen = menu.hidden;
         document.querySelectorAll('.icon-menu').forEach((item) => { item.hidden = true; });
         menu.hidden = !shouldOpen;
@@ -1254,9 +1423,16 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
       search.addEventListener('input', filterOptions);
       menu.addEventListener('click', (event) => event.stopPropagation());
       menu.append(search, grid);
-      picker.append(preview, input, menu);
+      picker.append(preview, input, customTrigger, menu, customEditor.element);
       updatePreview(value);
-      return { element: picker, setValue: (next) => { input.value = next || ''; updatePreview(next); } };
+      return {
+        element: picker,
+        setValue: (next) => {
+          input.value = next || '';
+          customEditor.setValue(next);
+          updatePreview(next);
+        },
+      };
     }
 
     function getPresetId(button) {
@@ -1306,6 +1482,7 @@ function getConfiguratorHtml(webview: vscode.Webview, extensionUri: vscode.Uri, 
 
     document.addEventListener('click', () => {
       document.querySelectorAll('.icon-menu').forEach((item) => { item.hidden = true; });
+      document.querySelectorAll('.custom-icon-editor').forEach((item) => { item.hidden = true; });
     });
 
     document.getElementById('save').addEventListener('click', () => {

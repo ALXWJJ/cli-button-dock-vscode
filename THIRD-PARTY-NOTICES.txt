@@ -31,6 +31,17 @@ Sources:
 - Kimi Code: https://moonshotai.github.io/Branding-Guide/ and https://www.kimi.ai/policies/logo-usage-terms
 
 Trademark and usage terms may apply separately to each brand. The assets are
-not modified by Agent Action Dock. The DeepSeek and ZCode command entries are
-configurable presets; their presence does not imply an official standalone CLI
-distribution or endorsement by those organizations.
+included only to identify the corresponding commands and do not imply
+affiliation, sponsorship, or endorsement. The DeepSeek and ZCode command
+entries are configurable presets; their presence does not imply an official
+standalone CLI distribution or endorsement by those organizations.
+
+The normalized SVG variants used for Codex, Claude, Gemini, DeepSeek, Qwen,
+Goose, Pi, Z.ai, and Kimi are adapted from:
+
+https://github.com/gokuscraper/ai-icons
+
+The AI Icons project is distributed under the MIT License and credits LobeHub
+Icons as an upstream icon collection:
+
+https://github.com/lobehub/lobe-icons
