@@ -64,7 +64,7 @@ After changing a button's name, icon, or enabled state, reload the VS Code windo
 
 ## Development
 
-1. Open this directory in VS Code: `code sdks/vscode`.
+1. Open this directory in VS Code: `code .`.
 2. Run `bun install`.
 3. Run `bun run compile`.
 4. Press `F5` to start an Extension Development Host.
@@ -73,4 +73,4 @@ Create a VSIX with `bun x @vscode/vsce package --no-dependencies`.
 
 The picker bundles the official `@vscode/codicons` font and stylesheet under `media/`, together with the referenced Agent brand assets under `media/brands/`. The `deepseek` and `zcode` entries are editable command presets; their command availability depends on the CLI installed on the host.
 
-The project is based on the MIT-licensed OpenCode VS Code SDK and is developed at [github.com/ALXWJJ/agent-action-dock](https://github.com/ALXWJJ/agent-action-dock).
+The project is based on the MIT-licensed OpenCode VS Code SDK and is developed at [github.com/ALXWJJ/cli-button-dock-vscode](https://github.com/ALXWJJ/cli-button-dock-vscode).
