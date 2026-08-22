@@ -1,7 +1,6 @@
 export type ConfiguratorStrings = {
   htmlLang: string
   title: string
-  hint: string
   save: string
   saveAndReload: string
   reset: string
@@ -37,7 +36,6 @@ export type ConfiguratorStrings = {
   customUrlApplyError: string
   pickIconPrefix: string
   customIconName: string
-  advancedHint: string
   savedMessage: string
   resetMessage: string
 }

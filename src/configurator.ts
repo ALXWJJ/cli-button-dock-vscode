@@ -108,9 +108,7 @@ function getConfiguratorHtml(
   <style>
     :root { color-scheme: light dark; }
     body { color: var(--vscode-foreground); background: var(--vscode-editor-background); font-family: var(--vscode-font-family); padding: 24px; max-width: 1180px; margin: 0 auto; }
-    h1 { font-size: 22px; margin: 0 0 6px; }
-    .hint, .advanced-hint { white-space: pre-line; }
-    .hint { color: var(--vscode-descriptionForeground); margin: 0 0 16px; line-height: 1.55; }
+    h1 { font-size: 22px; margin: 0 0 12px; }
     .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; position: sticky; top: 0; padding: 8px 0; background: var(--vscode-editor-background); z-index: 2; }
     button { color: var(--vscode-button-foreground); background: var(--vscode-button-background); border: 0; padding: 7px 14px; cursor: pointer; border-radius: 2px; }
     button:hover { background: var(--vscode-button-hoverBackground); }
@@ -148,7 +146,6 @@ function getConfiguratorHtml(
     .custom-icon-live-preview img { width: 44px; height: 44px; }
     .custom-icon-error { min-height: 18px; margin-top: 6px; color: var(--vscode-errorForeground); font-size: 12px; }
     .custom-icon-editor-actions { justify-content: flex-end; margin-top: 8px; }
-    .advanced-hint { color: var(--vscode-descriptionForeground); font-size: 12px; margin-top: 14px; line-height: 1.55; }
     @media (max-width: 760px) {
       .table-head { display: none; }
       .button-row { grid-template-columns: 30px 42px 1fr 1fr; }
@@ -161,7 +158,6 @@ function getConfiguratorHtml(
 </head>
 <body>
   <h1>${strings.title}</h1>
-  <p class="hint">${strings.hint}</p>
   <div class="toolbar">
     <button id="save">${strings.save}</button>
     <button id="saveAndReload">${strings.saveAndReload}</button>
@@ -171,7 +167,6 @@ function getConfiguratorHtml(
   </div>
   <div class="table-head"><span>${strings.colEnabled}</span><span>${strings.colSlot}</span><span>${strings.colPreset}</span><span>${strings.colLabel}</span><span>${strings.colIcon}</span><span>${strings.colCommand}</span></div>
   <main id="app"></main>
-  <p class="advanced-hint">${strings.advancedHint}</p>
   <script nonce="${nonce}">
     const vscode = acquireVsCodeApi();
     let state = ${state};

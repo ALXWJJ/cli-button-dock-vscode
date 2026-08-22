@@ -4,7 +4,6 @@ export const jaBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ja",
     title: "Cli Button Dock",
-    hint: "1 行に 1 ボタン。\nプリセットはコマンドとアイコンを自動入力。手動でも編集できます。\n名前はボタンとターミナル名に使われます。\nクリックのたびに新しいターミナルを開きます。",
     save: "保存",
     saveAndReload: "保存してウィンドウを再読み込み",
     reset: "既定値に戻す",
@@ -40,7 +39,6 @@ export const jaBundle: LocaleBundle = {
     customUrlApplyError: "有効な HTTPS 画像 URL または data:image/... を入力してください。",
     pickIconPrefix: "アイコンを選択: ",
     customIconName: "カスタムアイコン",
-    advancedHint: "カスタムアイコン：アイコン横の画像/リンクボタンで編集し、プレビュー後に適用。\nHTTPS 画像はローカルにキャッシュされます。タイトルバーは「保存してウィンドウを再読み込み」。\n<code>cwd</code> は <code>settings.json</code> の <code>cliButtonDock.buttons</code> で編集。",
     savedMessage: "保存しました。タイトルバーのボタンを更新するにはウィンドウを再読み込みしてください。",
     resetMessage: "既定値を復元しました。",
   },

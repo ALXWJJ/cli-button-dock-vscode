@@ -2,6 +2,7 @@ import * as vscode from "vscode"
 import { BUTTON_IDS, CONFIGURATION_KEY, CONFIGURATION_SECTION } from "./constants"
 import {
   DEFAULT_BUTTONS,
+  compactButtonsForStorage,
   getConfiguredEntry,
   normalizeButton,
   normalizeButtons,
@@ -23,7 +24,12 @@ export async function updateButtonContexts(buttons: ButtonConfig[]) {
 }
 
 export async function saveButtons(buttons: ButtonConfig[]) {
+  const stored = compactButtonsForStorage(buttons)
   await vscode.workspace
     .getConfiguration(CONFIGURATION_SECTION)
-    .update(CONFIGURATION_KEY, buttons, vscode.ConfigurationTarget.Global)
+    .update(
+      CONFIGURATION_KEY,
+      stored.length > 0 ? stored : undefined,
+      vscode.ConfigurationTarget.Global,
+    )
 }

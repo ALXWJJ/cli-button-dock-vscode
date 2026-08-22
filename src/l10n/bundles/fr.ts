@@ -4,7 +4,6 @@ export const frBundle: LocaleBundle = {
   configurator: {
     htmlLang: "fr",
     title: "Cli Button Dock",
-    hint: "Un bouton par ligne.\nLes préréglages remplissent commande et icône. Vous pouvez les modifier.\nLe nom sert pour le bouton et le terminal.\nChaque clic ouvre un nouveau terminal.",
     save: "Enregistrer",
     saveAndReload: "Enregistrer et recharger la fenêtre",
     reset: "Réinitialiser",
@@ -40,7 +39,6 @@ export const frBundle: LocaleBundle = {
     customUrlApplyError: "Saisissez une URL d'image HTTPS ou une valeur data:image/... valide.",
     pickIconPrefix: "Choisir l'icône : ",
     customIconName: "Icône personnalisée",
-    advancedHint: "Icônes perso : boutons image ou lien à côté de l'icône. Aperçu, puis appliquer.\nLes images HTTPS sont mises en cache localement. Barre de titre : Enregistrer et recharger la fenêtre.\n<code>cwd</code> dans <code>settings.json</code> → <code>cliButtonDock.buttons</code>.",
     savedMessage: "Enregistré. Rechargez la fenêtre pour mettre à jour les boutons de la barre de titre.",
     resetMessage: "Valeurs par défaut restaurées.",
   },

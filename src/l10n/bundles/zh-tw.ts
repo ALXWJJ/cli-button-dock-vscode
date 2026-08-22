@@ -4,7 +4,6 @@ export const zhTwBundle: LocaleBundle = {
   configurator: {
     htmlLang: "zh-TW",
     title: "Cli Button Dock",
-    hint: "每列一個按鈕。\n預設會自動填寫命令與圖示，也可手動改。\n名稱用於按鈕和終端機。\n每次點擊都會開啟新的終端機。",
     save: "儲存設定",
     saveAndReload: "儲存並重新載入視窗",
     reset: "恢復預設值",
@@ -40,7 +39,6 @@ export const zhTwBundle: LocaleBundle = {
     customUrlApplyError: "請輸入有效的 HTTPS 圖片連結或 data:image/...。",
     pickIconPrefix: "選擇圖示：",
     customIconName: "自訂圖示",
-    advancedHint: "自訂圖示：點圖示旁的圖片/連結按鈕，預覽後套用。\nHTTPS 圖片會快取到本機。標題列圖示請用「儲存並重新載入視窗」。\n<code>cwd</code> 等在 <code>settings.json</code> 的 <code>cliButtonDock.buttons</code> 裡改。",
     savedMessage: "已儲存；重新載入視窗後更新右上角按鈕",
     resetMessage: "已恢復預設設定",
   },

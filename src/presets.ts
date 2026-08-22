@@ -20,8 +20,8 @@ export const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   {
     id: "brand:opencode",
     name: "OpenCode",
-    light: "icon.png",
-    dark: "icon.png",
+    light: "opencode.png",
+    dark: "opencode.png",
     root: "images",
   },
   {
@@ -247,4 +247,18 @@ export function normalizeButton(value: unknown, fallback: ButtonConfig, id: stri
 export function normalizeButtons(value: unknown): ButtonConfig[] {
   const entries = Array.isArray(value) ? value : []
   return BUTTON_IDS.map((id, index) => normalizeButton(getConfiguredEntry(entries, id), DEFAULT_BUTTONS[index], id))
+}
+
+function buttonFieldsEqual(a: ButtonConfig, b: ButtonConfig): boolean {
+  return a.enabled === b.enabled
+    && a.preset === b.preset
+    && a.label === b.label
+    && a.icon === b.icon
+    && a.command === b.command
+    && a.cwd === b.cwd
+}
+
+/** Only persist slots that differ from built-in defaults; empty slots load from DEFAULT_BUTTONS. */
+export function compactButtonsForStorage(buttons: ButtonConfig[]): ButtonConfig[] {
+  return buttons.filter((button, index) => !buttonFieldsEqual(button, DEFAULT_BUTTONS[index]))
 }

@@ -4,7 +4,6 @@ export const enBundle: LocaleBundle = {
   configurator: {
     htmlLang: "en",
     title: "Cli Button Dock",
-    hint: "One button per row.\nPresets fill command and icon. You can edit them.\nName = button label and terminal name.\nEach click opens a new terminal.",
     save: "Save",
     saveAndReload: "Save and Reload Window",
     reset: "Reset to Defaults",
@@ -40,7 +39,6 @@ export const enBundle: LocaleBundle = {
     customUrlApplyError: "Enter a valid HTTPS image URL or data:image/... value.",
     pickIconPrefix: "Pick icon: ",
     customIconName: "Custom icon",
-    advancedHint: "Custom icons: use the image or link buttons beside the icon. Preview, then apply.\nHTTPS images are cached locally. Use Save and Reload Window for title-bar icons.\nEdit <code>cwd</code> in <code>settings.json</code> → <code>cliButtonDock.buttons</code>.",
     savedMessage: "Saved. Reload the window to update title-bar buttons.",
     resetMessage: "Defaults restored.",
   },

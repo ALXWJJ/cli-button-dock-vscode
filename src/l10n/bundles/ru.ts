@@ -4,7 +4,6 @@ export const ruBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ru",
     title: "Cli Button Dock",
-    hint: "Одна кнопка в строке.\nПредустановки заполняют команду и иконку. Можно изменить вручную.\nИмя используется для кнопки и терминала.\nКаждый клик открывает новый терминал.",
     save: "Сохранить",
     saveAndReload: "Сохранить и перезагрузить окно",
     reset: "Сбросить настройки",
@@ -40,7 +39,6 @@ export const ruBundle: LocaleBundle = {
     customUrlApplyError: "Введите корректный HTTPS URL или значение data:image/...",
     pickIconPrefix: "Выбрать иконку: ",
     customIconName: "Пользовательская иконка",
-    advancedHint: "Свои иконки: кнопки изображения или ссылки рядом с иконкой. Просмотр, затем применить.\nHTTPS-изображения кешируются локально. Для заголовка: Сохранить и перезагрузить окно.\n<code>cwd</code> в <code>settings.json</code> → <code>cliButtonDock.buttons</code>.",
     savedMessage: "Сохранено. Перезагрузите окно, чтобы обновить кнопки заголовка.",
     resetMessage: "Настройки по умолчанию восстановлены.",
   },

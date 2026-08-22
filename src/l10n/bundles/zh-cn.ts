@@ -4,7 +4,6 @@ export const zhCnBundle: LocaleBundle = {
   configurator: {
     htmlLang: "zh-CN",
     title: "Cli Button Dock",
-    hint: "每行一个按钮。\n预设会自动填写命令和图标，也可以手动改。\n名称用于按钮和终端。\n每次点击都会新开一个终端。",
     save: "保存配置",
     saveAndReload: "保存并重载窗口",
     reset: "恢复默认",
@@ -40,7 +39,6 @@ export const zhCnBundle: LocaleBundle = {
     customUrlApplyError: "请输入有效的 HTTPS 图片链接或 data:image/...。",
     pickIconPrefix: "选择图标：",
     customIconName: "自定义图标",
-    advancedHint: "自定义图标：点图标旁的图片/链接按钮，预览后应用。\nHTTPS 图片会缓存到本地。标题栏图标请用「保存并重载窗口」。\n<code>cwd</code> 等在 <code>settings.json</code> 的 <code>cliButtonDock.buttons</code> 里改。",
     savedMessage: "已保存；重载窗口后更新右上角按钮",
     resetMessage: "已恢复默认配置",
   },

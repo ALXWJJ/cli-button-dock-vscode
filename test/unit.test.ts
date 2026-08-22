@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test"
-import { DEFAULT_BUTTONS, normalizeButton, normalizeIcon } from "../src/presets"
+import { DEFAULT_BUTTONS, compactButtonsForStorage, normalizeButton, normalizeIcon, normalizeButtons } from "../src/presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "../src/svg"
 import { expandCommand } from "../src/template"
 
@@ -42,6 +42,21 @@ describe("normalizeButton", () => {
       command: "agent",
       cwd: "current",
     })
+  })
+})
+
+describe("compactButtonsForStorage", () => {
+  test("drops slots that match built-in defaults", () => {
+    const stored = compactButtonsForStorage(DEFAULT_BUTTONS)
+    expect(stored).toEqual([])
+  })
+
+  test("keeps only customized slots", () => {
+    const buttons = normalizeButtons([
+      { id: "03", enabled: true, label: "Claude Code", icon: "brand:claude", command: "claude", cwd: "current" },
+    ])
+    const stored = compactButtonsForStorage(buttons)
+    expect(stored).toEqual([buttons[2]])
   })
 })
 

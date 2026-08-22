@@ -4,7 +4,6 @@ export const deBundle: LocaleBundle = {
   configurator: {
     htmlLang: "de",
     title: "Cli Button Dock",
-    hint: "Eine Schaltfläche pro Zeile.\nVoreinstellungen füllen Befehl und Icon. Manuell bearbeiten geht auch.\nName = Schaltfläche und Terminal.\nJeder Klick öffnet ein neues Terminal.",
     save: "Speichern",
     saveAndReload: "Speichern und Fenster neu laden",
     reset: "Standard wiederherstellen",
@@ -40,7 +39,6 @@ export const deBundle: LocaleBundle = {
     customUrlApplyError: "Gültige HTTPS-Bild-URL oder data:image/... eingeben.",
     pickIconPrefix: "Icon wählen: ",
     customIconName: "Benutzerdefiniertes Icon",
-    advancedHint: "Eigene Icons: Bild- oder Link-Schaltfläche neben dem Icon. Vorschau, dann anwenden.\nHTTPS-Bilder werden lokal zwischengespeichert. Titelleiste: Speichern und Fenster neu laden.\n<code>cwd</code> in <code>settings.json</code> → <code>cliButtonDock.buttons</code>.",
     savedMessage: "Gespeichert. Laden Sie das Fenster neu, um Titelleisten-Schaltflächen zu aktualisieren.",
     resetMessage: "Standardwerte wiederhergestellt.",
   },

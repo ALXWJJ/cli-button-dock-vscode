@@ -44,7 +44,10 @@
       {
         "command": "cliButtonDock.configure",
         "title": "%command.configure%",
-        "icon": "$(settings-gear)"
+        "icon": {
+          "light": "images/icon.png",
+          "dark": "images/icon.png"
+        }
       },
       {
         "command": "cliButtonDock.addFilepathToTerminal",
@@ -54,8 +57,8 @@
         "command": "cliButtonDock.button01",
         "title": "OpenCode",
         "icon": {
-          "light": "images/icon.png",
-          "dark": "images/icon.png"
+          "light": "images/opencode.png",
+          "dark": "images/opencode.png"
         }
       },
       {
@@ -202,98 +205,7 @@
         "cliButtonDock.buttons": {
           "type": "array",
           "description": "%configuration.buttons.description%",
-          "default": [
-            {
-              "id": "01",
-              "enabled": true,
-              "preset": "opencode",
-              "label": "OpenCode",
-              "icon": "brand:opencode",
-              "command": "opencode",
-              "cwd": "current"
-            },
-            {
-              "id": "02",
-              "enabled": false,
-              "preset": "codex",
-              "label": "Codex",
-              "icon": "brand:codex",
-              "command": "codex",
-              "cwd": "current"
-            },
-            {
-              "id": "03",
-              "enabled": false,
-              "preset": "claude",
-              "label": "Claude Code",
-              "icon": "brand:claude",
-              "command": "claude",
-              "cwd": "current"
-            },
-            {
-              "id": "04",
-              "enabled": false,
-              "preset": "gemini",
-              "label": "Gemini CLI",
-              "icon": "brand:gemini",
-              "command": "gemini",
-              "cwd": "current"
-            },
-            {
-              "id": "05",
-              "enabled": false,
-              "preset": "aider",
-              "label": "Aider",
-              "icon": "brand:aider",
-              "command": "aider",
-              "cwd": "current"
-            },
-            {
-              "id": "06",
-              "enabled": false,
-              "preset": "custom",
-              "label": "Agent 06",
-              "icon": "emoji:👻",
-              "command": "",
-              "cwd": "current"
-            },
-            {
-              "id": "07",
-              "enabled": false,
-              "preset": "custom",
-              "label": "Agent 07",
-              "icon": "emoji:👻",
-              "command": "",
-              "cwd": "current"
-            },
-            {
-              "id": "08",
-              "enabled": false,
-              "preset": "custom",
-              "label": "Agent 08",
-              "icon": "emoji:👻",
-              "command": "",
-              "cwd": "current"
-            },
-            {
-              "id": "09",
-              "enabled": false,
-              "preset": "custom",
-              "label": "Agent 09",
-              "icon": "emoji:👻",
-              "command": "",
-              "cwd": "current"
-            },
-            {
-              "id": "10",
-              "enabled": false,
-              "preset": "custom",
-              "label": "Agent 10",
-              "icon": "emoji:👻",
-              "command": "",
-              "cwd": "current"
-            }
-          ],
+          "default": [],
           "items": {
             "type": "object",
             "required": ["id", "enabled", "label", "icon", "command"],

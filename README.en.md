@@ -8,13 +8,18 @@ Settings use `cliButtonDock.*`.
 
 ## Quick start
 
-1. `Cmd/Ctrl+Alt+A` — open the configurator
-2. Enable a button, pick a preset or enter a command
-3. Click **Save and Reload Window**
-
-The title-bar gear opens the same page. `Cmd/Ctrl+Alt+K` inserts the active file reference into the terminal.
+1. Click the **Cli Button Dock icon** at the right of the editor title bar (**Configure Cli Button Dock**) to open the configurator
+2. Enable the buttons you want, pick a preset or enter command, label, and icon
+3. Click **Save and Reload Window** — the buttons appear in the title bar
 
 Each click opens a **new terminal** and runs the command.
+
+## Keyboard shortcuts
+
+| Action | Shortcut |
+|--------|----------|
+| Open configurator | `Cmd/Ctrl+Alt+A` |
+| Insert active file reference into terminal | `Cmd/Ctrl+Alt+K` |
 
 ## Install (local VSIX)
 
