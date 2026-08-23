@@ -1,0 +1,29 @@
+# One-off helper: after Azure Entra federated credential is configured, run this
+# workflow to obtain the Marketplace member ID for your Entra app / managed identity.
+name: Marketplace identity probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  identity:
+    name: Print Marketplace identity ID
+    runs-on: ubuntu-latest
+    environment: marketplace
+    steps:
+      - name: Azure login (OIDC federated credential)
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Fetch VS profile (marketplace identity id)
+        run: |
+          az rest \
+            -u https://app.vssps.visualstudio.com/_apis/profile/profiles/me \
+            --resource 499b84ac-1321-427f-aa17-267ca6975798

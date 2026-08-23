@@ -64,23 +64,20 @@ git push origin v0.1.5
 
 ---
 
-### 方式 B：OIDC（无需 PAT，`vsce publish --oidc`）
+### 方式 B：OIDC（无需 PAT）
 
-在 Marketplace 为 Publisher 配置 **Trusted Publishing**（仓库 + workflow），然后：
+GitHub OIDC → Entra 应用 → `vsce publish --azure-credential`（**不是** dev.azure.com PAT）。
 
-1. 仓库 **Settings → Secrets and variables → Actions → Variables**  
-   新建 **`USE_OIDC_PUBLISH`** = **`true`**
-2. 手动触发时选 **oidc**，或 tag 推送会自动走 OIDC（当变量为 `true` 时）
-3. Workflow 已包含 `permissions: id-token: write`
+**分步指南：[docs/OIDC-SETUP.md](./OIDC-SETUP.md)**
 
-配置入口（Publisher 已创建后）：
+概要：
 
-[Marketplace 管理页](https://marketplace.visualstudio.com/manage) → **ALXWJJ** → **Security** → Trusted publishing / OIDC 相关设置
+1. Entra **应用注册** + 联合凭据（repo `ALXWJJ/cli-button-dock-vscode`，environment `marketplace`）  
+2. GitHub Environment `marketplace` 里设 `AZURE_CLIENT_ID`、`AZURE_TENANT_ID`  
+3. 跑 **Marketplace identity probe** 工作流，把返回的 `id` 加到 Publisher **Members**  
+4. Actions 手动跑 **Publish extension**（auth: oidc）或 push tag `v*`
 
-- Repository：`ALXWJJ/cli-button-dock-vscode`  
-- Workflow：`publish.yml`（或 `Publish extension`）
-
-若 Marketplace 尚未提供 UI，可参考 [vsmarketplace#1422](https://github.com/microsoft/vsmarketplace/issues/1422) 用 Entra Managed Identity + `azure/login` + `vsce publish --azure-credential`（需 Azure 订阅）。
+仓库已设：`USE_OIDC_PUBLISH=true`，Environment `marketplace`。
 
 ---
 

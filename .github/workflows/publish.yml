@@ -7,9 +7,9 @@ on:
         description: Authentication method
         type: choice
         options:
-          - pat
           - oidc
-        default: pat
+          - pat
+        default: oidc
   push:
     tags:
       - "v*"
@@ -26,6 +26,7 @@ jobs:
   publish:
     name: Publish to VS Marketplace
     runs-on: ubuntu-latest
+    environment: marketplace
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -64,9 +65,17 @@ jobs:
             echo "method=pat" >> "$GITHUB_OUTPUT"
           fi
 
-      - name: Publish with OIDC (no PAT)
+      - name: Azure login (Entra OIDC)
         if: steps.auth.outputs.method == 'oidc'
-        run: bun x @vscode/vsce publish --no-dependencies --oidc
+        uses: azure/login@v2
+        with:
+          client-id: ${{ vars.AZURE_CLIENT_ID }}
+          tenant-id: ${{ vars.AZURE_TENANT_ID }}
+          allow-no-subscriptions: true
+
+      - name: Publish with Entra OIDC
+        if: steps.auth.outputs.method == 'oidc'
+        run: bun x @vscode/vsce@3.9.2 publish --no-dependencies --azure-credential
 
       - name: Publish with PAT
         if: steps.auth.outputs.method == 'pat'
@@ -74,7 +83,7 @@ jobs:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: |
           if [ -z "${VSCE_PAT:-}" ]; then
-            echo "::error::VSCE_PAT secret is missing. Add it under Settings → Secrets, or set USE_OIDC_PUBLISH=true and configure OIDC on Marketplace."
+            echo "::error::VSCE_PAT secret is missing."
             exit 1
           fi
-          bun x @vscode/vsce publish --no-dependencies
+          bun x @vscode/vsce@3.9.2 publish --no-dependencies
