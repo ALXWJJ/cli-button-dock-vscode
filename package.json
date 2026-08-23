@@ -39,7 +39,11 @@
     "qwen-code",
     "deepseek",
     "kimi-code",
-    "cline"
+    "cline",
+    "openclaw",
+    "mimo-code",
+    "antigravity",
+    "minimax"
   ],
   "activationEvents": [
     "onStartupFinished"

@@ -73,7 +73,7 @@ export const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   },
   {
     id: "brand:cursor",
-    name: "Cursor Agent",
+    name: "Cursor CLI",
     light: "cursor.svg",
     dark: "cursor.svg",
   },
@@ -100,6 +100,30 @@ export const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
     name: "CodeBuddy",
     light: "codebuddy.svg",
     dark: "codebuddy.svg",
+  },
+  {
+    id: "brand:openclaw",
+    name: "OpenClaw",
+    light: "openclaw.svg",
+    dark: "openclaw.svg",
+  },
+  {
+    id: "brand:mimo",
+    name: "MiMo Code",
+    light: "mimo.svg",
+    dark: "mimo.svg",
+  },
+  {
+    id: "brand:antigravity",
+    name: "Antigravity",
+    light: "antigravity.svg",
+    dark: "antigravity.svg",
+  },
+  {
+    id: "brand:minimax",
+    name: "MiniMax CLI",
+    light: "minimax.svg",
+    dark: "minimax.svg",
   },
 ]
 
@@ -179,7 +203,7 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
   },
   {
     id: "cursor",
-    name: "Cursor Agent",
+    name: "Cursor CLI",
     label: "Cursor",
     icon: "brand:cursor",
     command: "agent",
@@ -215,6 +239,38 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     label: "CodeBuddy",
     icon: "brand:codebuddy",
     command: "codebuddy",
+    cwd: "current",
+  },
+  {
+    id: "openclaw",
+    name: "OpenClaw",
+    label: "OpenClaw",
+    icon: "brand:openclaw",
+    command: "openclaw tui",
+    cwd: "current",
+  },
+  {
+    id: "mimo",
+    name: "MiMo Code",
+    label: "MiMo Code",
+    icon: "brand:mimo",
+    command: "mimo",
+    cwd: "current",
+  },
+  {
+    id: "antigravity",
+    name: "Antigravity CLI",
+    label: "Antigravity",
+    icon: "brand:antigravity",
+    command: "agy",
+    cwd: "current",
+  },
+  {
+    id: "minimax",
+    name: "MiniMax CLI",
+    label: "MiniMax",
+    icon: "brand:minimax",
+    command: "mmx",
     cwd: "current",
   },
 ]

@@ -36,6 +36,10 @@ BRAND_SLUGS: dict[str, str] = {
     "cline": "cline",
     "trae": "trae",
     "codebuddy": "codebuddy",
+    "openclaw": "openclaw",
+    "mimo": "xiaomimimo",
+    "antigravity": "antigravity",
+    "minimax": "minimax",
 }
 
 
