@@ -1,8 +1,6 @@
 export type ConfiguratorStrings = {
   htmlLang: string
   title: string
-  save: string
-  saveAndReload: string
   reset: string
   advanced: string
   colEnabled: string
@@ -36,19 +34,12 @@ export type ConfiguratorStrings = {
   customUrlApplyError: string
   pickIconPrefix: string
   customIconName: string
-  savedMessage: string
   resetMessage: string
-  reloadFailed: string
   customIconHint: string
 }
 
 export type MessageStrings = {
-  manifestChanged: string
-  manifestMetadataChanged: string
   configureCommandFirst: string
-  customIconSaved: string
-  reloadWindowLabel: string
-  customIconSyncFailed: string
 }
 
 export type LocaleBundle = {

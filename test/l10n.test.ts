@@ -29,8 +29,7 @@ describe("normalizeLocale", () => {
 
 describe("locale bundles", () => {
   test("returns localized configurator strings", () => {
-    expect(getLocaleBundle("ja").configurator.save).toBe("保存")
-    expect(getLocaleBundle("de").configurator.saveAndReload).toContain("Speichern")
+    expect(getLocaleBundle("ja").configurator.reset).toBe("既定値に戻す")
     expect(getLocaleBundle("fr").configurator.reset).toBe("Réinitialiser")
   })
 

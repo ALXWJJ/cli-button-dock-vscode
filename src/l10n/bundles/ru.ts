@@ -4,8 +4,6 @@ export const ruBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ru",
     title: "Cli Button Dock",
-    save: "Сохранить",
-    saveAndReload: "Сохранить и перезагрузить окно",
     reset: "Сбросить настройки",
     advanced: "Изменить расширенные настройки",
     colEnabled: "Вкл.",
@@ -39,10 +37,8 @@ export const ruBundle: LocaleBundle = {
     customUrlApplyError: "Введите корректный HTTPS URL или значение data:image/...",
     pickIconPrefix: "Выбрать иконку: ",
     customIconName: "Пользовательская иконка",
-    savedMessage: "Сохранено. Перезагрузите окно, чтобы обновить кнопки заголовка.",
-    resetMessage: "Настройки по умолчанию восстановлены.",
-    customIconHint: "Reload the window to update custom icons in the title bar.",
-    reloadFailed: "Не удалось перезагрузить окно",
+    resetMessage: "Значения по умолчанию восстановлены.",
+    customIconHint: "На панели заголовка отображается общий пользовательский значок; полное изображение видно на вкладке терминала.",
   },
   emojiNames: {
     "emoji:👻": "Призрак",
@@ -59,11 +55,6 @@ export const ruBundle: LocaleBundle = {
     "emoji:🧸": "Плюшевый мишка",
   },
   messages: {
-    manifestChanged: "Внешний вид кнопок Cli Button Dock изменился. Перезагрузите окно.",
-    manifestMetadataChanged: "Метаданные кнопок Cli Button Dock изменились. Перезагрузите окно.",
     configureCommandFirst: "Сначала настройте команду для {label}.",
-    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
-    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
-    reloadWindowLabel: "Reload Window",
   },
 }

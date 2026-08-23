@@ -4,8 +4,6 @@ export const ptBrBundle: LocaleBundle = {
   configurator: {
     htmlLang: "pt-BR",
     title: "Cli Button Dock",
-    save: "Salvar",
-    saveAndReload: "Salvar e recarregar janela",
     reset: "Restaurar padrões",
     advanced: "Editar configurações avançadas",
     colEnabled: "Ativo",
@@ -39,10 +37,8 @@ export const ptBrBundle: LocaleBundle = {
     customUrlApplyError: "Digite uma URL HTTPS ou um valor data:image/... válido.",
     pickIconPrefix: "Escolher ícone: ",
     customIconName: "Ícone personalizado",
-    savedMessage: "Salvo. Recarregue a janela para atualizar os botões da barra de título.",
     resetMessage: "Padrões restaurados.",
-    customIconHint: "Reload the window to update custom icons in the title bar.",
-    reloadFailed: "Não foi possível recarregar a janela",
+    customIconHint: "A barra de título usa um ícone personalizado genérico; a imagem completa aparece na aba do terminal.",
   },
   emojiNames: {
     "emoji:👻": "Fantasma",
@@ -59,11 +55,6 @@ export const ptBrBundle: LocaleBundle = {
     "emoji:🧸": "Urso de pelúcia",
   },
   messages: {
-    manifestChanged: "A aparência dos botões do Cli Button Dock mudou. Recarregue a janela.",
-    manifestMetadataChanged: "Os metadados dos botões do Cli Button Dock mudaram. Recarregue a janela.",
     configureCommandFirst: "Configure primeiro um comando para {label}.",
-    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
-    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
-    reloadWindowLabel: "Reload Window",
   },
 }

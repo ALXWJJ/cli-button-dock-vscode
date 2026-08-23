@@ -4,8 +4,6 @@ export const deBundle: LocaleBundle = {
   configurator: {
     htmlLang: "de",
     title: "Cli Button Dock",
-    save: "Speichern",
-    saveAndReload: "Speichern und Fenster neu laden",
     reset: "Standard wiederherstellen",
     advanced: "Erweiterte Einstellungen bearbeiten",
     colEnabled: "An",
@@ -39,10 +37,8 @@ export const deBundle: LocaleBundle = {
     customUrlApplyError: "Gültige HTTPS-Bild-URL oder data:image/... eingeben.",
     pickIconPrefix: "Icon wählen: ",
     customIconName: "Benutzerdefiniertes Icon",
-    savedMessage: "Gespeichert. Laden Sie das Fenster neu, um Titelleisten-Schaltflächen zu aktualisieren.",
     resetMessage: "Standardwerte wiederhergestellt.",
-    customIconHint: "Reload the window to update custom icons in the title bar.",
-    reloadFailed: "Fenster konnte nicht neu geladen werden",
+    customIconHint: "In der Titelleiste wird ein generisches benutzerdefiniertes Symbol angezeigt; das vollständige Bild erscheint auf dem Terminal-Tab.",
   },
   emojiNames: {
     "emoji:👻": "Geist",
@@ -59,11 +55,6 @@ export const deBundle: LocaleBundle = {
     "emoji:🧸": "Teddybär",
   },
   messages: {
-    manifestChanged: "Das Erscheinungsbild der Cli Button Dock-Schaltflächen hat sich geändert. Laden Sie das Fenster neu.",
-    manifestMetadataChanged: "Die Metadaten der Cli Button Dock-Schaltflächen haben sich geändert. Laden Sie das Fenster neu.",
     configureCommandFirst: "Konfigurieren Sie zuerst einen Befehl für {label}.",
-    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
-    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
-    reloadWindowLabel: "Reload Window",
   },
 }

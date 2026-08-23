@@ -5,7 +5,6 @@ import * as vscode from "vscode"
 import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN } from "./constants"
 import { BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS, normalizeIcon } from "./presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
-import { isTitleBarCustomIcon, runtimeIconRelativePath } from "./title-bar"
 import type { BrandIconDefinition, EmojiIconDefinition } from "./types"
 
 export { isCustomIcon, sanitizeSvg, decodeDataImage }
@@ -101,69 +100,6 @@ async function prepareCustomIconBytes(icon: string): Promise<PreparedCustomIcon>
     return decodeDataImage(source)
   }
   return downloadCustomIcon(source)
-}
-
-export function customIconToTitleBarSvg(prepared: PreparedCustomIcon) {
-  if (prepared.extension === "svg") {
-    return sanitizeSvg(prepared.bytes.toString("utf8"))
-  }
-  const mime = prepared.extension === "jpg" ? "image/jpeg" : `image/${prepared.extension}`
-  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><image width="24" height="24" href="data:${mime};base64,${prepared.bytes.toString("base64")}"/></svg>`
-}
-
-export async function syncTitleBarRuntimeIcon(
-  context: vscode.ExtensionContext,
-  buttonId: string,
-  icon: string,
-): Promise<boolean> {
-  const prepared = await prepareCustomIconBytes(icon)
-  validateCustomIconSize(prepared.bytes)
-  const svg = `${customIconToTitleBarSvg(prepared)}\n`
-  const relativePath = runtimeIconRelativePath(buttonId)
-  const absolutePath = path.join(context.extensionPath, relativePath)
-  fs.mkdirSync(path.dirname(absolutePath), { recursive: true })
-
-  let previous = ""
-  try {
-    previous = fs.readFileSync(absolutePath, "utf8")
-  } catch {
-    // placeholder or first write
-  }
-  if (previous === svg) {
-    return false
-  }
-  fs.writeFileSync(absolutePath, svg)
-  return true
-}
-
-export type TitleBarIconSyncResult = {
-  syncedCustomIds: Set<string>
-  errors: Array<{ buttonId: string; message: string }>
-}
-
-export async function syncTitleBarRuntimeIcons(
-  context: vscode.ExtensionContext,
-  buttons: import("./types").ButtonConfig[],
-): Promise<TitleBarIconSyncResult> {
-  const syncedCustomIds = new Set<string>()
-  const errors: Array<{ buttonId: string; message: string }> = []
-
-  for (const button of buttons) {
-    const icon = normalizeIcon(button.icon)
-    if (!isTitleBarCustomIcon(icon)) {
-      continue
-    }
-    try {
-      await syncTitleBarRuntimeIcon(context, button.id, icon)
-      syncedCustomIds.add(button.id)
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error)
-      errors.push({ buttonId: button.id, message })
-      console.warn(`[Cli Button Dock] Unable to sync title-bar icon for button ${button.id}`, error)
-    }
-  }
-
-  return { syncedCustomIds, errors }
 }
 
 async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: string) {

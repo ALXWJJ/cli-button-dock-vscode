@@ -336,10 +336,7 @@
       {
         "command": "cliButtonDock.button01.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button01.svg",
-          "dark": "media/runtime-icons/button01.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button02.face.brand_opencode",
@@ -614,10 +611,7 @@
       {
         "command": "cliButtonDock.button02.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button02.svg",
-          "dark": "media/runtime-icons/button02.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button03.face.brand_opencode",
@@ -892,10 +886,7 @@
       {
         "command": "cliButtonDock.button03.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button03.svg",
-          "dark": "media/runtime-icons/button03.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button04.face.brand_opencode",
@@ -1170,10 +1161,7 @@
       {
         "command": "cliButtonDock.button04.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button04.svg",
-          "dark": "media/runtime-icons/button04.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button05.face.brand_opencode",
@@ -1448,10 +1436,7 @@
       {
         "command": "cliButtonDock.button05.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button05.svg",
-          "dark": "media/runtime-icons/button05.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button06.face.brand_opencode",
@@ -1726,10 +1711,7 @@
       {
         "command": "cliButtonDock.button06.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button06.svg",
-          "dark": "media/runtime-icons/button06.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button07.face.brand_opencode",
@@ -2004,10 +1986,7 @@
       {
         "command": "cliButtonDock.button07.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button07.svg",
-          "dark": "media/runtime-icons/button07.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button08.face.brand_opencode",
@@ -2282,10 +2261,7 @@
       {
         "command": "cliButtonDock.button08.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button08.svg",
-          "dark": "media/runtime-icons/button08.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button09.face.brand_opencode",
@@ -2560,10 +2536,7 @@
       {
         "command": "cliButtonDock.button09.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button09.svg",
-          "dark": "media/runtime-icons/button09.svg"
-        }
+        "icon": "$(image)"
       },
       {
         "command": "cliButtonDock.button10.face.brand_opencode",
@@ -2838,10 +2811,7 @@
       {
         "command": "cliButtonDock.button10.face.custom",
         "title": "Custom icon",
-        "icon": {
-          "light": "media/runtime-icons/button10.svg",
-          "dark": "media/runtime-icons/button10.svg"
-        }
+        "icon": "$(image)"
       }
     ],
     "menus": {

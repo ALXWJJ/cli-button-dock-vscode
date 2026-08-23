@@ -4,8 +4,6 @@ export const jaBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ja",
     title: "Cli Button Dock",
-    save: "保存",
-    saveAndReload: "保存してウィンドウを再読み込み",
     reset: "既定値に戻す",
     advanced: "詳細設定を編集",
     colEnabled: "有効",
@@ -39,10 +37,8 @@ export const jaBundle: LocaleBundle = {
     customUrlApplyError: "有効な HTTPS 画像 URL または data:image/... を入力してください。",
     pickIconPrefix: "アイコンを選択: ",
     customIconName: "カスタムアイコン",
-    savedMessage: "保存しました。タイトルバーのボタンを更新するにはウィンドウを再読み込みしてください。",
     resetMessage: "既定値を復元しました。",
-    customIconHint: "Reload the window to update custom icons in the title bar.",
-    reloadFailed: "ウィンドウを再読み込みできませんでした",
+    customIconHint: "タイトルバーは汎用のカスタムアイコンを表示します。完全な画像はターミナルタブに表示されます。",
   },
   emojiNames: {
     "emoji:👻": "おばけ",
@@ -59,11 +55,6 @@ export const jaBundle: LocaleBundle = {
     "emoji:🧸": "テディベア",
   },
   messages: {
-    manifestChanged: "Cli Button Dock のボタン外観が変更されました。ウィンドウを再読み込みしてください。",
-    manifestMetadataChanged: "Cli Button Dock のボタンメタデータが変更されました。ウィンドウを再読み込みしてください。",
     configureCommandFirst: "先に {label} のコマンドを設定してください。",
-    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
-    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
-    reloadWindowLabel: "Reload Window",
   },
 }

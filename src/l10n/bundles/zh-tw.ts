@@ -4,8 +4,6 @@ export const zhTwBundle: LocaleBundle = {
   configurator: {
     htmlLang: "zh-TW",
     title: "Cli Button Dock",
-    save: "儲存設定",
-    saveAndReload: "儲存並重新載入視窗",
     reset: "恢復預設值",
     advanced: "編輯進階設定",
     colEnabled: "啟用",
@@ -39,10 +37,8 @@ export const zhTwBundle: LocaleBundle = {
     customUrlApplyError: "請輸入有效的 HTTPS 圖片連結或 data:image/...。",
     pickIconPrefix: "選擇圖示：",
     customIconName: "自訂圖示",
-    savedMessage: "已儲存，標題列按鈕已更新",
     resetMessage: "已恢復預設設定",
-    customIconHint: "自訂圖示需重新載入視窗後才會更新標題列",
-    reloadFailed: "無法重新載入視窗",
+    customIconHint: "標題列顯示通用自訂圖示；開啟終端機後顯示完整圖示",
   },
   emojiNames: {
     "emoji:👻": "幽靈",
@@ -59,11 +55,6 @@ export const zhTwBundle: LocaleBundle = {
     "emoji:🧸": "小熊",
   },
   messages: {
-    manifestChanged: "Cli Button Dock 按鈕外觀已變更，請重新載入視窗以套用。",
-    manifestMetadataChanged: "Cli Button Dock 按鈕中繼資料已變更，請重新載入視窗以套用。",
     configureCommandFirst: "請先為 {label} 設定命令。",
-    customIconSaved: "自訂圖示已儲存。標題列需重新載入視窗後才會更新；重新載入會結束目前終端機中的 CLI 程序，請在方便時再操作。",
-    customIconSyncFailed: "無法寫入按鈕 {buttonId} 的自訂圖示：{detail}",
-    reloadWindowLabel: "重新載入視窗",
   },
 }

@@ -18,28 +18,8 @@ export function getEmojiDisplayName(emojiId: string, language = getLanguage()) {
   return bundle.emojiNames[emojiId] ?? getLocaleBundle("en").emojiNames[emojiId] ?? emojiId.replace(/^emoji:/, "")
 }
 
-export function tManifestChanged(language = getLanguage()) {
-  return getLocaleBundle(language).messages.manifestChanged
-}
-
-export function tManifestMetadataChanged(language = getLanguage()) {
-  return getLocaleBundle(language).messages.manifestMetadataChanged
-}
-
 export function tConfigureCommandFirst(label: string, language = getLanguage()) {
   return formatMessage(getLocaleBundle(language).messages.configureCommandFirst, { label })
-}
-
-export function tCustomIconSaved(language = getLanguage()) {
-  return getLocaleBundle(language).messages.customIconSaved
-}
-
-export function tReloadWindowLabel(language = getLanguage()) {
-  return getLocaleBundle(language).messages.reloadWindowLabel
-}
-
-export function tCustomIconSyncFailed(buttonId: string, detail: string, language = getLanguage()) {
-  return formatMessage(getLocaleBundle(language).messages.customIconSyncFailed, { buttonId, detail })
 }
 
 export { SUPPORTED_LOCALES } from "./types"

@@ -108,7 +108,6 @@ function getConfiguratorHtml(
     button { color: var(--vscode-button-foreground); background: var(--vscode-button-background); border: 0; padding: 7px 14px; cursor: pointer; border-radius: 2px; }
     button:hover { background: var(--vscode-button-hoverBackground); }
     #message { min-height: 20px; margin-left: 8px; flex: 1 1 180px; font-size: 12px; line-height: 1.4; color: var(--vscode-descriptionForeground); }
-    #message.is-error { color: var(--vscode-errorForeground); }
     .toolbar-hint { color: var(--vscode-descriptionForeground); font-size: 12px; line-height: 1.4; margin-left: 4px; }
     .toolbar-hint[hidden] { display: none; }
     .table-head, .button-row { display: grid; grid-template-columns: 34px 52px minmax(150px, 0.9fr) minmax(150px, 0.9fr) 150px minmax(240px, 1.4fr); gap: 10px; align-items: center; }
@@ -671,10 +670,6 @@ function getConfiguratorHtml(
         state = data.buttons;
         render();
         message.textContent = strings.resetMessage;
-        message.classList.remove('is-error');
-      } else if (data.type === 'error') {
-        message.textContent = data.message || strings.customIconApplyError;
-        message.classList.add('is-error');
       }
     });
     render();

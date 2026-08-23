@@ -4,8 +4,6 @@ export const koBundle: LocaleBundle = {
   configurator: {
     htmlLang: "ko",
     title: "Cli Button Dock",
-    save: "저장",
-    saveAndReload: "저장 후 창 다시 로드",
     reset: "기본값으로 재설정",
     advanced: "고급 설정 편집",
     colEnabled: "사용",
@@ -39,10 +37,8 @@ export const koBundle: LocaleBundle = {
     customUrlApplyError: "유효한 HTTPS 이미지 URL 또는 data:image/... 값을 입력하세요.",
     pickIconPrefix: "아이콘 선택: ",
     customIconName: "사용자 지정 아이콘",
-    savedMessage: "저장됨. 제목 표시줄 버튼을 업데이트하려면 창을 다시 로드하세요.",
-    resetMessage: "기본값이 복원되었습니다.",
-    customIconHint: "Reload the window to update custom icons in the title bar.",
-    reloadFailed: "창을 다시 로드할 수 없습니다",
+    resetMessage: "기본값을 복원했습니다.",
+    customIconHint: "제목 표시줄에는 일반 사용자 지정 아이콘이 표시됩니다. 전체 이미지는 터미널 탭에 표시됩니다.",
   },
   emojiNames: {
     "emoji:👻": "유령",
@@ -59,11 +55,6 @@ export const koBundle: LocaleBundle = {
     "emoji:🧸": "곰 인형",
   },
   messages: {
-    manifestChanged: "Cli Button Dock 버튼 모양이 변경되었습니다. 창을 다시 로드하세요.",
-    manifestMetadataChanged: "Cli Button Dock 버튼 메타데이터가 변경되었습니다. 창을 다시 로드하세요.",
-    configureCommandFirst: "먼저 {label}의 명령을 설정하세요.",
-    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
-    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
-    reloadWindowLabel: "Reload Window",
+    configureCommandFirst: "먼저 {label}의 명령을 구성하세요.",
   },
 }

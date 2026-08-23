@@ -1,29 +1,9 @@
 import * as fs from "node:fs"
 import * as path from "node:path"
-import { BUTTON_IDS, INLINE_SVG_PATTERN, RUNTIME_ICON_DIR } from "./constants"
+import { INLINE_SVG_PATTERN } from "./constants"
 import { AGENT_PRESETS, BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS } from "./presets"
 
 export const TITLE_BAR_CODICON_IDS = ["terminal", "settings", "debug-alt", "play", "add", "refresh"]
-
-const PLACEHOLDER_RUNTIME_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>`
-
-export function runtimeIconRelativePath(buttonId: string) {
-  return `${RUNTIME_ICON_DIR}/button${buttonId}.svg`
-}
-
-export function createRuntimeIconPlaceholders(rootDir: string) {
-  const directory = path.join(rootDir, RUNTIME_ICON_DIR)
-  fs.mkdirSync(directory, { recursive: true })
-  for (const buttonId of BUTTON_IDS) {
-    const filePath = path.join(directory, `button${buttonId}.svg`)
-    fs.writeFileSync(filePath, PLACEHOLDER_RUNTIME_ICON)
-  }
-}
-
-export function runtimeIconManifestEntry(buttonId: string) {
-  const assetPath = runtimeIconRelativePath(buttonId)
-  return { light: assetPath, dark: assetPath }
-}
 
 export function isTitleBarCustomIcon(icon: string) {
   const raw = icon.trim()
