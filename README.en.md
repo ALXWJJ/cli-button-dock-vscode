@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-Up to 10 editor title-bar buttons to launch OpenCode, Codex, Claude Code, Gemini CLI, Qwen Code, DeepSeek, Cursor Agent, Copilot, and other CLI agents—or any custom command—in a new integrated terminal.
+Up to 10 editor title-bar buttons to launch OpenCode, Codex, Claude Code, Gemini CLI, Qwen Code, Cursor CLI, OpenClaw, MiMo Code, Antigravity, and 18 preset CLI agents—or any custom command—in a new integrated terminal.
 
 Settings use `cliButtonDock.*`.
 
@@ -21,15 +21,15 @@ Each click opens a **new terminal** and runs the command.
 | Open configurator | `Cmd/Ctrl+Alt+A` |
 | Insert active file reference into terminal | `Cmd/Ctrl+Alt+K` |
 
-## Install (local VSIX)
+## Install
+
+Install from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=ALXWJJ.cli-button-dock), search **Cli Button Dock** in the Extensions view, or:
 
 ```bash
-bun install && bun run package
-bun x @vscode/vsce package --no-dependencies
-code --install-extension ./cli-button-dock-*.vsix
+code --install-extension ALXWJJ.cli-button-dock
 ```
 
-Requires VS Code ≥ 1.94 and [Bun](https://bun.sh/) ≥ 1.3.
+Requires VS Code ≥ 1.94.
 
 ## Advanced settings
 
@@ -39,10 +39,14 @@ Edit `cwd` and more in `cliButtonDock.buttons` inside `settings.json`. Commands 
 
 ## Development
 
+Requires [Bun](https://bun.sh/) ≥ 1.3.
+
 ```bash
 bun run check
 bun run package
 ```
+
+Publishing: see [docs/PUBLISHING.md](docs/PUBLISHING.md) (GitHub Actions OIDC).
 
 ## License
 

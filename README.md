@@ -23,24 +23,13 @@
 
 ## 安装
 
-### 从扩展市场（上架后）
-
-在 VS Code 扩展视图搜索 **Cli Button Dock**，或：
+在 [VS Code 扩展市场](https://marketplace.visualstudio.com/items?itemName=ALXWJJ.cli-button-dock) 搜索 **Cli Button Dock**，或在扩展视图安装，或：
 
 ```bash
 code --install-extension ALXWJJ.cli-button-dock
 ```
 
-### 本地 VSIX
-
-```bash
-bun install && bun run vsix
-code --install-extension ./cli-button-dock-*.vsix --force
-```
-
-需要 VS Code ≥ 1.94、[Bun](https://bun.sh/) ≥ 1.3。
-
-维护者发布见 [docs/PUBLISHING.md](docs/PUBLISHING.md)（**推荐网页上传 VSIX，无需 PAT**）。
+需要 VS Code ≥ 1.94。
 
 ## 高级配置
 
@@ -50,10 +39,14 @@ code --install-extension ./cli-button-dock-*.vsix --force
 
 ## 开发
 
+需要 [Bun](https://bun.sh/) ≥ 1.3。
+
 ```bash
 bun run check   # 类型检查 + lint + 测试
 bun run package
 ```
+
+维护者发布见 [docs/PUBLISHING.md](docs/PUBLISHING.md)（GitHub Actions OIDC 自动发布）。
 
 ## 说明
 

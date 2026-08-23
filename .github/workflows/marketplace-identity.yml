@@ -22,8 +22,13 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           allow-no-subscriptions: true
 
-      - name: Fetch VS profile (marketplace identity id)
+      - name: Print service principal IDs for Marketplace Members
         run: |
+          echo "Service principal object ID (try this in Publisher Members → Add):"
+          az ad sp show --id "${{ vars.AZURE_CLIENT_ID }}" --query id -o tsv
+          echo "---"
+          echo "VS profile API (may fail for new apps without a profile):"
           az rest \
             -u https://app.vssps.visualstudio.com/_apis/profile/profiles/me \
-            --resource 499b84ac-1321-427f-aa17-267ca6975798
+            --resource 499b84ac-1321-427f-aa17-267ca6975798 \
+            || echo "Profile not found — use the service principal object ID above in Marketplace Members."
