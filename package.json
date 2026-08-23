@@ -33,7 +33,15 @@
     "opencode",
     "codex",
     "claude-code",
-    "gemini-cli"
+    "gemini-cli",
+    "cursor-agent",
+    "github-copilot",
+    "continue",
+    "openhands",
+    "windsurf",
+    "cline",
+    "roo-code",
+    "amazon-q"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -57,8 +65,8 @@
         "command": "cliButtonDock.button01",
         "title": "OpenCode",
         "icon": {
-          "light": "images/opencode.png",
-          "dark": "images/opencode.png"
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
         }
       },
       {
@@ -81,16 +89,16 @@
         "command": "cliButtonDock.button04",
         "title": "Gemini CLI",
         "icon": {
-          "light": "media/brands/gemini.svg",
-          "dark": "media/brands/gemini.svg"
+          "light": "media/brands/gemini-light.svg",
+          "dark": "media/brands/gemini-dark.svg"
         }
       },
       {
         "command": "cliButtonDock.button05",
         "title": "Aider",
         "icon": {
-          "light": "media/brands/aider.png",
-          "dark": "media/brands/aider.png"
+          "light": "media/brands/aider.svg",
+          "dark": "media/brands/aider.svg"
         }
       },
       {

@@ -8,43 +8,36 @@ International license:
 
 https://creativecommons.org/licenses/by/4.0/
 
-Agent brand assets
-------------------
+Agent brand assets (SVG)
+------------------------
 
 The preset brand assets are included as supplied for identifying the corresponding
 terminal agents. The names, logos, and marks remain the property of their
 respective owners. Cli Button Dock is an independent project and does not
 claim affiliation, sponsorship, or endorsement by any of these projects.
 
-Sources:
+Official SVG sources:
 
-- OpenCode: https://github.com/anomalyco/opencode
-- Codex / OpenAI Blossom: https://openai.com/brand/
+- OpenCode: https://opencode.ai/favicon.svg
+- Codex / OpenAI: https://github.com/openai/codex (openai-small.svg)
 - Claude: https://claude.com/favicon.svg
-- Gemini CLI: https://github.com/google-gemini/gemini-cli
-- Aider: https://github.com/Aider-AI/aider
-- Goose: https://github.com/aaif-goose/goose
-- Qwen Code: https://github.com/QwenLM/qwen-code
-- Pi Agent: https://pi.dev/ and https://github.com/earendil-works/pi
-- DeepSeek: https://www.deepseek.com/
-- ZCode: https://zcode.z.ai/en
-- Kimi Code: https://moonshotai.github.io/Branding-Guide/ and https://www.kimi.ai/policies/logo-usage-terms
+- Aider: https://github.com/Aider-AI/aider (website/assets/logo.svg)
+- Goose: https://github.com/aaif-goose/goose (ui/desktop/src/images/icon.svg)
+- Qwen Code: https://github.com/QwenLM/qwen-code (chrome-extension icon.svg)
+- Continue CLI: https://github.com/continuedev/continue (docs/logo/light.svg, dark.svg)
+
+Monochrome SVG marks (light/dark variants) from LobeHub Icons when no official
+vector mark is published:
+
+- Gemini, DeepSeek, Kimi Code, ZCode (Zhipu), Pi Agent
+- Cursor Agent, GitHub Copilot CLI, Windsurf, Cline, Amp, Roo Code, Trae,
+  CodeBuddy, Amazon Q CLI
+- OpenHands (openhands-color.svg)
+- https://github.com/lobehub/lobe-icons
 
 Trademark and usage terms may apply separately to each brand. The assets are
 included only to identify the corresponding commands and do not imply
-affiliation, sponsorship, or endorsement. The DeepSeek and ZCode command
-entries are configurable presets; their presence does not imply an official
-standalone CLI distribution or endorsement by those organizations.
-
-The normalized SVG variants used for Codex, Claude, Gemini, DeepSeek, Qwen,
-Goose, Pi, Z.ai, and Kimi are adapted from:
-
-https://github.com/gokuscraper/ai-icons
-
-The AI Icons project is distributed under the MIT License and credits LobeHub
-Icons as an upstream icon collection:
-
-https://github.com/lobehub/lobe-icons
+affiliation, sponsorship, or endorsement.
 
 Lucide icons
 ------------

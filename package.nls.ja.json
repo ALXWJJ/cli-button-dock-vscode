@@ -1,6 +1,6 @@
 {
   "extension.displayName": "Cli Button Dock",
-  "extension.description": "エディターのタイトルバーに OpenCode、Codex、Claude Code、Gemini CLI、Aider、Goose、Qwen Code、Pi Agent、DeepSeek、ZCode、Kimi Code などの Agent ボタンを設定します。",
+  "extension.description": "タイトルバーに CLI コマンド実行ボタンを追加",
   "command.configure": "Cli Button Dock: ボタンを設定",
   "command.addFilepathToTerminal": "Cli Button Dock: ファイルパスをターミナルに追加",
   "configuration.title": "Cli Button Dock",

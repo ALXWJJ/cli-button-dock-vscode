@@ -1,6 +1,6 @@
 {
   "extension.displayName": "Cli Button Dock",
-  "extension.description": "Configure editor-title buttons for OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code, and other agents.",
+  "extension.description": "Add CLI command buttons to the title bar",
   "command.configure": "Cli Button Dock: Configure Buttons",
   "command.addFilepathToTerminal": "Cli Button Dock: Add Filepath to Terminal",
   "configuration.title": "Cli Button Dock",

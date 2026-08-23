@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-在编辑器标题栏放最多 10 个按钮，一键在终端里启动 OpenCode、Codex、Claude Code、Gemini CLI、Aider 等 CLI Agent，或任意自定义命令。
+在编辑器标题栏放最多 10 个按钮，一键在终端里启动 OpenCode、Codex、Claude Code、Gemini CLI、Cursor Agent、Copilot、Continue、OpenHands、Windsurf、Cline、Roo Code 等 22 种预设 CLI Agent，或任意自定义命令。
 
 配置项 ID 为 `cliButtonDock.*`。
 

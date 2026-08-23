@@ -1,6 +1,6 @@
 {
   "extension.displayName": "Cli Button Dock",
-  "extension.description": "在编辑器标题栏配置 OpenCode、Codex、Claude Code、Gemini CLI、Aider、Goose、Qwen Code、Pi Agent、DeepSeek、ZCode、Kimi Code 等 Agent 按钮。",
+  "extension.description": "在标题栏增加Cli命令执行按钮",
   "command.configure": "Cli Button Dock: 配置按钮",
   "command.addFilepathToTerminal": "Cli Button Dock: 将文件路径插入终端",
   "configuration.title": "Cli Button Dock",

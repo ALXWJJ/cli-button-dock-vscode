@@ -1,6 +1,6 @@
 {
   "extension.displayName": "Cli Button Dock",
-  "extension.description": "편집기 제목 표시줄에서 OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code 등 Agent 버튼을 설정합니다.",
+  "extension.description": "제목 표시줄에 CLI 명령 실행 버튼 추가",
   "command.configure": "Cli Button Dock: 버튼 구성",
   "command.addFilepathToTerminal": "Cli Button Dock: 파일 경로를 터미널에 추가",
   "configuration.title": "Cli Button Dock",

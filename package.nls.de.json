@@ -1,6 +1,6 @@
 {
   "extension.displayName": "Cli Button Dock",
-  "extension.description": "Konfigurieren Sie Schaltflächen für OpenCode, Codex, Claude Code, Gemini CLI, Aider, Goose, Qwen Code, Pi Agent, DeepSeek, ZCode, Kimi Code und andere Agents in der Editor-Titelleiste.",
+  "extension.description": "Schaltflächen für CLI-Befehle in der Titelleiste",
   "command.configure": "Cli Button Dock: Schaltflächen konfigurieren",
   "command.addFilepathToTerminal": "Cli Button Dock: Dateipfad zum Terminal hinzufügen",
   "configuration.title": "Cli Button Dock",
