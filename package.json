@@ -334,9 +334,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button01.face.custom",
+        "command": "cliButtonDock.button01.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button01.0.svg",
+          "dark": "media/runtime-icons/button01.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button01.1.svg",
+          "dark": "media/runtime-icons/button01.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button02.face.brand_opencode",
@@ -609,9 +620,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button02.face.custom",
+        "command": "cliButtonDock.button02.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button02.0.svg",
+          "dark": "media/runtime-icons/button02.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button02.1.svg",
+          "dark": "media/runtime-icons/button02.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button03.face.brand_opencode",
@@ -884,9 +906,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button03.face.custom",
+        "command": "cliButtonDock.button03.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button03.0.svg",
+          "dark": "media/runtime-icons/button03.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button03.1.svg",
+          "dark": "media/runtime-icons/button03.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button04.face.brand_opencode",
@@ -1159,9 +1192,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button04.face.custom",
+        "command": "cliButtonDock.button04.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button04.0.svg",
+          "dark": "media/runtime-icons/button04.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button04.1.svg",
+          "dark": "media/runtime-icons/button04.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button05.face.brand_opencode",
@@ -1434,9 +1478,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button05.face.custom",
+        "command": "cliButtonDock.button05.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button05.0.svg",
+          "dark": "media/runtime-icons/button05.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button05.1.svg",
+          "dark": "media/runtime-icons/button05.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button06.face.brand_opencode",
@@ -1709,9 +1764,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button06.face.custom",
+        "command": "cliButtonDock.button06.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button06.0.svg",
+          "dark": "media/runtime-icons/button06.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button06.1.svg",
+          "dark": "media/runtime-icons/button06.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button07.face.brand_opencode",
@@ -1984,9 +2050,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button07.face.custom",
+        "command": "cliButtonDock.button07.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button07.0.svg",
+          "dark": "media/runtime-icons/button07.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button07.1.svg",
+          "dark": "media/runtime-icons/button07.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button08.face.brand_opencode",
@@ -2259,9 +2336,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button08.face.custom",
+        "command": "cliButtonDock.button08.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button08.0.svg",
+          "dark": "media/runtime-icons/button08.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button08.1.svg",
+          "dark": "media/runtime-icons/button08.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button09.face.brand_opencode",
@@ -2534,9 +2622,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button09.face.custom",
+        "command": "cliButtonDock.button09.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button09.0.svg",
+          "dark": "media/runtime-icons/button09.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button09.1.svg",
+          "dark": "media/runtime-icons/button09.1.svg"
+        }
       },
       {
         "command": "cliButtonDock.button10.face.brand_opencode",
@@ -2809,9 +2908,20 @@
         "icon": "$(refresh)"
       },
       {
-        "command": "cliButtonDock.button10.face.custom",
+        "command": "cliButtonDock.button10.face.custom0",
         "title": "Custom icon",
-        "icon": "$(image)"
+        "icon": {
+          "light": "media/runtime-icons/button10.0.svg",
+          "dark": "media/runtime-icons/button10.0.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.custom1",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button10.1.svg",
+          "dark": "media/runtime-icons/button10.1.svg"
+        }
       }
     ],
     "menus": {
@@ -2997,8 +3107,13 @@
           "group": "navigation@1"
         },
         {
-          "command": "cliButtonDock.button01.face.custom",
-          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01IconCustom",
+          "command": "cliButtonDock.button01.face.custom0",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01IconCustom && cliButtonDock.button01IconCustomSlot == 0",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.custom1",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01IconCustom && cliButtonDock.button01IconCustomSlot == 1",
           "group": "navigation@1"
         },
         {
@@ -3182,8 +3297,13 @@
           "group": "navigation@2"
         },
         {
-          "command": "cliButtonDock.button02.face.custom",
-          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02IconCustom",
+          "command": "cliButtonDock.button02.face.custom0",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02IconCustom && cliButtonDock.button02IconCustomSlot == 0",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.custom1",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02IconCustom && cliButtonDock.button02IconCustomSlot == 1",
           "group": "navigation@2"
         },
         {
@@ -3367,8 +3487,13 @@
           "group": "navigation@3"
         },
         {
-          "command": "cliButtonDock.button03.face.custom",
-          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03IconCustom",
+          "command": "cliButtonDock.button03.face.custom0",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03IconCustom && cliButtonDock.button03IconCustomSlot == 0",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.custom1",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03IconCustom && cliButtonDock.button03IconCustomSlot == 1",
           "group": "navigation@3"
         },
         {
@@ -3552,8 +3677,13 @@
           "group": "navigation@4"
         },
         {
-          "command": "cliButtonDock.button04.face.custom",
-          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04IconCustom",
+          "command": "cliButtonDock.button04.face.custom0",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04IconCustom && cliButtonDock.button04IconCustomSlot == 0",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.custom1",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04IconCustom && cliButtonDock.button04IconCustomSlot == 1",
           "group": "navigation@4"
         },
         {
@@ -3737,8 +3867,13 @@
           "group": "navigation@5"
         },
         {
-          "command": "cliButtonDock.button05.face.custom",
-          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05IconCustom",
+          "command": "cliButtonDock.button05.face.custom0",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05IconCustom && cliButtonDock.button05IconCustomSlot == 0",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.custom1",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05IconCustom && cliButtonDock.button05IconCustomSlot == 1",
           "group": "navigation@5"
         },
         {
@@ -3922,8 +4057,13 @@
           "group": "navigation@6"
         },
         {
-          "command": "cliButtonDock.button06.face.custom",
-          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06IconCustom",
+          "command": "cliButtonDock.button06.face.custom0",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06IconCustom && cliButtonDock.button06IconCustomSlot == 0",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.custom1",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06IconCustom && cliButtonDock.button06IconCustomSlot == 1",
           "group": "navigation@6"
         },
         {
@@ -4107,8 +4247,13 @@
           "group": "navigation@7"
         },
         {
-          "command": "cliButtonDock.button07.face.custom",
-          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07IconCustom",
+          "command": "cliButtonDock.button07.face.custom0",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07IconCustom && cliButtonDock.button07IconCustomSlot == 0",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.custom1",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07IconCustom && cliButtonDock.button07IconCustomSlot == 1",
           "group": "navigation@7"
         },
         {
@@ -4292,8 +4437,13 @@
           "group": "navigation@8"
         },
         {
-          "command": "cliButtonDock.button08.face.custom",
-          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08IconCustom",
+          "command": "cliButtonDock.button08.face.custom0",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08IconCustom && cliButtonDock.button08IconCustomSlot == 0",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.custom1",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08IconCustom && cliButtonDock.button08IconCustomSlot == 1",
           "group": "navigation@8"
         },
         {
@@ -4477,8 +4627,13 @@
           "group": "navigation@9"
         },
         {
-          "command": "cliButtonDock.button09.face.custom",
-          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09IconCustom",
+          "command": "cliButtonDock.button09.face.custom0",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09IconCustom && cliButtonDock.button09IconCustomSlot == 0",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.custom1",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09IconCustom && cliButtonDock.button09IconCustomSlot == 1",
           "group": "navigation@9"
         },
         {
@@ -4662,8 +4817,13 @@
           "group": "navigation@10"
         },
         {
-          "command": "cliButtonDock.button10.face.custom",
-          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10IconCustom",
+          "command": "cliButtonDock.button10.face.custom0",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10IconCustom && cliButtonDock.button10IconCustomSlot == 0",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.custom1",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10IconCustom && cliButtonDock.button10IconCustomSlot == 1",
           "group": "navigation@10"
         },
         {

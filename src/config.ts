@@ -19,13 +19,19 @@ export function loadButtons(): ButtonConfig[] {
   return BUTTON_IDS.map((id, index) => normalizeButton(getConfiguredEntry(entries, id), DEFAULT_BUTTONS[index], id))
 }
 
-export async function updateButtonContexts(buttons: ButtonConfig[]) {
+export async function updateButtonContexts(buttons: ButtonConfig[], customIconSlots?: Map<string, number>) {
   const updates = buttons.flatMap((button) => {
     const icon = normalizeIcon(button.icon)
+    const isCustom = isTitleBarCustomIcon(icon)
     return [
       vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Enabled`, button.enabled),
       vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Icon`, icon),
-      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}IconCustom`, isTitleBarCustomIcon(icon)),
+      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}IconCustom`, isCustom),
+      vscode.commands.executeCommand(
+        "setContext",
+        `cliButtonDock.button${button.id}IconCustomSlot`,
+        isCustom ? (customIconSlots?.get(button.id) ?? 0) : undefined,
+      ),
     ]
   })
   await Promise.all(updates)

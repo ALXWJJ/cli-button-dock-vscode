@@ -2,9 +2,10 @@ import * as crypto from "node:crypto"
 import * as fs from "node:fs"
 import * as path from "node:path"
 import * as vscode from "vscode"
-import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN } from "./constants"
+import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
 import { BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS, normalizeIcon } from "./presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
+import { isTitleBarCustomIcon, runtimeIconRelativePath } from "./title-bar"
 import type { BrandIconDefinition, EmojiIconDefinition } from "./types"
 
 export { isCustomIcon, sanitizeSvg, decodeDataImage }
@@ -100,6 +101,91 @@ async function prepareCustomIconBytes(icon: string): Promise<PreparedCustomIcon>
     return decodeDataImage(source)
   }
   return downloadCustomIcon(source)
+}
+
+export function customIconToTitleBarSvg(prepared: PreparedCustomIcon) {
+  if (prepared.extension === "svg") {
+    return sanitizeSvg(prepared.bytes.toString("utf8"))
+  }
+  const mime = prepared.extension === "jpg" ? "image/jpeg" : `image/${prepared.extension}`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><image width="24" height="24" href="data:${mime};base64,${prepared.bytes.toString("base64")}"/></svg>`
+}
+
+const TITLE_BAR_ICON_SLOTS_KEY = "titleBarCustomIconSlots"
+
+function loadTitleBarIconSlots(context: vscode.ExtensionContext) {
+  const stored = context.globalState.get<Record<string, number>>(TITLE_BAR_ICON_SLOTS_KEY) ?? {}
+  return new Map(Object.entries(stored))
+}
+
+async function saveTitleBarIconSlots(context: vscode.ExtensionContext, slots: Map<string, number>) {
+  await context.globalState.update(TITLE_BAR_ICON_SLOTS_KEY, Object.fromEntries(slots))
+}
+
+function readRuntimeIconSvg(extensionPath: string, buttonId: string, slot: number) {
+  try {
+    return fs.readFileSync(path.join(extensionPath, runtimeIconRelativePath(buttonId, slot)), "utf8")
+  } catch {
+    return ""
+  }
+}
+
+export async function syncTitleBarRuntimeIcon(
+  context: vscode.ExtensionContext,
+  buttonId: string,
+  icon: string,
+  slots: Map<string, number>,
+): Promise<number | undefined> {
+  const prepared = await prepareCustomIconBytes(icon)
+  validateCustomIconSize(prepared.bytes)
+  const svg = `${customIconToTitleBarSvg(prepared)}\n`
+  const currentSlot = slots.get(buttonId) ?? 0
+  const currentSvg = readRuntimeIconSvg(context.extensionPath, buttonId, currentSlot)
+  if (currentSvg === svg) {
+    return currentSlot
+  }
+
+  const nextSlot = (currentSlot + 1) % TITLE_BAR_RUNTIME_ICON_SLOTS
+  const absolutePath = path.join(context.extensionPath, runtimeIconRelativePath(buttonId, nextSlot))
+  fs.mkdirSync(path.dirname(absolutePath), { recursive: true })
+  fs.writeFileSync(absolutePath, svg)
+  slots.set(buttonId, nextSlot)
+  return nextSlot
+}
+
+export type TitleBarIconSyncResult = {
+  syncedCustomIds: Set<string>
+  customIconSlots: Map<string, number>
+  errors: Array<{ buttonId: string; message: string }>
+}
+
+export async function syncTitleBarRuntimeIcons(
+  context: vscode.ExtensionContext,
+  buttons: import("./types").ButtonConfig[],
+): Promise<TitleBarIconSyncResult> {
+  const syncedCustomIds = new Set<string>()
+  const customIconSlots = loadTitleBarIconSlots(context)
+  const errors: Array<{ buttonId: string; message: string }> = []
+
+  for (const button of buttons) {
+    const icon = normalizeIcon(button.icon)
+    if (!isTitleBarCustomIcon(icon)) {
+      continue
+    }
+    try {
+      const slot = await syncTitleBarRuntimeIcon(context, button.id, icon, customIconSlots)
+      if (slot !== undefined) {
+        syncedCustomIds.add(button.id)
+      }
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      errors.push({ buttonId: button.id, message })
+      console.warn(`[Cli Button Dock] Unable to sync title-bar icon for button ${button.id}`, error)
+    }
+  }
+
+  await saveTitleBarIconSlots(context, customIconSlots)
+  return { syncedCustomIds, customIconSlots, errors }
 }
 
 async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: string) {

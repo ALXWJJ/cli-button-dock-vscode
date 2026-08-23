@@ -1,15 +1,19 @@
 import * as fs from "node:fs"
 import * as path from "node:path"
-import { BUTTON_IDS } from "../src/constants"
+import { BUTTON_IDS, TITLE_BAR_RUNTIME_ICON_SLOTS } from "../src/constants"
 import {
+  createRuntimeIconPlaceholders,
+  customFaceCommandId,
   faceCommandId,
   getTitleBarIconIds,
   manifestIconEntry,
+  runtimeIconManifestEntry,
   titleForIcon,
 } from "../src/title-bar"
 
 const rootDir = path.join(import.meta.dir, "..")
 const manifestPath = path.join(rootDir, "package.json")
+createRuntimeIconPlaceholders(rootDir)
 
 type PackageJson = {
   contributes?: {
@@ -40,17 +44,19 @@ function buildFaceCommands() {
       })
     }
 
-    const customCommand = `cliButtonDock.button${buttonId}.face.custom`
-    commands.push({
-      command: customCommand,
-      title: "Custom icon",
-      icon: "$(image)",
-    })
-    titleMenus.push({
-      command: customCommand,
-      when: `cliButtonDock.button${buttonId}Enabled && cliButtonDock.button${buttonId}IconCustom`,
-      group,
-    })
+    for (let slot = 0; slot < TITLE_BAR_RUNTIME_ICON_SLOTS; slot++) {
+      const customCommand = customFaceCommandId(buttonId, slot)
+      commands.push({
+        command: customCommand,
+        title: "Custom icon",
+        icon: runtimeIconManifestEntry(buttonId, slot),
+      })
+      titleMenus.push({
+        command: customCommand,
+        when: `cliButtonDock.button${buttonId}Enabled && cliButtonDock.button${buttonId}IconCustom && cliButtonDock.button${buttonId}IconCustomSlot == ${slot}`,
+        group,
+      })
+    }
   }
 
   return { commands, titleMenus }
