@@ -24,8 +24,13 @@ Marketplace 底层仍是微软账号体系，但 **不用 dev.azure.com 的 PAT*
    - Repository：`cli-button-dock-vscode`  
    - Entity type：**Environment**  
    - Environment name：`marketplace`（须与 workflow 里 `environment: marketplace` 一致）  
-5. 保存后，联合主体应类似：  
-   `repo:ALXWJJ/cli-button-dock-vscode:environment:marketplace`
+5. 保存后，**Subject 必须与 GitHub 实际签发的完全一致**。本仓库（2026 年后创建）使用 **immutable subject**，应为：
+
+   ```
+   repo:ALXWJJ@19197666/cli-button-dock-vscode@1342811324:environment:marketplace
+   ```
+
+   不是旧格式的 `repo:ALXWJJ/cli-button-dock-vscode:environment:marketplace`。
 
 ## 第二步：GitHub Environment 变量
 
