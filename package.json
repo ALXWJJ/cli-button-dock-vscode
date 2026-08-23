@@ -64,7 +64,7 @@
         "title": "%command.addFilepathToTerminal%"
       },
       {
-        "command": "cliButtonDock.button01",
+        "command": "cliButtonDock.button01.face.brand_opencode",
         "title": "OpenCode",
         "icon": {
           "light": "media/brands/opencode.svg",
@@ -72,7 +72,7 @@
         }
       },
       {
-        "command": "cliButtonDock.button02",
+        "command": "cliButtonDock.button01.face.brand_codex",
         "title": "Codex",
         "icon": {
           "light": "media/brands/codex.svg",
@@ -80,7 +80,7 @@
         }
       },
       {
-        "command": "cliButtonDock.button03",
+        "command": "cliButtonDock.button01.face.brand_claude",
         "title": "Claude Code",
         "icon": {
           "light": "media/brands/claude.svg",
@@ -88,7 +88,7 @@
         }
       },
       {
-        "command": "cliButtonDock.button04",
+        "command": "cliButtonDock.button01.face.brand_gemini",
         "title": "Gemini CLI",
         "icon": {
           "light": "media/brands/gemini.svg",
@@ -96,7 +96,7 @@
         }
       },
       {
-        "command": "cliButtonDock.button05",
+        "command": "cliButtonDock.button01.face.brand_qwen",
         "title": "Qwen Code",
         "icon": {
           "light": "media/brands/qwen.svg",
@@ -104,81 +104,4596 @@
         }
       },
       {
-        "command": "cliButtonDock.button06",
-        "title": "Agent 06",
+        "command": "cliButtonDock.button01.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button01.face.terminal",
+        "title": "terminal",
         "icon": "$(terminal)"
       },
       {
-        "command": "cliButtonDock.button07",
-        "title": "Agent 07",
+        "command": "cliButtonDock.button01.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button01.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button01.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button01.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button01.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button01.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button01.svg",
+          "dark": "media/runtime-icons/button01.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button02.face.terminal",
+        "title": "terminal",
         "icon": "$(terminal)"
       },
       {
-        "command": "cliButtonDock.button08",
-        "title": "Agent 08",
+        "command": "cliButtonDock.button02.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button02.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button02.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button02.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button02.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button02.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button02.svg",
+          "dark": "media/runtime-icons/button02.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button03.face.terminal",
+        "title": "terminal",
         "icon": "$(terminal)"
       },
       {
-        "command": "cliButtonDock.button09",
-        "title": "Agent 09",
+        "command": "cliButtonDock.button03.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button03.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button03.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button03.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button03.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button03.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button03.svg",
+          "dark": "media/runtime-icons/button03.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button04.face.terminal",
+        "title": "terminal",
         "icon": "$(terminal)"
       },
       {
-        "command": "cliButtonDock.button10",
-        "title": "Agent 10",
+        "command": "cliButtonDock.button04.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button04.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button04.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button04.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button04.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button04.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button04.svg",
+          "dark": "media/runtime-icons/button04.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button05.face.terminal",
+        "title": "terminal",
         "icon": "$(terminal)"
+      },
+      {
+        "command": "cliButtonDock.button05.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button05.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button05.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button05.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button05.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button05.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button05.svg",
+          "dark": "media/runtime-icons/button05.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button06.face.terminal",
+        "title": "terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "cliButtonDock.button06.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button06.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button06.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button06.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button06.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button06.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button06.svg",
+          "dark": "media/runtime-icons/button06.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button07.face.terminal",
+        "title": "terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "cliButtonDock.button07.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button07.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button07.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button07.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button07.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button07.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button07.svg",
+          "dark": "media/runtime-icons/button07.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button08.face.terminal",
+        "title": "terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "cliButtonDock.button08.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button08.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button08.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button08.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button08.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button08.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button08.svg",
+          "dark": "media/runtime-icons/button08.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button09.face.terminal",
+        "title": "terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "cliButtonDock.button09.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button09.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button09.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button09.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button09.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button09.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button09.svg",
+          "dark": "media/runtime-icons/button09.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_opencode",
+        "title": "OpenCode",
+        "icon": {
+          "light": "media/brands/opencode.svg",
+          "dark": "media/brands/opencode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_codex",
+        "title": "Codex",
+        "icon": {
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_claude",
+        "title": "Claude Code",
+        "icon": {
+          "light": "media/brands/claude.svg",
+          "dark": "media/brands/claude.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_gemini",
+        "title": "Gemini CLI",
+        "icon": {
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_qwen",
+        "title": "Qwen Code",
+        "icon": {
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_pi",
+        "title": "Pi Agent",
+        "icon": {
+          "light": "media/brands/pi.svg",
+          "dark": "media/brands/pi.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_deepseek",
+        "title": "DeepSeek",
+        "icon": {
+          "light": "media/brands/deepseek.svg",
+          "dark": "media/brands/deepseek.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_zcode",
+        "title": "ZCode",
+        "icon": {
+          "light": "media/brands/zcode.svg",
+          "dark": "media/brands/zcode.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_kimi",
+        "title": "Kimi Code",
+        "icon": {
+          "light": "media/brands/kimi-light.svg",
+          "dark": "media/brands/kimi-dark.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_cursor",
+        "title": "Cursor",
+        "icon": {
+          "light": "media/brands/cursor.svg",
+          "dark": "media/brands/cursor.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_copilot",
+        "title": "Copilot",
+        "icon": {
+          "light": "media/brands/copilot.svg",
+          "dark": "media/brands/copilot.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_cline",
+        "title": "Cline",
+        "icon": {
+          "light": "media/brands/cline.svg",
+          "dark": "media/brands/cline.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_trae",
+        "title": "Trae",
+        "icon": {
+          "light": "media/brands/trae.svg",
+          "dark": "media/brands/trae.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_codebuddy",
+        "title": "CodeBuddy",
+        "icon": {
+          "light": "media/brands/codebuddy.svg",
+          "dark": "media/brands/codebuddy.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_openclaw",
+        "title": "OpenClaw",
+        "icon": {
+          "light": "media/brands/openclaw.svg",
+          "dark": "media/brands/openclaw.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_mimo",
+        "title": "MiMo Code",
+        "icon": {
+          "light": "media/brands/mimo.svg",
+          "dark": "media/brands/mimo.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_antigravity",
+        "title": "Antigravity",
+        "icon": {
+          "light": "media/brands/antigravity.svg",
+          "dark": "media/brands/antigravity.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.brand_minimax",
+        "title": "MiniMax",
+        "icon": {
+          "light": "media/brands/minimax.svg",
+          "dark": "media/brands/minimax.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f47b",
+        "title": "Ghost",
+        "icon": {
+          "light": "media/generated/emoji_1f47b.svg",
+          "dark": "media/generated/emoji_1f47b.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f431",
+        "title": "Cat",
+        "icon": {
+          "light": "media/generated/emoji_1f431.svg",
+          "dark": "media/generated/emoji_1f431.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f430",
+        "title": "Rabbit",
+        "icon": {
+          "light": "media/generated/emoji_1f430.svg",
+          "dark": "media/generated/emoji_1f430.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f43c",
+        "title": "Panda",
+        "icon": {
+          "light": "media/generated/emoji_1f43c.svg",
+          "dark": "media/generated/emoji_1f43c.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f98a",
+        "title": "Fox",
+        "icon": {
+          "light": "media/generated/emoji_1f98a.svg",
+          "dark": "media/generated/emoji_1f98a.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f428",
+        "title": "Koala",
+        "icon": {
+          "light": "media/generated/emoji_1f428.svg",
+          "dark": "media/generated/emoji_1f428.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f438",
+        "title": "Frog",
+        "icon": {
+          "light": "media/generated/emoji_1f438.svg",
+          "dark": "media/generated/emoji_1f438.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f419",
+        "title": "Octopus",
+        "icon": {
+          "light": "media/generated/emoji_1f419.svg",
+          "dark": "media/generated/emoji_1f419.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f425",
+        "title": "Chick",
+        "icon": {
+          "light": "media/generated/emoji_1f425.svg",
+          "dark": "media/generated/emoji_1f425.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f439",
+        "title": "Hamster",
+        "icon": {
+          "light": "media/generated/emoji_1f439.svg",
+          "dark": "media/generated/emoji_1f439.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f984",
+        "title": "Unicorn",
+        "icon": {
+          "light": "media/generated/emoji_1f984.svg",
+          "dark": "media/generated/emoji_1f984.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.emoji_1f9f8",
+        "title": "Teddy bear",
+        "icon": {
+          "light": "media/generated/emoji_1f9f8.svg",
+          "dark": "media/generated/emoji_1f9f8.svg"
+        }
+      },
+      {
+        "command": "cliButtonDock.button10.face.terminal",
+        "title": "terminal",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "cliButtonDock.button10.face.settings",
+        "title": "settings",
+        "icon": "$(settings)"
+      },
+      {
+        "command": "cliButtonDock.button10.face.debug_alt",
+        "title": "debug-alt",
+        "icon": "$(debug-alt)"
+      },
+      {
+        "command": "cliButtonDock.button10.face.play",
+        "title": "play",
+        "icon": "$(play)"
+      },
+      {
+        "command": "cliButtonDock.button10.face.add",
+        "title": "add",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cliButtonDock.button10.face.refresh",
+        "title": "refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "cliButtonDock.button10.face.custom",
+        "title": "Custom icon",
+        "icon": {
+          "light": "media/runtime-icons/button10.svg",
+          "dark": "media/runtime-icons/button10.svg"
+        }
       }
     ],
     "menus": {
       "editor/title": [
         {
-          "command": "cliButtonDock.button01",
-          "when": "cliButtonDock.button01Enabled",
+          "command": "cliButtonDock.button01.face.brand_opencode",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:opencode'",
           "group": "navigation@1"
         },
         {
-          "command": "cliButtonDock.button02",
-          "when": "cliButtonDock.button02Enabled",
+          "command": "cliButtonDock.button01.face.brand_codex",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:codex'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_claude",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:claude'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_gemini",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:gemini'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_qwen",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:qwen'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_pi",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:pi'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_deepseek",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:deepseek'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_zcode",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:zcode'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_kimi",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:kimi'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_cursor",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:cursor'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_copilot",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:copilot'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_cline",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:cline'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_trae",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:trae'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_codebuddy",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:codebuddy'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_openclaw",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:openclaw'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_mimo",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:mimo'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_antigravity",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:antigravity'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.brand_minimax",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'brand:minimax'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f47b",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:👻'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f431",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐱'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f430",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐰'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f43c",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐼'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f98a",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🦊'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f428",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐨'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f438",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐸'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f419",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐙'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f425",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐥'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f439",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🐹'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f984",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🦄'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.emoji_1f9f8",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'emoji:🧸'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.terminal",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'terminal'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.settings",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'settings'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.debug_alt",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'debug-alt'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.play",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'play'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.add",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'add'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.refresh",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01Icon == 'refresh'",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button01.face.custom",
+          "when": "cliButtonDock.button01Enabled && cliButtonDock.button01IconCustom",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_opencode",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:opencode'",
           "group": "navigation@2"
         },
         {
-          "command": "cliButtonDock.button03",
-          "when": "cliButtonDock.button03Enabled",
+          "command": "cliButtonDock.button02.face.brand_codex",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:codex'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_claude",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:claude'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_gemini",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:gemini'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_qwen",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:qwen'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_pi",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:pi'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_deepseek",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:deepseek'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_zcode",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:zcode'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_kimi",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:kimi'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_cursor",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:cursor'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_copilot",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:copilot'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_cline",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:cline'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_trae",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:trae'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_codebuddy",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:codebuddy'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_openclaw",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:openclaw'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_mimo",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:mimo'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_antigravity",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:antigravity'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.brand_minimax",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'brand:minimax'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f47b",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:👻'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f431",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐱'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f430",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐰'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f43c",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐼'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f98a",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🦊'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f428",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐨'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f438",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐸'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f419",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐙'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f425",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐥'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f439",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🐹'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f984",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🦄'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.emoji_1f9f8",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'emoji:🧸'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.terminal",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'terminal'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.settings",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'settings'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.debug_alt",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'debug-alt'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.play",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'play'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.add",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'add'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.refresh",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02Icon == 'refresh'",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button02.face.custom",
+          "when": "cliButtonDock.button02Enabled && cliButtonDock.button02IconCustom",
+          "group": "navigation@2"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_opencode",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:opencode'",
           "group": "navigation@3"
         },
         {
-          "command": "cliButtonDock.button04",
-          "when": "cliButtonDock.button04Enabled",
+          "command": "cliButtonDock.button03.face.brand_codex",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:codex'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_claude",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:claude'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_gemini",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:gemini'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_qwen",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:qwen'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_pi",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:pi'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_deepseek",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:deepseek'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_zcode",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:zcode'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_kimi",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:kimi'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_cursor",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:cursor'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_copilot",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:copilot'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_cline",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:cline'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_trae",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:trae'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_codebuddy",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:codebuddy'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_openclaw",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:openclaw'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_mimo",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:mimo'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_antigravity",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:antigravity'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.brand_minimax",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'brand:minimax'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f47b",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:👻'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f431",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐱'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f430",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐰'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f43c",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐼'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f98a",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🦊'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f428",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐨'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f438",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐸'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f419",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐙'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f425",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐥'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f439",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🐹'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f984",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🦄'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.emoji_1f9f8",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'emoji:🧸'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.terminal",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'terminal'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.settings",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'settings'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.debug_alt",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'debug-alt'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.play",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'play'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.add",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'add'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.refresh",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03Icon == 'refresh'",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button03.face.custom",
+          "when": "cliButtonDock.button03Enabled && cliButtonDock.button03IconCustom",
+          "group": "navigation@3"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_opencode",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:opencode'",
           "group": "navigation@4"
         },
         {
-          "command": "cliButtonDock.button05",
-          "when": "cliButtonDock.button05Enabled",
+          "command": "cliButtonDock.button04.face.brand_codex",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:codex'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_claude",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:claude'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_gemini",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:gemini'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_qwen",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:qwen'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_pi",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:pi'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_deepseek",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:deepseek'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_zcode",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:zcode'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_kimi",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:kimi'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_cursor",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:cursor'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_copilot",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:copilot'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_cline",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:cline'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_trae",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:trae'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_codebuddy",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:codebuddy'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_openclaw",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:openclaw'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_mimo",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:mimo'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_antigravity",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:antigravity'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.brand_minimax",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'brand:minimax'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f47b",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:👻'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f431",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐱'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f430",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐰'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f43c",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐼'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f98a",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🦊'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f428",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐨'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f438",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐸'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f419",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐙'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f425",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐥'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f439",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🐹'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f984",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🦄'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.emoji_1f9f8",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'emoji:🧸'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.terminal",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'terminal'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.settings",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'settings'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.debug_alt",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'debug-alt'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.play",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'play'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.add",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'add'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.refresh",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04Icon == 'refresh'",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button04.face.custom",
+          "when": "cliButtonDock.button04Enabled && cliButtonDock.button04IconCustom",
+          "group": "navigation@4"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_opencode",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:opencode'",
           "group": "navigation@5"
         },
         {
-          "command": "cliButtonDock.button06",
-          "when": "cliButtonDock.button06Enabled",
+          "command": "cliButtonDock.button05.face.brand_codex",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:codex'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_claude",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:claude'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_gemini",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:gemini'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_qwen",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:qwen'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_pi",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:pi'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_deepseek",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:deepseek'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_zcode",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:zcode'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_kimi",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:kimi'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_cursor",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:cursor'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_copilot",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:copilot'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_cline",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:cline'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_trae",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:trae'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_codebuddy",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:codebuddy'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_openclaw",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:openclaw'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_mimo",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:mimo'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_antigravity",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:antigravity'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.brand_minimax",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'brand:minimax'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f47b",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:👻'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f431",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐱'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f430",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐰'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f43c",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐼'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f98a",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🦊'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f428",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐨'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f438",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐸'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f419",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐙'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f425",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐥'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f439",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🐹'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f984",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🦄'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.emoji_1f9f8",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'emoji:🧸'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.terminal",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'terminal'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.settings",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'settings'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.debug_alt",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'debug-alt'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.play",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'play'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.add",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'add'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.refresh",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05Icon == 'refresh'",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button05.face.custom",
+          "when": "cliButtonDock.button05Enabled && cliButtonDock.button05IconCustom",
+          "group": "navigation@5"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_opencode",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:opencode'",
           "group": "navigation@6"
         },
         {
-          "command": "cliButtonDock.button07",
-          "when": "cliButtonDock.button07Enabled",
+          "command": "cliButtonDock.button06.face.brand_codex",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:codex'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_claude",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:claude'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_gemini",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:gemini'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_qwen",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:qwen'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_pi",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:pi'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_deepseek",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:deepseek'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_zcode",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:zcode'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_kimi",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:kimi'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_cursor",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:cursor'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_copilot",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:copilot'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_cline",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:cline'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_trae",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:trae'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_codebuddy",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:codebuddy'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_openclaw",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:openclaw'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_mimo",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:mimo'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_antigravity",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:antigravity'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.brand_minimax",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'brand:minimax'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f47b",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:👻'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f431",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐱'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f430",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐰'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f43c",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐼'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f98a",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🦊'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f428",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐨'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f438",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐸'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f419",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐙'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f425",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐥'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f439",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🐹'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f984",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🦄'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.emoji_1f9f8",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'emoji:🧸'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.terminal",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'terminal'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.settings",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'settings'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.debug_alt",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'debug-alt'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.play",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'play'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.add",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'add'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.refresh",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06Icon == 'refresh'",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button06.face.custom",
+          "when": "cliButtonDock.button06Enabled && cliButtonDock.button06IconCustom",
+          "group": "navigation@6"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_opencode",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:opencode'",
           "group": "navigation@7"
         },
         {
-          "command": "cliButtonDock.button08",
-          "when": "cliButtonDock.button08Enabled",
+          "command": "cliButtonDock.button07.face.brand_codex",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:codex'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_claude",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:claude'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_gemini",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:gemini'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_qwen",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:qwen'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_pi",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:pi'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_deepseek",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:deepseek'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_zcode",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:zcode'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_kimi",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:kimi'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_cursor",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:cursor'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_copilot",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:copilot'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_cline",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:cline'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_trae",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:trae'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_codebuddy",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:codebuddy'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_openclaw",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:openclaw'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_mimo",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:mimo'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_antigravity",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:antigravity'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.brand_minimax",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'brand:minimax'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f47b",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:👻'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f431",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐱'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f430",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐰'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f43c",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐼'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f98a",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🦊'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f428",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐨'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f438",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐸'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f419",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐙'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f425",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐥'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f439",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🐹'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f984",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🦄'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.emoji_1f9f8",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'emoji:🧸'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.terminal",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'terminal'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.settings",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'settings'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.debug_alt",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'debug-alt'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.play",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'play'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.add",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'add'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.refresh",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07Icon == 'refresh'",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button07.face.custom",
+          "when": "cliButtonDock.button07Enabled && cliButtonDock.button07IconCustom",
+          "group": "navigation@7"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_opencode",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:opencode'",
           "group": "navigation@8"
         },
         {
-          "command": "cliButtonDock.button09",
-          "when": "cliButtonDock.button09Enabled",
+          "command": "cliButtonDock.button08.face.brand_codex",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:codex'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_claude",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:claude'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_gemini",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:gemini'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_qwen",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:qwen'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_pi",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:pi'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_deepseek",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:deepseek'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_zcode",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:zcode'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_kimi",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:kimi'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_cursor",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:cursor'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_copilot",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:copilot'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_cline",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:cline'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_trae",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:trae'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_codebuddy",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:codebuddy'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_openclaw",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:openclaw'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_mimo",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:mimo'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_antigravity",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:antigravity'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.brand_minimax",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'brand:minimax'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f47b",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:👻'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f431",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐱'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f430",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐰'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f43c",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐼'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f98a",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🦊'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f428",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐨'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f438",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐸'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f419",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐙'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f425",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐥'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f439",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🐹'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f984",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🦄'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.emoji_1f9f8",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'emoji:🧸'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.terminal",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'terminal'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.settings",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'settings'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.debug_alt",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'debug-alt'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.play",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'play'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.add",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'add'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.refresh",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08Icon == 'refresh'",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button08.face.custom",
+          "when": "cliButtonDock.button08Enabled && cliButtonDock.button08IconCustom",
+          "group": "navigation@8"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_opencode",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:opencode'",
           "group": "navigation@9"
         },
         {
-          "command": "cliButtonDock.button10",
-          "when": "cliButtonDock.button10Enabled",
+          "command": "cliButtonDock.button09.face.brand_codex",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:codex'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_claude",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:claude'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_gemini",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:gemini'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_qwen",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:qwen'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_pi",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:pi'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_deepseek",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:deepseek'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_zcode",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:zcode'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_kimi",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:kimi'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_cursor",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:cursor'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_copilot",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:copilot'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_cline",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:cline'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_trae",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:trae'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_codebuddy",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:codebuddy'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_openclaw",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:openclaw'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_mimo",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:mimo'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_antigravity",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:antigravity'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.brand_minimax",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'brand:minimax'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f47b",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:👻'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f431",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐱'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f430",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐰'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f43c",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐼'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f98a",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🦊'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f428",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐨'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f438",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐸'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f419",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐙'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f425",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐥'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f439",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🐹'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f984",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🦄'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.emoji_1f9f8",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'emoji:🧸'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.terminal",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'terminal'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.settings",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'settings'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.debug_alt",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'debug-alt'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.play",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'play'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.add",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'add'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.refresh",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09Icon == 'refresh'",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button09.face.custom",
+          "when": "cliButtonDock.button09Enabled && cliButtonDock.button09IconCustom",
+          "group": "navigation@9"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_opencode",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:opencode'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_codex",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:codex'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_claude",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:claude'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_gemini",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:gemini'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_qwen",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:qwen'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_pi",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:pi'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_deepseek",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:deepseek'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_zcode",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:zcode'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_kimi",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:kimi'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_cursor",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:cursor'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_copilot",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:copilot'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_cline",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:cline'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_trae",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:trae'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_codebuddy",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:codebuddy'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_openclaw",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:openclaw'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_mimo",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:mimo'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_antigravity",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:antigravity'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.brand_minimax",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'brand:minimax'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f47b",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:👻'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f431",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐱'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f430",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐰'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f43c",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐼'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f98a",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🦊'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f428",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐨'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f438",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐸'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f419",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐙'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f425",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐥'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f439",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🐹'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f984",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🦄'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.emoji_1f9f8",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'emoji:🧸'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.terminal",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'terminal'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.settings",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'settings'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.debug_alt",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'debug-alt'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.play",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'play'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.add",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'add'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.refresh",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10Icon == 'refresh'",
+          "group": "navigation@10"
+        },
+        {
+          "command": "cliButtonDock.button10.face.custom",
+          "when": "cliButtonDock.button10Enabled && cliButtonDock.button10IconCustom",
           "group": "navigation@10"
         },
         {
@@ -218,18 +4733,41 @@
           "default": [],
           "items": {
             "type": "object",
-            "required": ["id", "enabled", "label", "icon", "command"],
+            "required": [
+              "id",
+              "enabled",
+              "label",
+              "icon",
+              "command"
+            ],
             "properties": {
-              "id": { "type": "string" },
-              "enabled": { "type": "boolean" },
-              "preset": { "type": "string" },
-              "label": { "type": "string" },
+              "id": {
+                "type": "string"
+              },
+              "enabled": {
+                "type": "boolean"
+              },
+              "preset": {
+                "type": "string"
+              },
+              "label": {
+                "type": "string"
+              },
               "icon": {
                 "type": "string",
                 "description": "Emoji or brand icon id, inline SVG, data image URI, or HTTPS image URL. Custom images are cached locally."
               },
-              "command": { "type": "string" },
-              "cwd": { "type": "string", "enum": ["current", "workspace", "file"] }
+              "command": {
+                "type": "string"
+              },
+              "cwd": {
+                "type": "string",
+                "enum": [
+                  "current",
+                  "workspace",
+                  "file"
+                ]
+              }
             },
             "additionalProperties": true
           }
@@ -243,7 +4781,8 @@
     "compile": "bun run check && node esbuild.js",
     "watch:esbuild": "node esbuild.js --watch",
     "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "bun run check && node esbuild.js --production",
+    "sync-contributes": "bun run scripts/sync-package-contributes.ts",
+    "package": "bun run check && bun run sync-contributes && node esbuild.js --production",
     "check-types": "tsc --noEmit",
     "lint": "eslint src test",
     "test": "bun test test",

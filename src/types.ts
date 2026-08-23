@@ -38,4 +38,6 @@ export type ActiveContext = {
   lineEnd?: string
 }
 
-export type SaveButtons = (buttons: ButtonConfig[]) => Promise<void>
+export type ConfiguratorHandlers = {
+  apply: (buttons: ButtonConfig[]) => Promise<void>
+}

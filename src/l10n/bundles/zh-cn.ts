@@ -39,8 +39,10 @@ export const zhCnBundle: LocaleBundle = {
     customUrlApplyError: "请输入有效的 HTTPS 图片链接或 data:image/...。",
     pickIconPrefix: "选择图标：",
     customIconName: "自定义图标",
-    savedMessage: "已保存；重载窗口后更新右上角按钮",
+    savedMessage: "已保存，标题栏按钮已更新",
     resetMessage: "已恢复默认配置",
+    customIconHint: "自定义图标需重载窗口后更新标题栏",
+    reloadFailed: "无法重载窗口",
   },
   emojiNames: {
     "emoji:👻": "幽灵",
@@ -60,5 +62,8 @@ export const zhCnBundle: LocaleBundle = {
     manifestChanged: "Cli Button Dock 按钮外观已变更，请重载窗口以应用。",
     manifestMetadataChanged: "Cli Button Dock 按钮元数据已变更，请重载窗口以应用。",
     configureCommandFirst: "请先为 {label} 配置命令。",
+    customIconSaved: "自定义图标已保存。标题栏需重载窗口后才会更新；重载会结束当前终端里的 CLI 进程，请在方便时再操作。",
+    customIconSyncFailed: "按钮 {buttonId} 的自定义图标无法写入标题栏：{detail}",
+    reloadWindowLabel: "重载窗口",
   },
 }

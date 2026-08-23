@@ -30,6 +30,18 @@ export function tConfigureCommandFirst(label: string, language = getLanguage()) 
   return formatMessage(getLocaleBundle(language).messages.configureCommandFirst, { label })
 }
 
+export function tCustomIconSaved(language = getLanguage()) {
+  return getLocaleBundle(language).messages.customIconSaved
+}
+
+export function tReloadWindowLabel(language = getLanguage()) {
+  return getLocaleBundle(language).messages.reloadWindowLabel
+}
+
+export function tCustomIconSyncFailed(buttonId: string, detail: string, language = getLanguage()) {
+  return formatMessage(getLocaleBundle(language).messages.customIconSyncFailed, { buttonId, detail })
+}
+
 export { SUPPORTED_LOCALES } from "./types"
 export { normalizeLocale } from "./resolve"
 export { getLocaleBundle } from "./registry"

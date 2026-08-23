@@ -39,8 +39,10 @@ export const enBundle: LocaleBundle = {
     customUrlApplyError: "Enter a valid HTTPS image URL or data:image/... value.",
     pickIconPrefix: "Pick icon: ",
     customIconName: "Custom icon",
-    savedMessage: "Saved. Reload the window to update title-bar buttons.",
+    savedMessage: "Saved. Title-bar buttons updated.",
     resetMessage: "Defaults restored.",
+    customIconHint: "Reload the window to update custom icons in the title bar.",
+    reloadFailed: "Unable to reload the window",
   },
   emojiNames: {
     "emoji:👻": "Ghost",
@@ -60,5 +62,8 @@ export const enBundle: LocaleBundle = {
     manifestChanged: "Cli Button Dock button appearance changed. Reload the window to apply it.",
     manifestMetadataChanged: "Cli Button Dock button metadata changed. Reload the window to apply it.",
     configureCommandFirst: "Configure a command for {label} first.",
+    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
+    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
+    reloadWindowLabel: "Reload Window",
   },
 }

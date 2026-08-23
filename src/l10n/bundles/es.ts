@@ -41,6 +41,8 @@ export const esBundle: LocaleBundle = {
     customIconName: "Icono personalizado",
     savedMessage: "Guardado. Recargue la ventana para actualizar los botones de la barra de título.",
     resetMessage: "Valores predeterminados restaurados.",
+    customIconHint: "Reload the window to update custom icons in the title bar.",
+    reloadFailed: "No se pudo recargar la ventana",
   },
   emojiNames: {
     "emoji:👻": "Fantasma",
@@ -60,5 +62,8 @@ export const esBundle: LocaleBundle = {
     manifestChanged: "El aspecto de los botones de Cli Button Dock ha cambiado. Recargue la ventana.",
     manifestMetadataChanged: "Los metadatos de los botones de Cli Button Dock han cambiado. Recargue la ventana.",
     configureCommandFirst: "Configure primero un comando para {label}.",
+    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
+    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
+    reloadWindowLabel: "Reload Window",
   },
 }

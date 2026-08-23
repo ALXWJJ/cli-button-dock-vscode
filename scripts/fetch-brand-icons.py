@@ -104,9 +104,38 @@ def remove_stale_assets(stem: str) -> None:
             os.remove(os.path.join(BRANDS, name))
 
 
+# Hand-maintained composite icons (not overwritten by fetch).
+CUSTOM_BRAND_ASSETS = {"mimo"}
+
+# Local stems whose Lobe *-color.svg uses light glyphs on transparency (needs square avatar bg).
+SQUARE_AVATAR_BACKGROUNDS: dict[str, dict[str, str]] = {
+    "kimi": {"light": "#000000", "dark": "#1783FF"},
+}
+
+
+def wrap_square_avatar(svg: str, background: str) -> str:
+    rect = f'<rect width="24" height="24" rx="5.5" fill="{background}"/>'
+    if rect in svg:
+        return svg
+    marker = "</title>"
+    if marker in svg:
+        return svg.replace(marker, f"{marker}{rect}", 1)
+    return svg.replace("<svg", f"<svg", 1).replace(">", f">{rect}", 1)
+
+
+def save_square_avatar_assets(stem: str, color_svg: bytes, backgrounds: dict[str, str]) -> None:
+    text = color_svg.decode("utf-8")
+    for theme, background in backgrounds.items():
+        wrapped = wrap_square_avatar(text, background)
+        save(os.path.join(BRANDS, f"{stem}-{theme}.svg"), wrapped.encode("utf-8"))
+
+
 def try_save_color_from_slug(stem: str, slug: str) -> bool:
     color_svg = try_fetch(f"{LOBE_SVG}/{slug}-color.svg")
     if color_svg:
+        if stem in SQUARE_AVATAR_BACKGROUNDS:
+            save_square_avatar_assets(stem, color_svg, SQUARE_AVATAR_BACKGROUNDS[stem])
+            return True
         save(os.path.join(BRANDS, f"{stem}.svg"), color_svg)
         return True
 
@@ -136,6 +165,9 @@ def save_mono_asset(stem: str, slug: str, toc: dict[str, dict]) -> None:
 
 
 def save_brand_asset(stem: str, slug: str, toc: dict[str, dict]) -> None:
+    if stem in CUSTOM_BRAND_ASSETS:
+        return
+
     remove_stale_assets(stem)
 
     if try_save_color_from_slug(stem, slug):

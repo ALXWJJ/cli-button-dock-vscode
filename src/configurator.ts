@@ -5,12 +5,12 @@ import { SLOT_EMOJIS } from "./constants"
 import { getBrandAssetPath, getExtensionAssetUriForWebview } from "./icons"
 import { getConfiguratorStrings, getEmojiDisplayName, getLanguage } from "./l10n"
 import { AGENT_PRESETS, BRAND_ICON_OPTIONS, DEFAULT_BUTTONS, EMOJI_ICON_OPTIONS } from "./presets"
-import type { ButtonConfig, SaveButtons } from "./types"
+import type { ButtonConfig, ConfiguratorHandlers } from "./types"
 
 export function openConfigurator(
   context: vscode.ExtensionContext,
   initialButtons: ButtonConfig[],
-  saveButtons: SaveButtons,
+  handlers: ConfiguratorHandlers,
 ) {
   const language = getLanguage()
   const strings = getConfiguratorStrings(language)
@@ -44,17 +44,12 @@ export function openConfigurator(
       return
     }
     const data = message as { type?: string; buttons?: unknown }
-    if (data.type === "save") {
+    if (data.type === "update") {
       const nextButtons = normalizeButtons(data.buttons)
-      await saveButtons(nextButtons)
-      panel.webview.postMessage({ type: "saved", buttons: nextButtons })
-    } else if (data.type === "saveAndReload") {
-      const nextButtons = normalizeButtons(data.buttons)
-      await saveButtons(nextButtons)
-      await vscode.commands.executeCommand("workbench.action.reloadWindow")
+      await handlers.apply(nextButtons)
     } else if (data.type === "reset") {
       const nextButtons = DEFAULT_BUTTONS.map((button) => ({ ...button }))
-      await saveButtons(nextButtons)
+      await handlers.apply(nextButtons)
       panel.webview.postMessage({ type: "config", buttons: nextButtons })
     } else if (data.type === "openAdvanced") {
       await vscode.commands.executeCommand("workbench.action.openSettingsJson")
@@ -102,7 +97,7 @@ function getConfiguratorHtml(
 <html lang="${strings.htmlLang}">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} https: data:; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} http: https: data:; style-src 'unsafe-inline' ${webview.cspSource}; font-src ${webview.cspSource}; script-src 'nonce-${nonce}';" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${strings.title}</title>
   <style>
@@ -112,7 +107,10 @@ function getConfiguratorHtml(
     .toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 12px; position: sticky; top: 0; padding: 8px 0; background: var(--vscode-editor-background); z-index: 2; }
     button { color: var(--vscode-button-foreground); background: var(--vscode-button-background); border: 0; padding: 7px 14px; cursor: pointer; border-radius: 2px; }
     button:hover { background: var(--vscode-button-hoverBackground); }
-    #message { color: var(--vscode-testing-iconPassed); min-height: 20px; margin-left: 8px; flex: 1 1 180px; }
+    #message { min-height: 20px; margin-left: 8px; flex: 1 1 180px; font-size: 12px; line-height: 1.4; color: var(--vscode-descriptionForeground); }
+    #message.is-error { color: var(--vscode-errorForeground); }
+    .toolbar-hint { color: var(--vscode-descriptionForeground); font-size: 12px; line-height: 1.4; margin-left: 4px; }
+    .toolbar-hint[hidden] { display: none; }
     .table-head, .button-row { display: grid; grid-template-columns: 34px 52px minmax(150px, 0.9fr) minmax(150px, 0.9fr) 150px minmax(240px, 1.4fr); gap: 10px; align-items: center; }
     .table-head { color: var(--vscode-descriptionForeground); font-size: 12px; padding: 0 12px 6px; }
     .button-row { border: 1px solid var(--vscode-panel-border); padding: 9px 12px; margin: 6px 0; border-radius: 4px; }
@@ -159,10 +157,9 @@ function getConfiguratorHtml(
 <body>
   <h1>${strings.title}</h1>
   <div class="toolbar">
-    <button id="save">${strings.save}</button>
-    <button id="saveAndReload">${strings.saveAndReload}</button>
     <button id="reset">${strings.reset}</button>
     <button id="advanced">${strings.advanced}</button>
+    <span id="customIconHint" class="toolbar-hint" hidden>${strings.customIconHint}</span>
     <span id="message"></span>
   </div>
   <div class="table-head"><span>${strings.colEnabled}</span><span>${strings.colSlot}</span><span>${strings.colPreset}</span><span>${strings.colLabel}</span><span>${strings.colIcon}</span><span>${strings.colCommand}</span></div>
@@ -182,6 +179,18 @@ function getConfiguratorHtml(
     };
     const app = document.getElementById('app');
     const message = document.getElementById('message');
+    const customIconHint = document.getElementById('customIconHint');
+
+    function isCustomImage(value) {
+      const raw = String(value || '').trim();
+      const lower = raw.toLowerCase();
+      return lower.startsWith('http://') || lower.startsWith('https://') || lower.startsWith('data:image/') || lower.startsWith('<svg') || (lower.startsWith('<?xml') && lower.includes('<svg'));
+    }
+
+    function updateCustomIconHint() {
+      if (!customIconHint) return;
+      customIconHint.hidden = !state.some((button) => isCustomImage(button.icon));
+    }
 
     function isDarkTheme() {
       return themeKind === 2 || themeKind === 3;
@@ -221,12 +230,6 @@ function getConfiguratorHtml(
       const raw = String(value || '').trim();
       const match = raw.match(/^\\$\\(([^)]+)\\)$/);
       return (match ? match[1] : raw) || 'terminal';
-    }
-
-    function isCustomImage(value) {
-      const raw = String(value || '').trim();
-      const lower = raw.toLowerCase();
-      return lower.startsWith('https://') || lower.startsWith('data:image/') || lower.startsWith('<svg') || (lower.startsWith('<?xml') && lower.includes('<svg'));
     }
 
     function customImageSource(value) {
@@ -577,7 +580,10 @@ function getConfiguratorHtml(
         const presetOptions = [{ value: 'custom', label: strings.presetCustom }].concat(presets.map((preset) => ({ value: preset.id, label: preset.name })));
         const preset = selectInput('preset', presetOptions, getPresetId(button));
         const label = textInput('label', button.label, strings.labelPlaceholder);
-        const iconPicker = createIconPicker(button.icon, (value) => { button.icon = value; });
+        const iconPicker = createIconPicker(button.icon, (value) => {
+          button.icon = value;
+          saveNow();
+        });
         iconPickers.push(iconPicker);
         const command = textInput('command', button.command, strings.commandPlaceholder);
         command.spellcheck = false;
@@ -586,7 +592,10 @@ function getConfiguratorHtml(
         preset.addEventListener('change', () => {
           const selected = presets.find((item) => item.id === preset.value);
           button.preset = preset.value || 'custom';
-          if (!selected) return;
+          if (!selected) {
+            saveNow();
+            return;
+          }
           button.label = selected.label;
           button.icon = selected.icon;
           button.command = selected.command;
@@ -594,12 +603,23 @@ function getConfiguratorHtml(
           label.value = selected.label;
           iconPicker.setValue(selected.icon);
           command.value = selected.command;
+          saveNow();
         });
-        enabled.addEventListener('change', () => { button.enabled = enabled.checked; });
-        label.addEventListener('input', () => { button.label = label.value; });
-        command.addEventListener('input', () => { button.command = command.value; });
+        enabled.addEventListener('change', () => {
+          button.enabled = enabled.checked;
+          saveNow();
+        });
+        label.addEventListener('input', () => {
+          button.label = label.value;
+          scheduleSave();
+        });
+        command.addEventListener('input', () => {
+          button.command = command.value;
+          scheduleSave();
+        });
         app.append(row);
       });
+      updateCustomIconHint();
     }
 
     document.addEventListener('click', (event) => {
@@ -611,13 +631,33 @@ function getConfiguratorHtml(
       document.querySelectorAll('.custom-icon-editor').forEach((item) => { item.hidden = true; });
     });
 
-    function postSave(type) {
+    let saveTimer = null;
+
+    function postUpdate() {
       const next = state.map((button) => ({ ...button }));
-      vscode.postMessage({ type, buttons: next });
+      vscode.postMessage({ type: 'update', buttons: next });
     }
 
-    document.getElementById('save').addEventListener('click', () => postSave('save'));
-    document.getElementById('saveAndReload').addEventListener('click', () => postSave('saveAndReload'));
+    function saveNow() {
+      if (saveTimer) {
+        clearTimeout(saveTimer);
+        saveTimer = null;
+      }
+      updateCustomIconHint();
+      postUpdate();
+    }
+
+    function scheduleSave() {
+      if (saveTimer) {
+        clearTimeout(saveTimer);
+      }
+      saveTimer = setTimeout(() => {
+        saveTimer = null;
+        updateCustomIconHint();
+        postUpdate();
+      }, 300);
+    }
+
     document.getElementById('reset').addEventListener('click', () => vscode.postMessage({ type: 'reset' }));
     document.getElementById('advanced').addEventListener('click', () => vscode.postMessage({ type: 'openAdvanced' }));
     window.addEventListener('message', (event) => {
@@ -631,10 +671,10 @@ function getConfiguratorHtml(
         state = data.buttons;
         render();
         message.textContent = strings.resetMessage;
-      } else if (data.type === 'saved') {
-        state = data.buttons || state;
-        render();
-        message.textContent = strings.savedMessage;
+        message.classList.remove('is-error');
+      } else if (data.type === 'error') {
+        message.textContent = data.message || strings.customIconApplyError;
+        message.classList.add('is-error');
       }
     });
     render();

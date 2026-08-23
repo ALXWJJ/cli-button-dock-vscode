@@ -5,6 +5,7 @@ import * as vscode from "vscode"
 import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN } from "./constants"
 import { BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS, normalizeIcon } from "./presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
+import { isTitleBarCustomIcon, runtimeIconRelativePath } from "./title-bar"
 import type { BrandIconDefinition, EmojiIconDefinition } from "./types"
 
 export { isCustomIcon, sanitizeSvg, decodeDataImage }
@@ -60,16 +61,16 @@ function validateCustomIconSize(bytes: Buffer) {
 
 async function downloadCustomIcon(value: string): Promise<PreparedCustomIcon> {
   const url = new URL(value)
-  if (url.protocol !== "https:") {
-    throw new Error("Custom image links must use HTTPS.")
+  if (url.protocol !== "https:" && url.protocol !== "http:") {
+    throw new Error("Custom image links must use HTTP or HTTPS.")
   }
 
   const response = await fetch(url, { signal: AbortSignal.timeout(10_000) })
   if (!response.ok) {
     throw new Error(`The custom image link returned HTTP ${response.status}.`)
   }
-  if (new URL(response.url).protocol !== "https:") {
-    throw new Error("Custom image links cannot redirect to HTTP.")
+  if (url.protocol === "https:" && new URL(response.url).protocol !== "https:") {
+    throw new Error("HTTPS image links cannot redirect to HTTP.")
   }
 
   const contentLength = Number(response.headers.get("content-length"))
@@ -91,6 +92,80 @@ async function downloadCustomIcon(value: string): Promise<PreparedCustomIcon> {
   return { bytes, extension }
 }
 
+async function prepareCustomIconBytes(icon: string): Promise<PreparedCustomIcon> {
+  const source = icon.trim()
+  if (INLINE_SVG_PATTERN.test(source)) {
+    return { bytes: Buffer.from(sanitizeSvg(source), "utf8"), extension: "svg" }
+  }
+  if (/^data:image\//i.test(source)) {
+    return decodeDataImage(source)
+  }
+  return downloadCustomIcon(source)
+}
+
+export function customIconToTitleBarSvg(prepared: PreparedCustomIcon) {
+  if (prepared.extension === "svg") {
+    return sanitizeSvg(prepared.bytes.toString("utf8"))
+  }
+  const mime = prepared.extension === "jpg" ? "image/jpeg" : `image/${prepared.extension}`
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><image width="24" height="24" href="data:${mime};base64,${prepared.bytes.toString("base64")}"/></svg>`
+}
+
+export async function syncTitleBarRuntimeIcon(
+  context: vscode.ExtensionContext,
+  buttonId: string,
+  icon: string,
+): Promise<boolean> {
+  const prepared = await prepareCustomIconBytes(icon)
+  validateCustomIconSize(prepared.bytes)
+  const svg = `${customIconToTitleBarSvg(prepared)}\n`
+  const relativePath = runtimeIconRelativePath(buttonId)
+  const absolutePath = path.join(context.extensionPath, relativePath)
+  fs.mkdirSync(path.dirname(absolutePath), { recursive: true })
+
+  let previous = ""
+  try {
+    previous = fs.readFileSync(absolutePath, "utf8")
+  } catch {
+    // placeholder or first write
+  }
+  if (previous === svg) {
+    return false
+  }
+  fs.writeFileSync(absolutePath, svg)
+  return true
+}
+
+export type TitleBarIconSyncResult = {
+  syncedCustomIds: Set<string>
+  errors: Array<{ buttonId: string; message: string }>
+}
+
+export async function syncTitleBarRuntimeIcons(
+  context: vscode.ExtensionContext,
+  buttons: import("./types").ButtonConfig[],
+): Promise<TitleBarIconSyncResult> {
+  const syncedCustomIds = new Set<string>()
+  const errors: Array<{ buttonId: string; message: string }> = []
+
+  for (const button of buttons) {
+    const icon = normalizeIcon(button.icon)
+    if (!isTitleBarCustomIcon(icon)) {
+      continue
+    }
+    try {
+      await syncTitleBarRuntimeIcon(context, button.id, icon)
+      syncedCustomIds.add(button.id)
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error)
+      errors.push({ buttonId: button.id, message })
+      console.warn(`[Cli Button Dock] Unable to sync title-bar icon for button ${button.id}`, error)
+    }
+  }
+
+  return { syncedCustomIds, errors }
+}
+
 async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: string) {
   const source = icon.trim()
   const cacheKey = getCustomIconCacheKey(source)
@@ -100,15 +175,7 @@ async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: str
     return cachedPath
   }
 
-  let prepared: PreparedCustomIcon
-  if (INLINE_SVG_PATTERN.test(source)) {
-    prepared = { bytes: Buffer.from(sanitizeSvg(source), "utf8"), extension: "svg" }
-  } else if (/^data:image\//i.test(source)) {
-    prepared = decodeDataImage(source)
-  } else {
-    prepared = await downloadCustomIcon(source)
-  }
-
+  const prepared = await prepareCustomIconBytes(source)
   validateCustomIconSize(prepared.bytes)
   fs.mkdirSync(directory, { recursive: true })
   const fileName = `${cacheKey}.${prepared.extension}`

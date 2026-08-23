@@ -41,6 +41,8 @@ export const deBundle: LocaleBundle = {
     customIconName: "Benutzerdefiniertes Icon",
     savedMessage: "Gespeichert. Laden Sie das Fenster neu, um Titelleisten-Schaltflächen zu aktualisieren.",
     resetMessage: "Standardwerte wiederhergestellt.",
+    customIconHint: "Reload the window to update custom icons in the title bar.",
+    reloadFailed: "Fenster konnte nicht neu geladen werden",
   },
   emojiNames: {
     "emoji:👻": "Geist",
@@ -60,5 +62,8 @@ export const deBundle: LocaleBundle = {
     manifestChanged: "Das Erscheinungsbild der Cli Button Dock-Schaltflächen hat sich geändert. Laden Sie das Fenster neu.",
     manifestMetadataChanged: "Die Metadaten der Cli Button Dock-Schaltflächen haben sich geändert. Laden Sie das Fenster neu.",
     configureCommandFirst: "Konfigurieren Sie zuerst einen Befehl für {label}.",
+    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
+    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
+    reloadWindowLabel: "Reload Window",
   },
 }

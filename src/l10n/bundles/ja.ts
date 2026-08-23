@@ -41,6 +41,8 @@ export const jaBundle: LocaleBundle = {
     customIconName: "カスタムアイコン",
     savedMessage: "保存しました。タイトルバーのボタンを更新するにはウィンドウを再読み込みしてください。",
     resetMessage: "既定値を復元しました。",
+    customIconHint: "Reload the window to update custom icons in the title bar.",
+    reloadFailed: "ウィンドウを再読み込みできませんでした",
   },
   emojiNames: {
     "emoji:👻": "おばけ",
@@ -60,5 +62,8 @@ export const jaBundle: LocaleBundle = {
     manifestChanged: "Cli Button Dock のボタン外観が変更されました。ウィンドウを再読み込みしてください。",
     manifestMetadataChanged: "Cli Button Dock のボタンメタデータが変更されました。ウィンドウを再読み込みしてください。",
     configureCommandFirst: "先に {label} のコマンドを設定してください。",
+    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
+    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
+    reloadWindowLabel: "Reload Window",
   },
 }

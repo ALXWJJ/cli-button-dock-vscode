@@ -38,12 +38,17 @@ export type ConfiguratorStrings = {
   customIconName: string
   savedMessage: string
   resetMessage: string
+  reloadFailed: string
+  customIconHint: string
 }
 
 export type MessageStrings = {
   manifestChanged: string
   manifestMetadataChanged: string
   configureCommandFirst: string
+  customIconSaved: string
+  reloadWindowLabel: string
+  customIconSyncFailed: string
 }
 
 export type LocaleBundle = {

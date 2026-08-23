@@ -36,7 +36,7 @@ export function sanitizeSvg(value: string) {
 
   return svg
     .replace(/\son[a-z][\w:-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    .replace(/\s+(?:href|xlink:href)\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+    .replace(/\s+(?:href|xlink:href)\s*=\s*("|')(?!data:image\/)[^"']*\1/gi, "")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
 }
 

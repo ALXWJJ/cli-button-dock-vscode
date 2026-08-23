@@ -6,7 +6,9 @@ import {
   getConfiguredEntry,
   normalizeButton,
   normalizeButtons,
+  normalizeIcon,
 } from "./presets"
+import { isTitleBarCustomIcon } from "./title-bar"
 import type { ButtonConfig } from "./types"
 
 export { normalizeButtons }
@@ -18,9 +20,15 @@ export function loadButtons(): ButtonConfig[] {
 }
 
 export async function updateButtonContexts(buttons: ButtonConfig[]) {
-  await Promise.all(buttons.map((button) =>
-    vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Enabled`, button.enabled),
-  ))
+  const updates = buttons.flatMap((button) => {
+    const icon = normalizeIcon(button.icon)
+    return [
+      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Enabled`, button.enabled),
+      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Icon`, icon),
+      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}IconCustom`, isTitleBarCustomIcon(icon)),
+    ]
+  })
+  await Promise.all(updates)
 }
 
 export async function saveButtons(buttons: ButtonConfig[]) {

@@ -41,6 +41,8 @@ export const koBundle: LocaleBundle = {
     customIconName: "사용자 지정 아이콘",
     savedMessage: "저장됨. 제목 표시줄 버튼을 업데이트하려면 창을 다시 로드하세요.",
     resetMessage: "기본값이 복원되었습니다.",
+    customIconHint: "Reload the window to update custom icons in the title bar.",
+    reloadFailed: "창을 다시 로드할 수 없습니다",
   },
   emojiNames: {
     "emoji:👻": "유령",
@@ -60,5 +62,8 @@ export const koBundle: LocaleBundle = {
     manifestChanged: "Cli Button Dock 버튼 모양이 변경되었습니다. 창을 다시 로드하세요.",
     manifestMetadataChanged: "Cli Button Dock 버튼 메타데이터가 변경되었습니다. 창을 다시 로드하세요.",
     configureCommandFirst: "먼저 {label}의 명령을 설정하세요.",
+    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
+    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
+    reloadWindowLabel: "Reload Window",
   },
 }

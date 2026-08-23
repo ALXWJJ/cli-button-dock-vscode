@@ -68,8 +68,8 @@ export const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
   {
     id: "brand:kimi",
     name: "Kimi Code",
-    light: "kimi.svg",
-    dark: "kimi.svg",
+    light: "kimi-light.svg",
+    dark: "kimi-dark.svg",
   },
   {
     id: "brand:cursor",

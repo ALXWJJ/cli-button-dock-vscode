@@ -41,6 +41,8 @@ export const ruBundle: LocaleBundle = {
     customIconName: "Пользовательская иконка",
     savedMessage: "Сохранено. Перезагрузите окно, чтобы обновить кнопки заголовка.",
     resetMessage: "Настройки по умолчанию восстановлены.",
+    customIconHint: "Reload the window to update custom icons in the title bar.",
+    reloadFailed: "Не удалось перезагрузить окно",
   },
   emojiNames: {
     "emoji:👻": "Призрак",
@@ -60,5 +62,8 @@ export const ruBundle: LocaleBundle = {
     manifestChanged: "Внешний вид кнопок Cli Button Dock изменился. Перезагрузите окно.",
     manifestMetadataChanged: "Метаданные кнопок Cli Button Dock изменились. Перезагрузите окно.",
     configureCommandFirst: "Сначала настройте команду для {label}.",
+    customIconSaved: "Custom icon saved. Reload the window to update the title bar. Reloading ends CLI processes in open terminals, so do it when convenient.",
+    customIconSyncFailed: "Unable to write custom icon for button {buttonId}: {detail}",
+    reloadWindowLabel: "Reload Window",
   },
 }
