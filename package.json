@@ -2,7 +2,7 @@
   "name": "cli-button-dock",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
@@ -247,7 +247,8 @@
     "check-types": "tsc --noEmit",
     "lint": "eslint src test",
     "test": "bun test test",
-    "format": "eslint src --fix"
+    "format": "eslint src --fix",
+    "vsix": "bun x @vscode/vsce package --no-dependencies"
   },
   "devDependencies": {
     "@types/node": "20.x",

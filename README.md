@@ -21,15 +21,26 @@
 | 打开配置页 | `Cmd/Ctrl+Alt+A` |
 | 将当前文件引用插入终端 | `Cmd/Ctrl+Alt+K` |
 
-## 安装（本地 VSIX）
+## 安装
+
+### 从扩展市场（上架后）
+
+在 VS Code 扩展视图搜索 **Cli Button Dock**，或：
 
 ```bash
-bun install && bun run package
-bun x @vscode/vsce package --no-dependencies
-code --install-extension ./cli-button-dock-*.vsix
+code --install-extension ALXWJJ.cli-button-dock
+```
+
+### 本地 VSIX
+
+```bash
+bun install && bun run vsix
+code --install-extension ./cli-button-dock-*.vsix --force
 ```
 
 需要 VS Code ≥ 1.94、[Bun](https://bun.sh/) ≥ 1.3。
+
+维护者发布流程见 [docs/PUBLISHING.md](docs/PUBLISHING.md)。
 
 ## 高级配置
 
