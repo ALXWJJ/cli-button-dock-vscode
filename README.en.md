@@ -2,7 +2,7 @@
 
 [中文](README.md)
 
-Up to 10 editor title-bar buttons to launch OpenCode, Codex, Claude Code, Gemini CLI, Aider, and other CLI agents—or any custom command—in a new integrated terminal.
+Up to 10 editor title-bar buttons to launch OpenCode, Codex, Claude Code, Gemini CLI, Qwen Code, DeepSeek, Cursor Agent, Copilot, and other CLI agents—or any custom command—in a new integrated terminal.
 
 Settings use `cliButtonDock.*`.
 

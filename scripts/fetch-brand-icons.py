@@ -26,7 +26,6 @@ BRAND_SLUGS: dict[str, str] = {
     "codex": "codex",
     "claude": "claudecode",
     "gemini": "geminicli",
-    "goose": "goose",
     "qwen": "qwen",
     "pi": "pi",
     "deepseek": "deepseek",
@@ -34,22 +33,9 @@ BRAND_SLUGS: dict[str, str] = {
     "kimi": "kimi",
     "cursor": "cursor",
     "copilot": "copilot",
-    "openhands": "openhands",
-    "windsurf": "windsurf",
     "cline": "cline",
-    "amp": "amp",
-    "roo": "roocode",
     "trae": "trae",
     "codebuddy": "codebuddy",
-    "amazonq": "bedrock",
-    "aider": "aider",
-    "continue": "continue",
-}
-
-# Used only when the primary slug is missing from Lobe Icons.
-FALLBACK_SLUGS: dict[str, str] = {
-    "aider": "openclaw",
-    "continue": "codegeex",
 }
 
 
@@ -145,17 +131,13 @@ def save_mono_asset(stem: str, slug: str, toc: dict[str, dict]) -> None:
     save(os.path.join(BRANDS, f"{stem}-dark.svg"), dark_bytes)
 
 
-def save_brand_asset(stem: str, slug: str, toc: dict[str, dict], fallback_slug: str | None = None) -> None:
+def save_brand_asset(stem: str, slug: str, toc: dict[str, dict]) -> None:
     remove_stale_assets(stem)
 
     if try_save_color_from_slug(stem, slug):
         return
 
-    if fallback_slug and fallback_slug != slug and try_save_color_from_slug(stem, fallback_slug):
-        print(f"note: {stem} uses interim Lobe slug '{fallback_slug}' (no dedicated icon yet)")
-        return
-
-    mono_slug = slug if try_fetch(f"{LOBE_SVG}/{slug}.svg") else fallback_slug
+    mono_slug = slug if try_fetch(f"{LOBE_SVG}/{slug}.svg") else None
     if not mono_slug:
         raise RuntimeError(f"No Lobe icon found for slug '{slug}' ({stem})")
 
@@ -167,7 +149,7 @@ def main() -> None:
     toc = load_toc()
 
     for stem, slug in BRAND_SLUGS.items():
-        save_brand_asset(stem, slug, toc, FALLBACK_SLUGS.get(stem))
+        save_brand_asset(stem, slug, toc)
 
 
 if __name__ == "__main__":

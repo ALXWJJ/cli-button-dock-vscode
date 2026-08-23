@@ -36,12 +36,10 @@
     "gemini-cli",
     "cursor-agent",
     "github-copilot",
-    "continue",
-    "openhands",
-    "windsurf",
-    "cline",
-    "roo-code",
-    "amazon-q"
+    "qwen-code",
+    "deepseek",
+    "kimi-code",
+    "cline"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -73,8 +71,8 @@
         "command": "cliButtonDock.button02",
         "title": "Codex",
         "icon": {
-          "light": "media/brands/codex-light.svg",
-          "dark": "media/brands/codex-dark.svg"
+          "light": "media/brands/codex.svg",
+          "dark": "media/brands/codex.svg"
         }
       },
       {
@@ -89,16 +87,16 @@
         "command": "cliButtonDock.button04",
         "title": "Gemini CLI",
         "icon": {
-          "light": "media/brands/gemini-light.svg",
-          "dark": "media/brands/gemini-dark.svg"
+          "light": "media/brands/gemini.svg",
+          "dark": "media/brands/gemini.svg"
         }
       },
       {
         "command": "cliButtonDock.button05",
-        "title": "Aider",
+        "title": "Qwen Code",
         "icon": {
-          "light": "media/brands/aider.svg",
-          "dark": "media/brands/aider.svg"
+          "light": "media/brands/qwen.svg",
+          "dark": "media/brands/qwen.svg"
         }
       },
       {

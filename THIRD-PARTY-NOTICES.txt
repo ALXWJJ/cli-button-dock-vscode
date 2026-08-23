@@ -23,9 +23,6 @@ The names, logos, and marks remain the property of their respective owners.
 Cli Button Dock is an independent project and does not claim affiliation,
 sponsorship, or endorsement by any of these projects.
 
-Aider and Continue CLI do not yet have dedicated entries in Lobe Icons; interim color
-marks from the same library (OpenClaw, CodeGeeX) are used until official slugs ship.
-
 Trademark and usage terms may apply separately to each brand. The assets are
 included only to identify the corresponding commands and do not imply
 affiliation, sponsorship, or endorsement.
