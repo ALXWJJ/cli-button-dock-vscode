@@ -3,71 +3,89 @@
 扩展 ID：`ALXWJJ.cli-button-dock`  
 Publisher：`ALXWJJ`
 
-## 一、首次发布（只需做一次）
+## 推荐：网页上传 VSIX（不需要 PAT）
+
+若 Azure DevOps PAT 页面 **404** 或一直跳转登录，用这种方式最省事。
 
 ### 1. 创建 Publisher
 
 1. 打开 [Visual Studio Marketplace 管理页](https://marketplace.visualstudio.com/manage)
-2. 用 Microsoft 账号登录
-3. 点 **Create publisher**，名称填 **`ALXWJJ`**（须与 `package.json` 里 `publisher` 一致）
+2. 用 **Microsoft 账号** 登录（与 GitHub 无关）
+3. 左侧 **Create publisher**
+   - ID：`ALXWJJ`（须与 `package.json` 里 `publisher` 一致）
+   - Name：随意，例如 `ALXWJJ`
 
-### 2. 创建 Personal Access Token（PAT）
-
-1. 打开 [Azure DevOps PAT 页面](https://dev.azure.com/_usersSettings/tokens)
-2. **New Token**
-   - Organization：**All accessible organizations**
-   - Scopes：展开 **Show all scopes** → 勾选 **Marketplace → Manage**
-3. 创建后 **立刻复制** token（只显示一次）
-
-### 3. 登录并发布
-
-在项目根目录：
+### 2. 本地打包
 
 ```bash
 bun install
-export VSCE_PAT="<你的 PAT>"
-bun x @vscode/vsce login ALXWJJ
-bun run vsix          # 先本地打包自检
-bun x @vscode/vsce publish --no-dependencies
+bun run vsix
 ```
 
-成功后可在扩展市场搜索 **Cli Button Dock** 或打开：
+得到 `cli-button-dock-0.1.5.vsix`（版本号随 `package.json` 变化）。
+
+### 3. 在网页上传
+
+1. 仍在 [manage 页面](https://marketplace.visualstudio.com/manage)
+2. 选中 Publisher **`ALXWJJ`**
+3. **+ New extension** → 选 **Visual Studio Code**（不是 Visual Studio）
+4. 上传 `cli-button-dock-*.vsix`
+5. 填扩展说明（可从 README 复制），点 **Publish** / **Upload**
+
+上架后链接：
 
 https://marketplace.visualstudio.com/items?itemName=ALXWJJ.cli-button-dock
 
-用户安装命令：
+用户安装：
 
 ```bash
 code --install-extension ALXWJJ.cli-button-dock
 ```
 
-## 二、后续版本更新
+---
 
-1. 改 `package.json` 里的 `version`（须大于已发布版本）
-2. `git commit` 并 `git push`
-3. 再执行：
+## 备选：用 PAT + `vsce publish`
+
+只有在你需要命令行/CI 自动发布时才需要 PAT。
+
+### PAT 页面 404 的常见原因
+
+文档里的 `https://dev.azure.com/_usersSettings/tokens` **在未创建 Azure DevOps 组织时会 404**。
+
+正确顺序：
+
+1. 打开 [https://dev.azure.com](https://dev.azure.com)，用 Microsoft 账号登录
+2. 若没有组织：点 **Start free** / **Create new organization**，随便建一个（例如 `ALXWJJ`）
+3. 进入该组织后，右上角头像 → **Personal access tokens**
+   - 或直接打开：`https://dev.azure.com/<你的组织名>/_usersSettings/tokens`
+4. **+ New Token**
+   - Organization：**All accessible organizations**
+   - Scopes：**Show all scopes** → 勾选 **Marketplace → Manage**
+5. 创建后复制 token（只显示一次）
+
+或在已创建 Publisher 后，在 [Marketplace 管理页](https://marketplace.visualstudio.com/manage) → 你的 Publisher → **Security** → **Personal access tokens** 里创建（部分账号可用）。
+
+### 命令行发布
 
 ```bash
 export VSCE_PAT="<你的 PAT>"
+bun x @vscode/vsce login ALXWJJ
 bun x @vscode/vsce publish --no-dependencies
 ```
 
-或用 GitHub Actions：在仓库 Settings → Secrets 添加 `VSCE_PAT`，然后 Actions 里运行 **Publish extension** workflow。
+---
 
-## 三、仅本地安装（不上架）
+## 本地安装（不上架）
 
 ```bash
 bun run vsix
 code --install-extension ./cli-button-dock-*.vsix --force
 ```
 
-然后在 VS Code 执行 **Developer: Reload Window**。
+然后 **Developer: Reload Window**。
 
-## 常见问题
+## 更新版本
 
-| 问题 | 处理 |
-|------|------|
-| `npm list` / ELSPROBLEMS 打包失败 | 使用 `--no-dependencies`（`bun run vsix` 已包含） |
-| Publisher 不存在 | 先在 Marketplace 创建 `ALXWJJ` publisher |
-| 401 / 403 发布失败 | PAT 须含 Marketplace **Manage**，且 Organization 选 All |
-| 版本已存在 | 提高 `package.json` 的 `version` 再发布 |
+1. 提高 `package.json` 的 `version`
+2. `bun run vsix`
+3. 网页 **New extension** 上传新 VSIX，或 `vsce publish`（若已配置 PAT）

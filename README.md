@@ -40,7 +40,7 @@ code --install-extension ./cli-button-dock-*.vsix --force
 
 需要 VS Code ≥ 1.94、[Bun](https://bun.sh/) ≥ 1.3。
 
-维护者发布流程见 [docs/PUBLISHING.md](docs/PUBLISHING.md)。
+维护者发布见 [docs/PUBLISHING.md](docs/PUBLISHING.md)（**推荐网页上传 VSIX，无需 PAT**）。
 
 ## 高级配置
 
