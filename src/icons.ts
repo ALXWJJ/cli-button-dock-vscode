@@ -3,6 +3,7 @@ import * as fs from "node:fs"
 import * as path from "node:path"
 import * as vscode from "vscode"
 import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
+import { loadCustomIconSlots, saveCustomIconSlots } from "./config"
 import { BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS, normalizeIcon } from "./presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
 import { isTitleBarCustomIcon, runtimeIconRelativePath } from "./title-bar"
@@ -114,11 +115,16 @@ export function customIconToTitleBarSvg(prepared: PreparedCustomIcon) {
 const TITLE_BAR_ICON_SLOTS_KEY = "titleBarCustomIconSlots"
 
 function loadTitleBarIconSlots(context: vscode.ExtensionContext) {
+  const fromSettings = loadCustomIconSlots()
+  if (fromSettings.size > 0) {
+    return fromSettings
+  }
   const stored = context.globalState.get<Record<string, number>>(TITLE_BAR_ICON_SLOTS_KEY) ?? {}
   return new Map(Object.entries(stored))
 }
 
 async function saveTitleBarIconSlots(context: vscode.ExtensionContext, slots: Map<string, number>) {
+  await saveCustomIconSlots(slots)
   await context.globalState.update(TITLE_BAR_ICON_SLOTS_KEY, Object.fromEntries(slots))
 }
 

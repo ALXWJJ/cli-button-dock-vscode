@@ -2,7 +2,7 @@
   "name": "cli-button-dock",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
@@ -47,6 +47,10 @@
   ],
   "activationEvents": [
     "onStartupFinished"
+  ],
+  "extensionKind": [
+    "workspace",
+    "ui"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -4860,6 +4864,7 @@
         "cliButtonDock.buttons": {
           "type": "array",
           "description": "%configuration.buttons.description%",
+          "scope": "machine-overridable",
           "default": [],
           "items": {
             "type": "object",
@@ -4901,6 +4906,12 @@
             },
             "additionalProperties": true
           }
+        },
+        "cliButtonDock.customIconSlots": {
+          "type": "object",
+          "description": "Internal title-bar custom icon slot indices per button id.",
+          "scope": "machine-overridable",
+          "default": {}
         }
       }
     }

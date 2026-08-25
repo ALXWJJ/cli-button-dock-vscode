@@ -1,5 +1,6 @@
 export const CONFIGURATION_SECTION = "cliButtonDock"
 export const CONFIGURATION_KEY = "buttons"
+export const CUSTOM_ICON_SLOTS_KEY = "customIconSlots"
 export const BUTTON_COUNT = 10
 export const BUTTON_IDS = Array.from({ length: BUTTON_COUNT }, (_, index) => String(index + 1).padStart(2, "0"))
 export const CUSTOM_ICON_DIR = "media/user-icons"

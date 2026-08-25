@@ -576,7 +576,12 @@ function getConfiguratorHtml(
         const slot = document.createElement('span');
         slot.className = 'slot';
         slot.textContent = slotEmojis[button.id] || button.id;
-        const presetOptions = [{ value: 'custom', label: strings.presetCustom }].concat(presets.map((preset) => ({ value: preset.id, label: preset.name })));
+        const presetOptions = [{ value: 'custom', label: strings.presetCustom }].concat(
+          presets
+            .slice()
+            .sort((a, b) => a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }))
+            .map((preset) => ({ value: preset.id, label: preset.name }))
+        );
         const preset = selectInput('preset', presetOptions, getPresetId(button));
         const label = textInput('label', button.label, strings.labelPlaceholder);
         const iconPicker = createIconPicker(button.icon, (value) => {
