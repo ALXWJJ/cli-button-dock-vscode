@@ -1,18 +1,23 @@
 import * as fs from "node:fs"
 import * as path from "node:path"
-import { BUTTON_IDS, INLINE_SVG_PATTERN, RUNTIME_ICON_DIR, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
+import { BUTTON_IDS, RUNTIME_ICON_DIR, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
 import { AGENT_PRESETS, BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS } from "./presets"
 
 export const TITLE_BAR_CODICON_IDS = ["terminal", "settings", "debug-alt", "play", "add", "refresh"]
 
 const PLACEHOLDER_RUNTIME_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>`
 
-export function runtimeIconRelativePath(buttonId: string, slot = 0) {
-  return `${RUNTIME_ICON_DIR}/button${buttonId}.${slot}.svg`
+export function runtimeIconRelativePath(buttonId: string, slot = 0, theme: "light" | "dark" = "dark") {
+  return `${RUNTIME_ICON_DIR}/button${buttonId}.${slot}.${theme}.svg`
 }
 
+export function faceCommandId(buttonId: string, slot: number) {
+  return `cliButtonDock.button${buttonId}.face.${slot}`
+}
+
+/** @deprecated use faceCommandId */
 export function customFaceCommandId(buttonId: string, slot: number) {
-  return `cliButtonDock.button${buttonId}.face.custom${slot}`
+  return faceCommandId(buttonId, slot)
 }
 
 export function createRuntimeIconPlaceholders(rootDir: string) {
@@ -20,17 +25,21 @@ export function createRuntimeIconPlaceholders(rootDir: string) {
   fs.mkdirSync(directory, { recursive: true })
   for (const buttonId of BUTTON_IDS) {
     for (let slot = 0; slot < TITLE_BAR_RUNTIME_ICON_SLOTS; slot++) {
-      const filePath = path.join(directory, `button${buttonId}.${slot}.svg`)
-      if (!fs.existsSync(filePath)) {
-        fs.writeFileSync(filePath, PLACEHOLDER_RUNTIME_ICON)
+      for (const theme of ["light", "dark"] as const) {
+        const filePath = path.join(directory, `button${buttonId}.${slot}.${theme}.svg`)
+        if (!fs.existsSync(filePath)) {
+          fs.writeFileSync(filePath, PLACEHOLDER_RUNTIME_ICON)
+        }
       }
     }
   }
 }
 
 export function runtimeIconManifestEntry(buttonId: string, slot: number) {
-  const assetPath = runtimeIconRelativePath(buttonId, slot)
-  return { light: assetPath, dark: assetPath }
+  return {
+    light: runtimeIconRelativePath(buttonId, slot, "light"),
+    dark: runtimeIconRelativePath(buttonId, slot, "dark"),
+  }
 }
 
 export function isTitleBarCustomIcon(icon: string) {
@@ -39,7 +48,7 @@ export function isTitleBarCustomIcon(icon: string) {
   return lower.startsWith("http://")
     || lower.startsWith("https://")
     || lower.startsWith("data:image/")
-    || INLINE_SVG_PATTERN.test(raw)
+    || /^(?:<\?xml[\s\S]*?\?>\s*)?<svg\b/i.test(raw)
 }
 
 export function iconFaceSuffix(iconId: string) {
@@ -63,13 +72,6 @@ export function getTitleBarIconIds() {
     ids.add(codicon)
   }
   return [...ids]
-}
-
-export function faceCommandId(buttonId: string, iconId: string) {
-  if (isTitleBarCustomIcon(iconId)) {
-    return customFaceCommandId(buttonId, 0)
-  }
-  return `cliButtonDock.button${buttonId}.face.${iconFaceSuffix(iconId)}`
 }
 
 export function titleForIcon(iconId: string) {
@@ -108,20 +110,13 @@ export function writeEmojiIconAsset(rootDir: string, emoji: { id: string; glyph:
   return `media/generated/${fileName}`
 }
 
-export function manifestIconEntry(rootDir: string, iconId: string): string | { light: string; dark: string } {
-  const brand = BRAND_ICON_OPTIONS.find((item) => item.id === iconId)
-  if (brand) {
-    return {
-      light: `media/brands/${brand.light}`,
-      dark: `media/brands/${brand.dark}`,
-    }
-  }
-
-  const emoji = EMOJI_ICON_OPTIONS.find((item) => item.id === iconId)
-  if (emoji) {
-    const assetPath = writeEmojiIconAsset(rootDir, emoji)
-    return { light: assetPath, dark: assetPath }
-  }
-
-  return `$(${iconId})`
+export function emojiIconSvg(glyph: string) {
+  const safeGlyph = escapeXml(glyph)
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><text x="12" y="19" text-anchor="middle" font-size="18" font-family="Apple Color Emoji, Segoe UI Emoji, Noto Color Emoji, sans-serif">${safeGlyph}</text></svg>`
 }
+
+export function codiconFallbackSvg() {
+  return PLACEHOLDER_RUNTIME_ICON
+}
+
+export { PLACEHOLDER_RUNTIME_ICON }

@@ -6,9 +6,7 @@ import {
   getConfiguredEntry,
   normalizeButton,
   normalizeButtons,
-  normalizeIcon,
 } from "./presets"
-import { isTitleBarCustomIcon } from "./title-bar"
 import type { ButtonConfig } from "./types"
 
 export { normalizeButtons }
@@ -39,22 +37,16 @@ export async function saveCustomIconSlots(slots: Map<string, number>) {
     )
 }
 
-export async function updateButtonContexts(buttons: ButtonConfig[], customIconSlots?: Map<string, number>) {
-  const slots = customIconSlots ?? loadCustomIconSlots()
-  const updates = buttons.flatMap((button) => {
-    const icon = normalizeIcon(button.icon)
-    const isCustom = isTitleBarCustomIcon(icon)
-    return [
-      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Enabled`, button.enabled),
-      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Icon`, icon),
-      vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}IconCustom`, isCustom),
-      vscode.commands.executeCommand(
-        "setContext",
-        `cliButtonDock.button${button.id}IconCustomSlot`,
-        isCustom ? (slots.get(button.id) ?? 0) : undefined,
-      ),
-    ]
-  })
+export async function updateButtonContexts(buttons: ButtonConfig[], iconSlots?: Map<string, number>) {
+  const slots = iconSlots ?? loadCustomIconSlots()
+  const updates = buttons.flatMap((button) => [
+    vscode.commands.executeCommand("setContext", `cliButtonDock.button${button.id}Enabled`, button.enabled),
+    vscode.commands.executeCommand(
+      "setContext",
+      `cliButtonDock.button${button.id}IconSlot`,
+      button.enabled ? (slots.get(button.id) ?? 0) : undefined,
+    ),
+  ])
   await Promise.all(updates)
 }
 

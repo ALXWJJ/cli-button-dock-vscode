@@ -2,18 +2,29 @@ import * as crypto from "node:crypto"
 import * as fs from "node:fs"
 import * as path from "node:path"
 import * as vscode from "vscode"
-import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
 import { loadCustomIconSlots, saveCustomIconSlots } from "./config"
+import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
 import { BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS, normalizeIcon } from "./presets"
 import { decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
-import { isTitleBarCustomIcon, runtimeIconRelativePath } from "./title-bar"
-import type { BrandIconDefinition, EmojiIconDefinition } from "./types"
+import {
+  codiconFallbackSvg,
+  emojiIconSvg,
+  faceCommandId,
+  isTitleBarCustomIcon,
+  runtimeIconRelativePath,
+} from "./title-bar"
+import type { BrandIconDefinition, ButtonConfig, EmojiIconDefinition } from "./types"
 
 export { isCustomIcon, sanitizeSvg, decodeDataImage }
 
 type PreparedCustomIcon = {
   bytes: Buffer
   extension: string
+}
+
+type TitleBarIconSvgs = {
+  light: string
+  dark: string
 }
 
 function getCustomIconCacheKey(icon: string) {
@@ -128,12 +139,45 @@ async function saveTitleBarIconSlots(context: vscode.ExtensionContext, slots: Ma
   await context.globalState.update(TITLE_BAR_ICON_SLOTS_KEY, Object.fromEntries(slots))
 }
 
-function readRuntimeIconSvg(extensionPath: string, buttonId: string, slot: number) {
+function readRuntimeIconSvg(extensionPath: string, buttonId: string, slot: number, theme: "light" | "dark") {
   try {
-    return fs.readFileSync(path.join(extensionPath, runtimeIconRelativePath(buttonId, slot)), "utf8")
+    return fs.readFileSync(path.join(extensionPath, runtimeIconRelativePath(buttonId, slot, theme)), "utf8")
   } catch {
     return ""
   }
+}
+
+function readBrandSvg(extensionPath: string, brand: BrandIconDefinition, theme: "light" | "dark") {
+  const fileName = theme === "light" ? brand.light : brand.dark
+  const relative = `${brand.root ?? "media/brands"}/${fileName}`
+  return fs.readFileSync(path.join(extensionPath, relative), "utf8")
+}
+
+async function resolveTitleBarIconSvgs(extensionPath: string, icon: string): Promise<TitleBarIconSvgs> {
+  const normalized = normalizeIcon(icon)
+  const brand = BRAND_ICON_OPTIONS.find((item) => item.id === normalized)
+  if (brand) {
+    return {
+      light: readBrandSvg(extensionPath, brand, "light"),
+      dark: readBrandSvg(extensionPath, brand, "dark"),
+    }
+  }
+
+  const emoji = EMOJI_ICON_OPTIONS.find((item) => item.id === normalized)
+  if (emoji) {
+    const svg = emojiIconSvg(emoji.glyph)
+    return { light: svg, dark: svg }
+  }
+
+  if (isTitleBarCustomIcon(normalized) || isCustomIcon(normalized)) {
+    const prepared = await prepareCustomIconBytes(normalized)
+    validateCustomIconSize(prepared.bytes)
+    const svg = customIconToTitleBarSvg(prepared)
+    return { light: svg, dark: svg }
+  }
+
+  const fallback = codiconFallbackSvg()
+  return { light: fallback, dark: fallback }
 }
 
 export async function syncTitleBarRuntimeIcon(
@@ -142,46 +186,93 @@ export async function syncTitleBarRuntimeIcon(
   icon: string,
   slots: Map<string, number>,
 ): Promise<number | undefined> {
-  const prepared = await prepareCustomIconBytes(icon)
-  validateCustomIconSize(prepared.bytes)
-  const svg = `${customIconToTitleBarSvg(prepared)}\n`
+  const svgs = await resolveTitleBarIconSvgs(context.extensionPath, icon)
+  const light = `${svgs.light.trim()}\n`
+  const dark = `${svgs.dark.trim()}\n`
   const currentSlot = slots.get(buttonId) ?? 0
-  const currentSvg = readRuntimeIconSvg(context.extensionPath, buttonId, currentSlot)
-  if (currentSvg === svg) {
+  const currentLight = readRuntimeIconSvg(context.extensionPath, buttonId, currentSlot, "light")
+  const currentDark = readRuntimeIconSvg(context.extensionPath, buttonId, currentSlot, "dark")
+  if (currentLight === light && currentDark === dark) {
     return currentSlot
   }
 
   const nextSlot = (currentSlot + 1) % TITLE_BAR_RUNTIME_ICON_SLOTS
-  const absolutePath = path.join(context.extensionPath, runtimeIconRelativePath(buttonId, nextSlot))
-  fs.mkdirSync(path.dirname(absolutePath), { recursive: true })
-  fs.writeFileSync(absolutePath, svg)
+  for (const theme of ["light", "dark"] as const) {
+    const absolutePath = path.join(context.extensionPath, runtimeIconRelativePath(buttonId, nextSlot, theme))
+    fs.mkdirSync(path.dirname(absolutePath), { recursive: true })
+    fs.writeFileSync(absolutePath, theme === "light" ? light : dark)
+  }
   slots.set(buttonId, nextSlot)
   return nextSlot
 }
 
 export type TitleBarIconSyncResult = {
-  syncedCustomIds: Set<string>
+  syncedIds: Set<string>
   customIconSlots: Map<string, number>
   errors: Array<{ buttonId: string; message: string }>
 }
 
+/** Keep editor/title hover titles in sync with button labels (takes effect after reload). */
+export function syncFaceCommandTitles(extensionPath: string, buttons: ButtonConfig[]) {
+  const manifestPath = path.join(extensionPath, "package.json")
+  let manifest: {
+    contributes?: {
+      commands?: Array<{ command?: string; title?: string }>
+    }
+  }
+  try {
+    manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"))
+  } catch {
+    return
+  }
+
+  const commands = manifest.contributes?.commands
+  if (!commands) {
+    return
+  }
+
+  const titleByCommand = new Map<string, string>()
+  for (const button of buttons) {
+    const title = button.label.trim() || `Button ${button.id}`
+    for (let slot = 0; slot < TITLE_BAR_RUNTIME_ICON_SLOTS; slot++) {
+      titleByCommand.set(faceCommandId(button.id, slot), title)
+    }
+  }
+
+  let changed = false
+  for (const entry of commands) {
+    const id = entry.command
+    if (!id || !titleByCommand.has(id)) {
+      continue
+    }
+    const next = titleByCommand.get(id)!
+    if (entry.title !== next) {
+      entry.title = next
+      changed = true
+    }
+  }
+
+  if (changed) {
+    fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
+  }
+}
+
 export async function syncTitleBarRuntimeIcons(
   context: vscode.ExtensionContext,
-  buttons: import("./types").ButtonConfig[],
+  buttons: ButtonConfig[],
 ): Promise<TitleBarIconSyncResult> {
-  const syncedCustomIds = new Set<string>()
+  const syncedIds = new Set<string>()
   const customIconSlots = loadTitleBarIconSlots(context)
   const errors: Array<{ buttonId: string; message: string }> = []
 
   for (const button of buttons) {
-    const icon = normalizeIcon(button.icon)
-    if (!isTitleBarCustomIcon(icon)) {
+    if (!button.enabled) {
       continue
     }
     try {
-      const slot = await syncTitleBarRuntimeIcon(context, button.id, icon, customIconSlots)
+      const slot = await syncTitleBarRuntimeIcon(context, button.id, normalizeIcon(button.icon), customIconSlots)
       if (slot !== undefined) {
-        syncedCustomIds.add(button.id)
+        syncedIds.add(button.id)
       }
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error)
@@ -190,8 +281,9 @@ export async function syncTitleBarRuntimeIcons(
     }
   }
 
+  syncFaceCommandTitles(context.extensionPath, buttons)
   await saveTitleBarIconSlots(context, customIconSlots)
-  return { syncedCustomIds, customIconSlots, errors }
+  return { syncedIds, customIconSlots, errors }
 }
 
 async function ensureCustomIconAsset(context: vscode.ExtensionContext, icon: string) {

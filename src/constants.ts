@@ -6,6 +6,9 @@ export const BUTTON_IDS = Array.from({ length: BUTTON_COUNT }, (_, index) => Str
 export const CUSTOM_ICON_DIR = "media/user-icons"
 export const RUNTIME_ICON_DIR = "media/runtime-icons"
 export const TITLE_BAR_RUNTIME_ICON_SLOTS = 2
+/** Keep dock buttons clustered at the end of editor/title navigation, after Split/etc. */
+export const TITLE_BAR_MENU_ORDER_BASE = 200
+export const TITLE_BAR_CONFIGURE_ORDER = TITLE_BAR_MENU_ORDER_BASE + BUTTON_COUNT + 1
 export const CUSTOM_ICON_MAX_BYTES = 1024 * 1024
 export const CUSTOM_ICON_MIME_EXTENSIONS: Record<string, string> = {
   "image/svg+xml": "svg",

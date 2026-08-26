@@ -11,9 +11,7 @@ import { openConfigurator } from "./configurator"
 import { syncTitleBarRuntimeIcons } from "./icons"
 import {
   createRuntimeIconPlaceholders,
-  customFaceCommandId,
   faceCommandId,
-  getTitleBarIconIds,
 } from "./title-bar"
 import { addFilepathToActiveTerminal, runButton } from "./terminal"
 
@@ -56,22 +54,10 @@ function registerButtonFaceCommands(
   context: vscode.ExtensionContext,
   getButtons: () => ButtonConfig[],
 ) {
-  const iconIds = getTitleBarIconIds()
-
   for (const buttonId of BUTTON_IDS) {
-    for (const iconId of iconIds) {
-      const commandId = faceCommandId(buttonId, iconId)
-      context.subscriptions.push(vscode.commands.registerCommand(commandId, async () => {
-        const button = getButtons().find((item) => item.id === buttonId)
-        if (button) {
-          await runButton(button, context)
-        }
-      }))
-    }
-
     for (let slot = 0; slot < TITLE_BAR_RUNTIME_ICON_SLOTS; slot++) {
-      const customCommandId = customFaceCommandId(buttonId, slot)
-      context.subscriptions.push(vscode.commands.registerCommand(customCommandId, async () => {
+      const commandId = faceCommandId(buttonId, slot)
+      context.subscriptions.push(vscode.commands.registerCommand(commandId, async () => {
         const button = getButtons().find((item) => item.id === buttonId)
         if (button) {
           await runButton(button, context)
