@@ -2,7 +2,7 @@
   "name": "cli-button-dock",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",

@@ -67,8 +67,16 @@ function registerButtonFaceCommands(
   }
 }
 
+function isRemoteUiHost(context: vscode.ExtensionContext) {
+  // Locally (no remote), VS Code always reports ExtensionKind.UI — that must still
+  // run full activation and register commands. Only skip when this process is the
+  // local UI copy of a dual-host remote session; the workspace host registers commands.
+  return Boolean(vscode.env.remoteName)
+    && context.extension.extensionKind === vscode.ExtensionKind.UI
+}
+
 export function activate(context: vscode.ExtensionContext) {
-  if (context.extension.extensionKind === vscode.ExtensionKind.UI) {
+  if (isRemoteUiHost(context)) {
     void refreshTitleBarContexts()
     registerConfigurationListener(context, () => refreshTitleBarContexts())
     scheduleRemoteContextRefresh(context, () => refreshTitleBarContexts())
