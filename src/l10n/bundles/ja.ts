@@ -38,7 +38,7 @@ export const jaBundle: LocaleBundle = {
     pickIconPrefix: "アイコンを選択: ",
     customIconName: "カスタムアイコン",
     resetMessage: "既定値を復元しました。",
-    customIconHint: "タイトルバーは汎用のカスタムアイコンを表示します。完全な画像はターミナルタブに表示されます。",
+    customIconHint: "カスタムアイコンはタイトルバーに同期されます。プレースホルダーのままならウィンドウを再読み込みしてください。",
   },
   emojiNames: {
     "emoji:👻": "おばけ",

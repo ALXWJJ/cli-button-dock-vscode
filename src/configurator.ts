@@ -180,10 +180,15 @@ function getConfiguratorHtml(
     const message = document.getElementById('message');
     const customIconHint = document.getElementById('customIconHint');
 
+    function isInlineSvg(value) {
+      const raw = String(value || '').trim();
+      return /<svg\\b/i.test(raw) && /<\\/svg>/i.test(raw);
+    }
+
     function isCustomImage(value) {
       const raw = String(value || '').trim();
       const lower = raw.toLowerCase();
-      return lower.startsWith('http://') || lower.startsWith('https://') || lower.startsWith('data:image/') || lower.startsWith('<svg') || (lower.startsWith('<?xml') && lower.includes('<svg'));
+      return lower.startsWith('http://') || lower.startsWith('https://') || lower.startsWith('data:image/') || isInlineSvg(raw);
     }
 
     function updateCustomIconHint() {
@@ -233,9 +238,9 @@ function getConfiguratorHtml(
 
     function customImageSource(value) {
       const raw = String(value || '').trim();
-      const lower = raw.toLowerCase();
-      if (lower.startsWith('<svg') || (lower.startsWith('<?xml') && lower.includes('<svg'))) {
-        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(raw);
+      if (isInlineSvg(raw)) {
+        const svg = raw.match(/<svg\\b[\\s\\S]*<\\/svg>/i);
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg ? svg[0] : raw);
       }
       return raw;
     }
@@ -248,11 +253,6 @@ function getConfiguratorHtml(
       image.referrerPolicy = 'no-referrer';
       image.setAttribute('aria-hidden', 'true');
       return image;
-    }
-
-    function isInlineSvg(value) {
-      const raw = String(value || '').trim().toLowerCase();
-      return raw.startsWith('<svg') || (raw.startsWith('<?xml') && raw.includes('<svg'));
     }
 
     function createCustomIconEditor(onApply) {

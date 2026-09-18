@@ -1,13 +1,33 @@
-import { CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN } from "./constants"
+import { CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS } from "./constants"
 
 type PreparedCustomIcon = {
   bytes: Buffer
   extension: string
 }
 
+export function extractSvg(value: string) {
+  const trimmed = value.trim().replace(/^\uFEFF/, "")
+  const start = trimmed.search(/<svg\b/i)
+  if (start < 0) {
+    return undefined
+  }
+
+  const rest = trimmed.slice(start)
+  const close = rest.match(/<\/svg>/i)
+  if (!close || close.index === undefined) {
+    return undefined
+  }
+
+  return rest.slice(0, close.index + close[0].length)
+}
+
+export function containsInlineSvg(value: string) {
+  return Boolean(extractSvg(value))
+}
+
 export function isCustomIcon(icon: string) {
   const value = icon.trim()
-  return /^(?:https?:\/\/|data:image\/)/i.test(value) || INLINE_SVG_PATTERN.test(value)
+  return /^(?:https?:\/\/|data:image\/)/i.test(value) || containsInlineSvg(value)
 }
 
 function validateCustomIconSize(bytes: Buffer) {
@@ -19,25 +39,51 @@ function validateCustomIconSize(bytes: Buffer) {
   }
 }
 
+function stripUnsafeHrefs(svg: string) {
+  return svg.replace(/\s+(?:href|xlink:href)\s*=\s*("|')([^"']*)\1/gi, (full, _quote, url: string) => {
+    const value = url.trim()
+    if (value.startsWith("#") || /^data:image\//i.test(value)) {
+      return full
+    }
+    return ""
+  })
+}
+
+function stripDangerousElements(svg: string) {
+  return svg
+    .replace(/<(?:script|foreignObject|iframe|object|embed)\b[^>]*>[\s\S]*?<\/(?:script|foreignObject|iframe|object|embed)>/gi, "")
+    .replace(/<(?:script|foreignObject|iframe|object|embed)\b[^>]*\/>/gi, "")
+}
+
+function ensureSvgRoot(svg: string) {
+  let next = svg.trim()
+  if (!/\sxmlns\s*=/.test(next)) {
+    next = next.replace(/<svg\b/i, '<svg xmlns="http://www.w3.org/2000/svg"')
+  }
+  if (!/\sviewBox\s*=/i.test(next) && !/\s(?:width|height)\s*=/i.test(next)) {
+    next = next.replace(/<svg\b/i, '<svg viewBox="0 0 24 24"')
+  }
+  return next
+}
+
 export function sanitizeSvg(value: string) {
-  const svg = value.trim()
-  if (!INLINE_SVG_PATTERN.test(svg)) {
+  const svg = extractSvg(value)
+  if (!svg) {
     throw new Error("Custom SVG icons must contain an <svg> element.")
   }
   if (Buffer.byteLength(svg, "utf8") > CUSTOM_ICON_MAX_BYTES) {
     throw new Error(`The custom SVG is larger than ${CUSTOM_ICON_MAX_BYTES} bytes.`)
   }
-  if (/<\/?(?:script|foreignObject|iframe|object|embed)\b/i.test(svg)) {
-    throw new Error("Custom SVG icons cannot contain script or embedded document elements.")
-  }
-  if (/(?:javascript:|vbscript:|data:text\/html)/i.test(svg)) {
-    throw new Error("Custom SVG icons cannot contain executable or HTML data URLs.")
-  }
 
-  return svg
-    .replace(/\son[a-z][\w:-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
-    .replace(/\s+(?:href|xlink:href)\s*=\s*("|')(?!data:image\/)[^"']*\1/gi, "")
-    .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, "")
+  const cleaned = stripUnsafeHrefs(
+    stripDangerousElements(
+      svg
+        .replace(/\son[a-z][\w:-]*\s*=\s*(?:"[^"]*"|'[^']*'|[^\s>]+)/gi, "")
+        .replace(/(?:javascript:|vbscript:|data:text\/html)/gi, ""),
+    ),
+  )
+
+  return ensureSvgRoot(cleaned)
 }
 
 export function decodeDataImage(value: string): PreparedCustomIcon {

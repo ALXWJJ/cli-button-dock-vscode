@@ -38,7 +38,7 @@ export const frBundle: LocaleBundle = {
     pickIconPrefix: "Choisir l'icône : ",
     customIconName: "Icône personnalisée",
     resetMessage: "Valeurs par défaut restaurées.",
-    customIconHint: "La barre de titre affiche une icône personnalisée générique ; l'image complète apparaît sur l'onglet du terminal.",
+    customIconHint: "Les icônes personnalisées sont appliquées à la barre de titre. Rechargez la fenêtre si le substitut reste affiché.",
   },
   emojiNames: {
     "emoji:👻": "Fantôme",

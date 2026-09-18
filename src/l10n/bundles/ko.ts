@@ -38,7 +38,7 @@ export const koBundle: LocaleBundle = {
     pickIconPrefix: "아이콘 선택: ",
     customIconName: "사용자 지정 아이콘",
     resetMessage: "기본값을 복원했습니다.",
-    customIconHint: "제목 표시줄에는 일반 사용자 지정 아이콘이 표시됩니다. 전체 이미지는 터미널 탭에 표시됩니다.",
+    customIconHint: "사용자 지정 아이콘이 제목 표시줄 버튼에 적용됩니다. 자리 표시자가 그대로면 창을 다시 로드하세요.",
   },
   emojiNames: {
     "emoji:👻": "유령",

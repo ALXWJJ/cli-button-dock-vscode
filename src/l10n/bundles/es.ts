@@ -38,7 +38,7 @@ export const esBundle: LocaleBundle = {
     pickIconPrefix: "Elegir icono: ",
     customIconName: "Icono personalizado",
     resetMessage: "Valores predeterminados restaurados.",
-    customIconHint: "La barra de título muestra un icono personalizado genérico; la imagen completa aparece en la pestaña del terminal.",
+    customIconHint: "Los iconos personalizados se aplican a la barra de título. Recarga la ventana si sigue el marcador de posición.",
   },
   emojiNames: {
     "emoji:👻": "Fantasma",

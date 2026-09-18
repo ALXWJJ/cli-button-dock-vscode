@@ -38,7 +38,7 @@ export const zhTwBundle: LocaleBundle = {
     pickIconPrefix: "選擇圖示：",
     customIconName: "自訂圖示",
     resetMessage: "已恢復預設設定",
-    customIconHint: "標題列顯示通用自訂圖示；開啟終端機後顯示完整圖示",
+    customIconHint: "自訂圖示會同步到標題列按鈕；若仍顯示佔位圖，請重新載入視窗",
   },
   emojiNames: {
     "emoji:👻": "幽靈",

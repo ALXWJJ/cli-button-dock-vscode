@@ -38,7 +38,7 @@ export const ptBrBundle: LocaleBundle = {
     pickIconPrefix: "Escolher ícone: ",
     customIconName: "Ícone personalizado",
     resetMessage: "Padrões restaurados.",
-    customIconHint: "A barra de título usa um ícone personalizado genérico; a imagem completa aparece na aba do terminal.",
+    customIconHint: "Ícones personalizados são aplicados à barra de título. Recarregue a janela se o placeholder permanecer.",
   },
   emojiNames: {
     "emoji:👻": "Fantasma",

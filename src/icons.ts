@@ -3,9 +3,9 @@ import * as fs from "node:fs"
 import * as path from "node:path"
 import * as vscode from "vscode"
 import { loadCustomIconSlots, saveCustomIconSlots } from "./config"
-import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, INLINE_SVG_PATTERN, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
+import { CUSTOM_ICON_DIR, CUSTOM_ICON_MAX_BYTES, CUSTOM_ICON_MIME_EXTENSIONS, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
 import { BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS, normalizeIcon } from "./presets"
-import { decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
+import { containsInlineSvg, decodeDataImage, isCustomIcon, sanitizeSvg } from "./svg"
 import {
   codiconFallbackSvg,
   emojiIconSvg,
@@ -106,7 +106,7 @@ async function downloadCustomIcon(value: string): Promise<PreparedCustomIcon> {
 
 async function prepareCustomIconBytes(icon: string): Promise<PreparedCustomIcon> {
   const source = icon.trim()
-  if (INLINE_SVG_PATTERN.test(source)) {
+  if (containsInlineSvg(source)) {
     return { bytes: Buffer.from(sanitizeSvg(source), "utf8"), extension: "svg" }
   }
   if (/^data:image\//i.test(source)) {
@@ -200,7 +200,13 @@ export async function syncTitleBarRuntimeIcon(
   for (const theme of ["light", "dark"] as const) {
     const absolutePath = path.join(context.extensionPath, runtimeIconRelativePath(buttonId, nextSlot, theme))
     fs.mkdirSync(path.dirname(absolutePath), { recursive: true })
-    fs.writeFileSync(absolutePath, theme === "light" ? light : dark)
+    const contents = theme === "light" ? light : dark
+    fs.writeFileSync(absolutePath, contents, "utf8")
+    fs.utimesSync(absolutePath, new Date(), new Date())
+    const written = fs.readFileSync(absolutePath, "utf8")
+    if (written !== contents) {
+      throw new Error("The title-bar icon file could not be updated.")
+    }
   }
   slots.set(buttonId, nextSlot)
   return nextSlot

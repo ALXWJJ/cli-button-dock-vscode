@@ -66,6 +66,13 @@ describe("isCustomIcon", () => {
     expect(isCustomIcon("https://example.com/icon.svg")).toBe(true)
     expect(isCustomIcon("brand:codex")).toBe(false)
   })
+
+  test("detects svg documents with xml comments", () => {
+    const inkscape = `<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/></svg>`
+    expect(isCustomIcon(inkscape)).toBe(true)
+  })
 })
 
 describe("sanitizeSvg", () => {
@@ -74,8 +81,31 @@ describe("sanitizeSvg", () => {
     expect(sanitized).not.toContain("onclick")
   })
 
-  test("rejects script tags", () => {
-    expect(() => sanitizeSvg("<svg><script>alert(1)</script></svg>")).toThrow()
+  test("extracts svg after xml prologue and comments", () => {
+    const sanitized = sanitizeSvg(`<?xml version="1.0"?>
+<!-- Generator: Adobe Illustrator -->
+<svg viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="#f00"/></svg>`)
+    expect(sanitized).toContain("<svg")
+    expect(sanitized).toContain('fill="#f00"')
+    expect(sanitized).toContain("xmlns=")
+    expect(sanitized).not.toContain("Generator")
+  })
+
+  test("keeps fragment hrefs and style rules", () => {
+    const sanitized = sanitizeSvg(`<svg viewBox="0 0 24 24">
+<style>.st0{fill:#00f}</style>
+<defs><path id="a" d="M0 0h24v24H0z"/></defs>
+<use href="#a" class="st0"/>
+</svg>`)
+    expect(sanitized).toContain('href="#a"')
+    expect(sanitized).toContain("<style>")
+    expect(sanitized).toContain("fill:#00f")
+  })
+
+  test("strips scripts instead of rejecting the icon", () => {
+    const sanitized = sanitizeSvg("<svg viewBox=\"0 0 24 24\"><script>alert(1)</script><rect width=\"24\" height=\"24\"/></svg>")
+    expect(sanitized).not.toContain("<script")
+    expect(sanitized).toContain("<rect")
   })
 })
 

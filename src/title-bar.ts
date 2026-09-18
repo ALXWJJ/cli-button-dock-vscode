@@ -2,6 +2,7 @@ import * as fs from "node:fs"
 import * as path from "node:path"
 import { BUTTON_IDS, RUNTIME_ICON_DIR, TITLE_BAR_RUNTIME_ICON_SLOTS } from "./constants"
 import { AGENT_PRESETS, BRAND_ICON_OPTIONS, EMOJI_ICON_OPTIONS } from "./presets"
+import { containsInlineSvg } from "./svg"
 
 export const TITLE_BAR_CODICON_IDS = ["terminal", "settings", "debug-alt", "play", "add", "refresh"]
 
@@ -48,7 +49,7 @@ export function isTitleBarCustomIcon(icon: string) {
   return lower.startsWith("http://")
     || lower.startsWith("https://")
     || lower.startsWith("data:image/")
-    || /^(?:<\?xml[\s\S]*?\?>\s*)?<svg\b/i.test(raw)
+    || containsInlineSvg(raw)
 }
 
 export function iconFaceSuffix(iconId: string) {

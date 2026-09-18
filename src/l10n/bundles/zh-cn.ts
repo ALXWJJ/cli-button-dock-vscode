@@ -38,7 +38,7 @@ export const zhCnBundle: LocaleBundle = {
     pickIconPrefix: "选择图标：",
     customIconName: "自定义图标",
     resetMessage: "已恢复默认配置",
-    customIconHint: "标题栏显示通用自定义图标；打开终端后显示完整图标",
+    customIconHint: "自定义图标会同步到标题栏按钮；若仍显示占位图，请重载窗口",
   },
   emojiNames: {
     "emoji:👻": "幽灵",

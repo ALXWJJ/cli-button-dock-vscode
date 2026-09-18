@@ -38,7 +38,7 @@ export const enBundle: LocaleBundle = {
     pickIconPrefix: "Pick icon: ",
     customIconName: "Custom icon",
     resetMessage: "Defaults restored.",
-    customIconHint: "Title bar uses a generic custom icon; the full image appears on the terminal tab.",
+    customIconHint: "Custom icons are written to the title-bar buttons. Reload the window if an icon stays on the placeholder.",
   },
   emojiNames: {
     "emoji:👻": "Ghost",

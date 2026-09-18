@@ -19,7 +19,6 @@ export const CUSTOM_ICON_MIME_EXTENSIONS: Record<string, string> = {
   "image/x-icon": "ico",
   "image/vnd.microsoft.icon": "ico",
 }
-export const INLINE_SVG_PATTERN = /^(?:<\?xml[\s\S]*?\?>\s*)?<svg\b/i
 export const SLOT_EMOJIS: Record<string, string> = {
   "01": "1️⃣",
   "02": "2️⃣",

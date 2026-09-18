@@ -38,7 +38,7 @@ export const deBundle: LocaleBundle = {
     pickIconPrefix: "Icon wählen: ",
     customIconName: "Benutzerdefiniertes Icon",
     resetMessage: "Standardwerte wiederhergestellt.",
-    customIconHint: "In der Titelleiste wird ein generisches benutzerdefiniertes Symbol angezeigt; das vollständige Bild erscheint auf dem Terminal-Tab.",
+    customIconHint: "Benutzerdefinierte Icons werden in die Titelleiste geschrieben. Fenster neu laden, falls der Platzhalter bleibt.",
   },
   emojiNames: {
     "emoji:👻": "Geist",

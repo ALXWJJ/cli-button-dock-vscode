@@ -38,7 +38,7 @@ export const itBundle: LocaleBundle = {
     pickIconPrefix: "Scegli icona: ",
     customIconName: "Icona personalizzata",
     resetMessage: "Impostazioni predefinite ripristinate.",
-    customIconHint: "La barra del titolo usa un'icona personalizzata generica; l'immagine completa appare nella scheda del terminale.",
+    customIconHint: "Le icone personalizzate vengono scritte nella barra del titolo. Ricarica la finestra se resta il segnaposto.",
   },
   emojiNames: {
     "emoji:👻": "Fantasma",

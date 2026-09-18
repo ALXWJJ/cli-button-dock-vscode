@@ -46,8 +46,12 @@ async function refreshTitleBarContexts(customIconSlots?: Map<string, number>) {
 }
 
 async function applyWorkspaceButtonConfig(context: vscode.ExtensionContext, nextButtons: ButtonConfig[]) {
-  const { customIconSlots } = await syncTitleBarRuntimeIcons(context, nextButtons)
+  const { customIconSlots, errors } = await syncTitleBarRuntimeIcons(context, nextButtons)
   await updateButtonContexts(nextButtons, customIconSlots)
+  if (errors.length > 0) {
+    const summary = errors.map((item) => `#${item.buttonId}: ${item.message}`).join("; ")
+    void vscode.window.showWarningMessage(`Cli Button Dock: ${summary}`)
+  }
 }
 
 function registerButtonFaceCommands(
