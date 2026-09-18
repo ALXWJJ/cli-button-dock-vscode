@@ -125,6 +125,12 @@ export const BRAND_ICON_OPTIONS: BrandIconDefinition[] = [
     light: "minimax.svg",
     dark: "minimax.svg",
   },
+  {
+    id: "brand:grok",
+    name: "Grok Build",
+    light: "grok-light.svg",
+    dark: "grok-dark.svg",
+  },
 ]
 
 
@@ -271,6 +277,14 @@ export const AGENT_PRESETS: AgentPresetDefinition[] = [
     label: "MiniMax",
     icon: "brand:minimax",
     command: "mmx",
+    cwd: "current",
+  },
+  {
+    id: "grok",
+    name: "Grok Build",
+    label: "Grok Build",
+    icon: "brand:grok",
+    command: "grok",
     cwd: "current",
   },
 ]

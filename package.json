@@ -2,7 +2,7 @@
   "name": "cli-button-dock",
   "displayName": "%extension.displayName%",
   "description": "%extension.description%",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "publisher": "ALXWJJ",
   "repository": {
     "type": "git",
@@ -43,7 +43,9 @@
     "openclaw",
     "mimo-code",
     "antigravity",
-    "minimax"
+    "minimax",
+    "grok",
+    "grok-build"
   ],
   "activationEvents": [
     "onStartupFinished"
